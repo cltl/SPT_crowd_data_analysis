@@ -86,6 +86,13 @@ def get_comparison_dicts(pair_analysis_dict, run_analysis_dict):
             comparison_dicts.append(pair_dict)
     return comparison_dicts
 
+def get_average_dict(run_analysis_dict, comparison_dicts):
+    average_dict = dict()
+    for run in run_analysis_dict.keys():
+        all_values = [d[run] for d in comparison_dicts]
+        average_dict[run] = sum(all_values)/len(all_values)
+    return average_dict
+
 def main():
 
     contradiction_pairs = load_contradiction_pairs()
@@ -112,17 +119,21 @@ def main():
 
     pair_analysis_dict = get_counts_same_pairs(run_analysis_dict, factor = 'proportion')
     comparison_dicts = get_comparison_dicts(pair_analysis_dict, run_analysis_dict)
-    df_pairs_compared = pd.DataFrame(comparison_dicts)
+
 
     #print(df_pairs_compared)
     runs = '-'.join([str(run) for run in run_analysis_dict.keys()])
     analysis_path = f'../analyses/contradiction/comparison_pairs_removed-runs{runs}.csv'
-    df_pairs_compared.to_csv(analysis_path)
 
-    average_dict = dict()
-    for run in run_analysis_dict.keys():
-        all_values = [d[run] for d in comparison_dicts]
-        average_dict[run] = sum(all_values)/len(all_values)
+    average_dict = get_average_dict(run_analysis_dict, comparison_dicts)
+    average_dict_row = dict()
+    average_dict_row['pair'] = 'average'
+    for run, av in average_dict.items():
+        average_dict_row[run] = av
+
+    comparison_dicts.append(average_dict_row)
+    df_pairs_compared = pd.DataFrame(comparison_dicts)
+    df_pairs_compared.to_csv(analysis_path)
 
     print()
     for run, av in average_dict.items():

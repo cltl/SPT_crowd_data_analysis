@@ -1,4 +1,16 @@
 pair,pairs_removed,total,proportion
+"('red', 'carnation')",2,10,0.2
+"('round', 'onion')",2,10,0.2
+"('round', 'juice')",2,10,0.2
+"('red', 'cinnamon')",3,10,0.3
+"('round', 'candle')",0,10,0.0
+"('red', 'ring')",3,10,0.3
+"('red', 'olive')",3,10,0.3
+"('red', 'chameleon')",4,10,0.4
+"('roll', 'calliper')",0,10,0.0
+"('roll', 'handrail')",0,10,0.0
+"('_check1', '_check1')",0,30,0.0
+"('_test3', '_test3')",0,10,0.0
 "('roll', 'wheel')",0,10,0.0
 "('red', 'balloon')",3,10,0.3
 "('red', 'night')",3,10,0.3
@@ -10,7 +22,6 @@ pair,pairs_removed,total,proportion
 "('roll', 'tappet')",0,10,0.0
 "('round', 'tray')",4,10,0.4
 "('roll', 'brick')",0,10,0.0
-"('_check1', '_check1')",0,20,0.0
 "('_test4', '_test4')",0,30,0.0
 "('red', 'pigweed')",0,10,0.0
 "('round', 'candy')",3,10,0.3
