@@ -1,0 +1,6 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,First Language,Current Country of Residence,Sex,Student Status,Nationality,Employment Status,Country of Birth
+5de78f1aa47b61000c97038b,5bcbb1963c6f9f0001cc747a,AWAITING REVIEW,2019-12-04 10:49:00.010000,2019-12-04 10:57:58.723000,538.713,25,210,2,100,,2C34C6EA,English,United Kingdom,Male,No,United Kingdom,Full-Time,United Kingdom
+5de78f4cd4b81e70129800c6,5de77bbf6552bb6e9e080762,AWAITING REVIEW,2019-12-04 10:49:51.644000,2019-12-04 10:55:59.014000,367.37,19,0,0,100,,2C34C6EA,English,United States,Male,Yes,United States,Unemployed (and job seeking),United States
+5de78f62986791000ce9ec46,5de6dd9be3e0cc6642ea3b33,AWAITING REVIEW,2019-12-04 10:50:22.257000,2019-12-04 11:18:31.199000,1688.942,19,0,0,100,,2C34C6EA,Polish,Poland,Male,Yes,Poland,Part-Time,Poland
+5de78f94db4b3070ab7ebacc,5a4bf85dac413f0001e6076a,AWAITING REVIEW,2019-12-04 10:51:03.245000,2019-12-04 10:57:40.332000,397.087,35,175,2,100,,2C34C6EA,English,United Kingdom,Female,No,United Kingdom,Full-Time,United Kingdom
+5de78f9dc71f826fe83cc538,5c73e0e1df19050016a5f8ea,AWAITING REVIEW,2019-12-04 10:51:11.260000,2019-12-04 10:59:46.539000,515.279,28,39,1,100,,2C34C6EA,Estonian,Estonia,Female,No,Estonia,Full-Time,Estonia

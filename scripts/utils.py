@@ -100,3 +100,18 @@ def consistency_check(contradiction_pairs, relation_counts, thresh = 0.5):
                 if pair in contradiction_pairs and pair not in contradictions:
                     contradictions.append(pair)
     return contradictions
+
+def get_worker_dict(dict_list_out):
+    worker_dict = defaultdict(list)
+    for d in dict_list_out:
+        worker = d['workerid']
+        worker_dict[worker].append(d)
+    return worker_dict
+
+def get_worker_pair_dict(dict_list_out):
+    worker_dict = get_worker_dict(dict_list_out)
+    worker_pair_dict = dict()
+    for worker, worker_dict_list in worker_dict.items():
+        pair_dict = get_pair_dict(worker_dict_list)
+        worker_pair_dict[worker] = pair_dict
+    return worker_pair_dict

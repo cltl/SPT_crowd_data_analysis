@@ -1,0 +1,13 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Nationality,Current Country of Residence,Country of Birth,Student Status,First Language,Sex,Employment Status
+5de13cd2092efa19339814eb,57bcb35314b81d0001173d63,TIMED-OUT,2019-11-29 15:44:24.145000,,89071.871794,38,55,0,100,,,United Kingdom,United Kingdom,United Kingdom,No,English,Female,Part-Time
+5de13ced762dc2184a6c508e,5dd1847696afdf1ffdca53be,TIMED-OUT,2019-11-29 15:44:48.563000,,89047.464271,25,0,0,100,,,Greece,Greece,Greece,No,Greek,Male,Full-Time
+5de13d0bc638d418a9241a9d,5de0ce83cca54a1199017f73,AWAITING REVIEW,2019-11-29 15:45:17.985000,2019-11-29 15:53:43.094000,505.109,25,0,0,100,,7AFDA35F,United Kingdom,United Kingdom,United Kingdom,No,English,Female,Full-Time
+5de13d22521f95191364cf2a,5dd7f4dbdcec87782e2d4e5c,AWAITING REVIEW,2019-11-29 15:48:17.666000,2019-11-29 16:12:17.453000,1439.787,32,0,0,100,,7AFDA35F,United States,United States,Netherlands,No,Dutch,Male,Full-Time
+5de13d2baf7a42191277e422,5ba909c938803d00012708e0,AWAITING REVIEW,2019-11-29 15:45:47.963000,2019-11-29 15:56:54.899000,666.936,21,37,0,100,,7AFDA35F,Sweden,Sweden,Sweden,No,Swedish,Male,Unemployed (and job seeking)
+5de13d340e58661916d85ef6,5ddf8f46d0e07e000a396562,AWAITING REVIEW,2019-11-29 15:45:59.356000,2019-11-29 16:07:15.284000,1275.928,29,0,0,100,,7AFDA35F,Poland,Poland,Poland,Yes,Polish,Male,Full-Time
+5de13d4b7f57a3190cc1725b,5de122c7ff15c24523bccf21,AWAITING REVIEW,2019-11-29 15:46:24.660000,2019-11-29 15:55:12.262000,527.602,23,0,0,100,,7AFDA35F,,,,,,,
+5de13d4e96e9b219622885fe,5cc7af94cd7a550019b5a460,AWAITING REVIEW,2019-11-29 15:46:23.577000,2019-11-29 15:51:09.611000,286.034,20,26,0,100,,7AFDA35F,Poland,United Kingdom,Poland,Yes,Polish,Male,Other
+5de13d4e99f939185f83bf9b,598780a5e8d50e0001d7c273,AWAITING REVIEW,2019-11-29 15:46:24.542000,2019-11-29 15:57:34.918000,670.376,22,87,1,100,,7AFDA35F,United Kingdom,United Kingdom,United Kingdom,No,English,Female,Unemployed (and job seeking)
+5de13d51cdff8e18f4e484e1,5c617fed0863210001642974,AWAITING REVIEW,2019-11-29 15:46:27.360000,2019-11-29 16:06:34.528000,1207.168,26,16,0,100,,7AFDA35F,United Kingdom,United Kingdom,United Kingdom,No,English,Female,Full-Time
+5de14807e130941960a5b0e0,5da4a23630871900154e0d5c,AWAITING REVIEW,2019-11-29 16:32:09.529000,2019-11-29 16:52:21.696000,1212.167,47,33,1,99,,7AFDA35F,United Kingdom,United Kingdom,United Kingdom,No,English,Female,Full-Time
+5de1480e4e0a99000dc3c43a,5be964367514d0000108cefc,AWAITING REVIEW,2019-11-29 16:32:22.064000,2019-11-29 16:51:07.435000,1125.371,34,156,1,100,,7AFDA35F,Poland,Poland,Poland,No,Polish,Female,Full-Time

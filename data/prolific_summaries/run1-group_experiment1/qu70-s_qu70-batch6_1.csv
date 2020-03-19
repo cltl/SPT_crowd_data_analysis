@@ -1,0 +1,6 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Nationality,Current Country of Residence,Country of Birth,Employment Status,Sex,Student Status,First Language
+5de4e6967da01d46f90321e0,5de4e06be4f42a477cdbb682,AWAITING REVIEW,2019-12-02 10:25:29.714000,2019-12-02 10:32:11.174000,401.46,26,0,0,100,,4EC52432,Ghana,Australia,Ghana,Full-Time,Male,No,Afrikaans
+5de4e6b8a5fbf0075bea6f28,5c4e3248ad466000019166df,AWAITING REVIEW,2019-12-02 10:26:02.909000,2019-12-02 10:37:27.186000,684.277,22,12,2,86,,4EC52432,Poland,Poland,Poland,Other,Male,No,Polish
+5de4e6c250f52147b7e9105f,5bce0e9e48473300014cafca,AWAITING REVIEW,2019-12-02 10:26:11.591000,2019-12-02 10:35:28.037000,556.446,23,175,0,100,,4EC52432,United Kingdom,United Kingdom,United Kingdom,Full-Time,Male,No,English
+5de4e6cb8daa5e07adfee543,5b994a6d700b020001c572e2,AWAITING REVIEW,2019-12-02 10:26:21.463000,2019-12-02 10:41:42.472000,921.009,22,58,1,100,,4EC52432,Poland,Poland,Poland,Full-Time,Male,Yes,Polish
+5de4e6db0198070752b0031e,5d134f52f1341200164f90e4,AWAITING REVIEW,2019-12-02 10:26:40.122000,2019-12-02 10:44:29.828000,1069.706,22,17,1,99,,4EC52432,Estonia,Estonia,Estonia,Full-Time,Male,No,Estonian

@@ -1,0 +1,7 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,First Language,Current Country of Residence,Sex,Student Status,Country of Birth,Nationality,Employment Status
+5de655e1d609c95bc97973b0,5c8bfcd7e5265900010d7ba6,AWAITING REVIEW,2019-12-03 12:32:36.819000,2019-12-03 12:39:05.123000,388.304,24,16,0,100,,8E9D4E99,English,United Kingdom,Female,Yes,United Kingdom,United Kingdom,Full-Time
+5de655f4a91be35c8fa817d7,5b7ac2d72e4a8200017a512f,AWAITING REVIEW,2019-12-03 12:32:54.009000,2019-12-03 12:42:25.546000,571.537,25,124,2,100,,8E9D4E99,English,United Kingdom,Female,No,United Kingdom,United Kingdom,Part-Time
+5de655f6c22a305c7cc8c9e8,5a666a2713898300014b6a4d,AWAITING REVIEW,2019-12-03 12:33:38.797000,2019-12-03 12:42:01.269000,502.472,20,1,0,100,,8E9D4E99,Spanish,Spain,Female,Yes,Germany,Poland,Part-Time
+5de65615092efa5d4903778b,5dad7f29033d57001357a2b8,AWAITING REVIEW,2019-12-03 12:34:38.503000,2019-12-03 12:48:45.549000,847.046,25,0,0,100,,8E9D4E99,English,,Male,No,United Kingdom,United Kingdom,Part-Time
+5de656263aa2775c403d8b94,5c71a34da8fe63000199cd7d,TIMED-OUT,2019-12-03 12:33:44.841000,,12494.215553,25,58,0,100,,,English,United Kingdom,Male,No,United Kingdom,United Kingdom,Full-Time
+5de6636485529d5dcf036a38,5cf91e3f1756e60017a30568,AWAITING REVIEW,2019-12-03 13:30:12.683000,2019-12-03 13:51:51.919000,1299.236,42,107,1,100,,8E9D4E99,English,Ireland,Female,No,Ireland,Ireland,Part-Time

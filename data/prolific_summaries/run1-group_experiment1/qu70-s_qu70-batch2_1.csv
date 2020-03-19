@@ -1,0 +1,7 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,First Language,Sex,Current Country of Residence,Country of Birth,Employment Status,Nationality,Student Status
+5de2a28bcb1b082d353d299e,5d430e89be616d0015f784e8,AWAITING REVIEW,2019-11-30 17:10:44.107000,2019-11-30 17:21:00.293000,616.186,19,14,0,100,,D9EF08A9,,Male,Italy,,,Italy,Yes
+5de2a296ff87c12cd989fd4e,5ca265a757b9280016108e96,RETURNED,2019-11-30 17:10:48.097000,,70356.471731,22,35,0,100,,,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED
+5de2a29ecb1b082ce0035b2c,5a50c8afac562400015353b7,AWAITING REVIEW,2019-11-30 17:10:55.651000,2019-11-30 17:17:19.443000,383.792,30,196,1,100,,D9EF08A9,English,Female,United Kingdom,United Kingdom,Full-Time,United Kingdom,No
+5de2a2ad8691182c9151bf6c,5baa4c22c4d93b0001bea5a5,AWAITING REVIEW,2019-11-30 17:11:14.701000,2019-11-30 17:14:43.311000,208.61,23,43,0,100,,NOCODE,English,Female,United Kingdom,United Kingdom,Full-Time,United Kingdom,No
+5de2a2b34297252d218b5674,5de0557af31ad20d81756185,AWAITING REVIEW,2019-11-30 17:11:19.141000,2019-11-30 17:23:03.032000,703.891,22,0,0,100,,D9EF08A9,Greek,Male,,Greece,Full-Time,Greece,Yes
+5de2a423e4b8c52dbc59d687,5bda4059ea656500011d5334,AWAITING REVIEW,2019-11-30 17:17:28.608000,2019-11-30 17:29:45.199000,736.591,34,130,0,100,,D9EF08A9,Uzbek,Female,United Kingdom,United Kingdom,"Not in paid work (e.g. homemaker', 'retired or disabled)",Uzbekistan,No

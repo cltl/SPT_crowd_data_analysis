@@ -1,0 +1,7 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Student Status,Current Country of Residence,Employment Status,Nationality,Sex,Country of Birth,First Language
+5de77dc41abb506d61824c88,5cd574ebf1dc7600185cc0a4,AWAITING REVIEW,2019-12-04 09:35:04.942000,2019-12-04 09:54:50.612000,1185.67,32,23,1,98,,5F2B3AC8,No,Greece,Unemployed (and job seeking),Romania,Female,Romania,Romanian
+5de77dcfa2db896f88e86241,5d6ec714d7d0900001831ade,AWAITING REVIEW,2019-12-04 09:35:11.767000,2019-12-04 09:46:58.318000,706.551,19,11,0,100,,5F2B3AC8,Yes,Sweden,Other,Ukraine,Male,Ukraine,Ucrainian
+5de77e01b5b7ff6d3068a9c8,5de77acce448c66ddec8b684,TIMED-OUT,2019-12-04 09:36:03.278000,,4013.629428,29,0,0,100,,,Yes,,,United Kingdom,Female,United Kingdom,English
+5de77e6b988d7c6f599d704b,5d7c8c85f0f16600017679be,AWAITING REVIEW,2019-12-04 09:37:52.405000,2019-12-04 09:41:24.532000,212.127,30,2,0,100,,5F2B3AC8,Yes,United Kingdom,Part-Time,South Africa,Female,South Africa,English
+5de77e708691186e369544dc,5b58e75f57f6aa00010a56e1,AWAITING REVIEW,2019-12-04 09:37:57.714000,2019-12-04 09:51:03.468000,785.754,29,16,0,100,,5F2B3AC8,No,Canada,Part-Time,Canada,Female,Canada,English
+5de788a13cf279702d3f020f,5c9e5360bb028c00166755fa,AWAITING REVIEW,2019-12-04 10:21:23.706000,2019-12-04 10:29:43.781000,500.075,46,37,1,100,,5F2B3AC8,No,Spain,Full-Time,Spain,Male,Spain,Spanish

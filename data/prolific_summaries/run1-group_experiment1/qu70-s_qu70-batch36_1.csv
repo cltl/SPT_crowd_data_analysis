@@ -1,0 +1,6 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Employment Status,Sex,Student Status,Country of Birth,Nationality,First Language,Current Country of Residence
+5de7db82bdf933000d20a3aa,5c097af754deae0001ac6534,AWAITING REVIEW,2019-12-04 16:14:58.781000,2019-12-04 16:24:18.015000,559.234,27,45,1,100,,40F42CCE,Full-Time,Male,Yes,Greece,Greece,Greek,Greece
+5de7dbf6a61575cb34af6133,5de6e6eda63c7b6655e3eb3b,AWAITING REVIEW,2019-12-04 16:16:58.309000,2019-12-04 16:33:42.728000,1004.419,37,0,0,100,,40F42CCE,"Not in paid work (e.g. homemaker', 'retired or disabled)",Female,Yes,Poland,Poland,Polish,
+5de7dc0c2294f173d372b24d,5b281303007d870001c7f24a,AWAITING REVIEW,2019-12-04 16:17:22.307000,2019-12-04 16:30:30.423000,788.116,51,119,0,100,,40F42CCE,Full-Time,Female,No,United Kingdom,United Kingdom,English,United Kingdom
+5de7dc1a092efa7515739759,5cfa90ccd128950001311ed0,AWAITING REVIEW,2019-12-04 16:17:40.932000,2019-12-04 16:28:28.480000,647.548,30,2,0,100,,40F42CCE,,Female,No,United States,United States,English,
+5de7dc4884d974000bfb27f9,5d598dff48766d0001949fb6,AWAITING REVIEW,2019-12-04 16:18:18.589000,2019-12-04 16:24:38.935000,380.346,26,9,0,100,,40F42CCE,Full-Time,Female,No,Malaysia,Malaysia,English,United Kingdom

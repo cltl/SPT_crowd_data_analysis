@@ -1,0 +1,7 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Current Country of Residence,Student Status,Employment Status,First Language,Sex,Nationality,Country of Birth
+5de92d88622af1000a6bbf40,5c03d56b5c059400011552ed,AWAITING REVIEW,2019-12-05 16:17:18.727000,2019-12-05 16:35:48.539000,1109.812,35,47,0,100,,6728EE92,Greece,No,Unemployed (and job seeking),Greek,Male,Greece,Greece
+5de92db4ce8d8d0651eb0402,5bb235d90cb04c00014e5baf,AWAITING REVIEW,2019-12-05 16:17:59.483000,2019-12-05 16:30:09.219000,729.736,51,13,0,100,,6728EE92,United Kingdom,No,Full-Time,English,Male,United Kingdom,United Kingdom
+5de92dff8bf3da05e68fce4f,582c280c3b081f0001510456,AWAITING REVIEW,2019-12-05 16:19:36.793000,2019-12-05 16:31:23.642000,706.849,27,14,0,100,,6728EE92,Portugal,Yes,Unemployed (and job seeking),Portuguese,Female,Portugal,Portugal
+5de92e13603cf704f33084a3,5d4434c68225f9001642fcd3,AWAITING REVIEW,2019-12-05 16:19:34.424000,2019-12-05 16:25:44.301000,369.877,23,30,0,100,,6728EE92,Italy,No,Full-Time,Italian,Male,Italy,Italy
+5de92e3fd2601a062c78c11f,5de0e7444f21b413e0968cb8,RETURNED,2019-12-05 16:20:30.793000,,2846.521152,27,0,0,100,,,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED
+5de92f8c389fde056941a4d9,5bb2db13f05e410001fa0c8a,AWAITING REVIEW,2019-12-05 16:26:12.621000,2019-12-05 17:01:11.320000,2098.699,36,76,0,100,,6728EE92,Poland,No,Part-Time,Polish,Male,Poland,Poland
