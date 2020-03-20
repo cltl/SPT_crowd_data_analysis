@@ -1,71 +1,80 @@
-pair,pairs_removed,total,proportion
-"('red', 'carnation')",2,10,0.2
-"('round', 'onion')",2,10,0.2
-"('round', 'juice')",2,10,0.2
-"('red', 'cinnamon')",3,10,0.3
-"('round', 'candle')",0,10,0.0
-"('red', 'ring')",3,10,0.3
-"('red', 'olive')",3,10,0.3
-"('red', 'chameleon')",4,10,0.4
-"('roll', 'calliper')",0,10,0.0
-"('roll', 'handrail')",0,10,0.0
-"('_check1', '_check1')",0,30,0.0
-"('_test3', '_test3')",0,10,0.0
-"('roll', 'wheel')",0,10,0.0
-"('red', 'balloon')",3,10,0.3
-"('red', 'night')",3,10,0.3
-"('round', 'soup')",3,10,0.3
-"('round', 'cheese')",1,10,0.1
-"('round', 'corkscrew')",3,10,0.3
-"('round', 'apple')",0,10,0.0
-"('roll', 'bike')",0,10,0.0
-"('roll', 'tappet')",0,10,0.0
-"('round', 'tray')",4,10,0.4
-"('roll', 'brick')",0,10,0.0
-"('_test4', '_test4')",0,30,0.0
-"('red', 'pigweed')",0,10,0.0
-"('round', 'candy')",3,10,0.3
-"('red', 'clarinet')",2,10,0.2
-"('red', 'cake')",3,10,0.3
-"('red', 'blackberry')",4,10,0.4
-"('red', 'pomegranate')",4,10,0.4
-"('round', 'spoon')",5,10,0.5
-"('round', 'cantaloupe')",0,10,0.0
-"('roll', 'projectile')",0,10,0.0
-"('roll', 'leather')",0,10,0.0
-"('roll', 'breechblock')",0,10,0.0
-"('_check3', '_check3')",0,10,0.0
-"('_test2', '_test2')",0,10,0.0
-"('roll', 'donkey')",0,10,0.0
-"('round', 'cucurbit')",2,10,0.2
-"('red', 'oven')",3,10,0.3
-"('red', 'fox')",3,10,0.3
-"('round', 'disc')",2,10,0.2
-"('round', 'beet')",0,10,0.0
-"('red', 'onion')",5,10,0.5
-"('red', 'bus')",0,10,0.0
-"('round', 'melon')",5,10,0.5
-"('roll', 'vaporizer')",0,10,0.0
-"('_check2', '_check2')",0,9,0.0
-"('_test1', '_test1')",0,9,0.0
-"('round', 'pomade')",1,10,0.1
-"('red', 'sauce')",1,10,0.1
-"('round', 'scone')",4,10,0.4
-"('round', 'sundae')",2,10,0.2
-"('round', 'ketchup')",2,10,0.2
-"('red', 'anger')",0,10,0.0
-"('red', 'wheat')",0,10,0.0
-"('red', 'tomato')",0,10,0.0
-"('roll', 'dowel')",0,10,0.0
-"('_check4', '_check4')",0,10,0.0
-"('red', 'lentil')",3,10,0.3
-"('red', 'grapefruit')",6,10,0.6
-"('red', 'crab')",3,10,0.3
-"('red', 'rhagoletis')",4,10,0.4
-"('red', 'paint')",0,10,0.0
-"('red', 'coffee')",2,10,0.2
-"('red', 'rooster')",0,10,0.0
-"('roll', 'pavement')",0,10,0.0
-"('roll', 'paddle')",0,10,0.0
-"('roll', 'pipe')",0,10,0.0
-"('roll', 'manhole')",0,10,0.0
+pair,pairs_removed,total,proportion,n removed,worker_ids
+"('red', 'cockroach')",3,9,0.3333333333333333,3,5665df264ef504000d7b6f62 5c1d4d88508cfd000103dc47 5c98a9e305f102001640f1d0
+"('round', 'biscuit')",0,10,0.0,0,
+"('round', 'creamer')",1,10,0.1,1,5c1d4d88508cfd000103dc47
+"('round', 'shape')",2,10,0.2,2,5a298e43e2032600017f44fd 5c1d4d88508cfd000103dc47
+"('red', 'ageratina')",1,10,0.1,1,5d6c847ba90a23001c46f8b2
+"('round', 'potato')",4,10,0.4,4,5665df264ef504000d7b6f62 5a298e43e2032600017f44fd 5bb8b67cf1f9ba0001412b97 5c1d4d88508cfd000103dc47
+"('round', 'dresser')",1,9,0.1111111111111111,1,5c1d4d88508cfd000103dc47
+"('red', 'potato')",2,9,0.2222222222222222,2,5c1d4d88508cfd000103dc47 5c8566ba0d4ac0000196d065
+"('roll', 'tray')",0,9,0.0,0,
+"('_check3', '_check3')",0,19,0.0,0,
+"('_test4', '_test4')",0,38,0.0,0,
+"('roll', 'wheel')",0,10,0.0,0,
+"('red', 'balloon')",3,10,0.3,3,5c1d4d88508cfd000103dc47 5e22fe5aed7a205b0626f097 Tiago Novais
+"('red', 'night')",3,10,0.3,3,5c1d4d88508cfd000103dc47 5cb1f692ff629100011b05cf Tiago Novais
+"('round', 'soup')",3,10,0.3,3,5c1d4d88508cfd000103dc47 5e22fe5aed7a205b0626f097 Tiago Novais
+"('round', 'cheese')",1,10,0.1,1,5e22fe5aed7a205b0626f097
+"('round', 'corkscrew')",3,10,0.3,3,5c1d4d88508cfd000103dc47 5e611e23e6d609000ae35968 Tiago Novais
+"('round', 'apple')",0,10,0.0,0,
+"('roll', 'bike')",0,10,0.0,0,
+"('roll', 'tappet')",0,10,0.0,0,
+"('round', 'tray')",4,10,0.4,4,5c1d4d88508cfd000103dc47 5e22fe5aed7a205b0626f097 5e570f6b38fb3a0d3c15e266 Tiago Novais
+"('roll', 'brick')",0,10,0.0,0,
+"('_check1', '_check1')",0,30,0.0,0,
+"('red', 'carnation')",2,10,0.2,2,5be1c7de91deed00015a97b9 Programmer
+"('round', 'onion')",2,10,0.2,2,5be1c7de91deed00015a97b9 Programmer
+"('round', 'juice')",2,10,0.2,2,5be1c7de91deed00015a97b9 Programmer
+"('red', 'cinnamon')",3,10,0.3,3,5be1c7de91deed00015a97b9 5d82852ae7a57100011a6122 Programmer
+"('round', 'candle')",0,10,0.0,0,
+"('red', 'ring')",3,10,0.3,3,5cb4f4ec46ed1300015b05 5d82852ae7a57100011a6122 Programmer
+"('red', 'olive')",3,10,0.3,3,5cb4f4ec46ed1300015b05 5d82852ae7a57100011a6122 Programmer
+"('red', 'chameleon')",4,10,0.4,4,5be1c7de91deed00015a97b9 5cb4f4ec46ed1300015b05 5e3b3b935da22c09084bbc02 Programmer
+"('roll', 'calliper')",0,10,0.0,0,
+"('roll', 'handrail')",0,10,0.0,0,
+"('_test3', '_test3')",0,10,0.0,0,
+"('red', 'pigweed')",0,10,0.0,0,
+"('round', 'candy')",3,10,0.3,3,5b06e71668eff50001d1b795 5c94176f0791df0014366f00 5e67cfb2a3821007f17744c8
+"('red', 'clarinet')",2,10,0.2,2,5c41047672b87000013a5f0a 5e67cfb2a3821007f17744c8
+"('red', 'cake')",3,10,0.3,3,5b06e71668eff50001d1b795 5c41047672b87000013a5f0a 5c94176f0791df0014366f00
+"('red', 'blackberry')",4,10,0.4,4,5b06e71668eff50001d1b795 5c41047672b87000013a5f0a 5e67cfb2a3821007f17744c8 5e6b9983d4948e1491e34553
+"('red', 'pomegranate')",4,10,0.4,4,5b06e71668eff50001d1b795 5e2a160c77d2c70762f0e32c 5e67cfb2a3821007f17744c8 5e6b7cde2691b2126162ee61
+"('round', 'spoon')",5,10,0.5,5,5b06e71668eff50001d1b795 5c41047672b87000013a5f0a 5c94176f0791df0014366f00 5e67cfb2a3821007f17744c8 5e67d9ed33e6a60542f4dfd7
+"('round', 'cantaloupe')",0,10,0.0,0,
+"('roll', 'projectile')",0,10,0.0,0,
+"('roll', 'leather')",0,10,0.0,0,
+"('roll', 'breechblock')",0,10,0.0,0,
+"('_test2', '_test2')",0,10,0.0,0,
+"('roll', 'donkey')",0,10,0.0,0,
+"('round', 'cucurbit')",2,10,0.2,2,5d3337693d0a510019bffca0 no workerld
+"('red', 'oven')",3,10,0.3,3,5e6f6b7b7a27a35206e5c30c 5e6f8c15fe7a000009575a52 no workerld
+"('red', 'fox')",3,10,0.3,3,5d3337693d0a510019bffca0 5e695bb0254c4a2103ed09da no workerld
+"('round', 'disc')",2,10,0.2,2,5d7a42caf0a2960016536deb 5e6f8c15fe7a000009575a52
+"('round', 'beet')",0,10,0.0,0,
+"('red', 'onion')",5,10,0.5,5,5d7a42caf0a2960016536deb 5e695bb0254c4a2103ed09da 5e6f6b7b7a27a35206e5c30c 5e6f8c15fe7a000009575a52 no workerld
+"('red', 'bus')",0,10,0.0,0,
+"('round', 'melon')",5,10,0.5,5,5bdc4a3b0f86a60001be614a 5d7a42caf0a2960016536deb 5e695bb0254c4a2103ed09da 5e6f89993f2dc053a390dad6 no workerld
+"('roll', 'vaporizer')",0,10,0.0,0,
+"('_check2', '_check2')",0,9,0.0,0,
+"('_test1', '_test1')",0,9,0.0,0,
+"('round', 'pomade')",1,10,0.1,1,5c98f0f728cfb0001667d035
+"('red', 'sauce')",1,10,0.1,1,5c98f0f728cfb0001667d035
+"('round', 'scone')",4,10,0.4,4,5cb72d295a63a200170af08f 5e6f8d129cfd4d53fc092d1b 5e6f98ded5d246555d98c6e0 unemployed
+"('round', 'sundae')",2,10,0.2,2,5e6f98ded5d246555d98c6e0 unemployed
+"('round', 'ketchup')",2,10,0.2,2,5c98f0f728cfb0001667d035 unemployed
+"('red', 'anger')",0,10,0.0,0,
+"('red', 'wheat')",0,10,0.0,0,
+"('red', 'tomato')",0,10,0.0,0,
+"('roll', 'dowel')",0,10,0.0,0,
+"('_check4', '_check4')",0,10,0.0,0,
+"('red', 'lentil')",3,10,0.3,3,5a19d62dab721b0001ef91e6 5dc72b0bb98b1252dec22f61 5e385a484af60703465f207d
+"('red', 'grapefruit')",6,10,0.6,6,5dbb81ae6d82ff16f84bb066 5e385a484af60703465f207d 5e5d84d591b5f0094e38ec2a 5e673f3fb47a554b79b02c5a 5e6a63a7d6d433011c20639b 5e6f88ac12fd1f000cdf2403
+"('red', 'crab')",3,10,0.3,3,5e5d84d591b5f0094e38ec2a 5e673f3fb47a554b79b02c5a 5e6f88ac12fd1f000cdf2403
+"('red', 'rhagoletis')",4,10,0.4,4,5dbb81ae6d82ff16f84bb066 5dc72b0bb98b1252dec22f61 5e385a484af60703465f207d 5e673f3fb47a554b79b02c5a
+"('red', 'paint')",0,10,0.0,0,
+"('red', 'coffee')",2,10,0.2,2,5dc72b0bb98b1252dec22f61 5e673f3fb47a554b79b02c5a
+"('red', 'rooster')",0,10,0.0,0,
+"('roll', 'pavement')",0,10,0.0,0,
+"('roll', 'paddle')",0,10,0.0,0,
+"('roll', 'pipe')",0,10,0.0,0,
+"('roll', 'manhole')",0,10,0.0,0,

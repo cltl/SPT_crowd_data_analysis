@@ -11,6 +11,18 @@ from utils import get_relation_counts
 from utils import consistency_check
 
 
+
+
+def dicts_to_file(dicts, name):
+    fieldnames = dicts[0].keys()
+    with open(name, 'w') as outfile:
+        writer = csv.DictWriter(outfile, fieldnames = fieldnames)
+        writer.writeheader()
+        for d in dicts:
+            writer.writerow(d)
+
+
+
 def get_dict_lists(list_dict, dict_list_n, k_name, v_name):
     dict_list = []
     for k, l in dict_list_n.items():
@@ -21,18 +33,13 @@ def get_dict_lists(list_dict, dict_list_n, k_name, v_name):
         cnt_dict[v_name] = n
         cnt_dict['total'] = total
         cnt_dict['proportion'] = n/total
+        cnt_dict['n removed'] = n
+        cnt_dict['worker_ids'] = ' '.join(list_dict[k])
         dict_list.append(cnt_dict)
     return dict_list
 
-def dicts_to_file(dicts, name):
-    fieldnames = dicts[0].keys()
-    with open(name, 'w') as outfile:
-        writer = csv.DictWriter(outfile, fieldnames = fieldnames)
-        writer.writeheader()
-        for d in dicts:
-            writer.writerow(d)
 
-def collect_contradictions(worker_pair_dict, dict_list_out, contradiction_pairs, v=True):
+def collect_contradictions(worker_pair_dict, dict_list_out, contradiction_pairs, v=False):
 
     pair_workers_contradicting = defaultdict(list)
     pair_nworkers = defaultdict(set)
@@ -49,7 +56,6 @@ def collect_contradictions(worker_pair_dict, dict_list_out, contradiction_pairs,
     dict_list_pairs = get_dict_lists(pair_workers_contradicting,\
                                      pair_nworkers, 'pair', 'pairs_removed')
     return dict_list_pairs
-
 
 
 def contradiction_analysis(contradiction_pairs, run, group, n_q, batch, remove_not_val = True):
