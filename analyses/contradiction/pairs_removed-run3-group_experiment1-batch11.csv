@@ -1,0 +1,17 @@
+pair,pairs_removed,total,proportion,n removed,worker_ids
+roll-hammer,0,10,0.0,0,
+round-custard,6,10,0.6,6,5bb5c54dc9fbd80001037ca2 5c35e108f5ebd5000184599e 5c6fc2aae51f6c0001dd2fa1 5cea706c0afd6e0001a9e93e 5e76ab49dec4562243b421f9 5e773bd402f929299ffaa47d
+round-sauce,3,10,0.3,3,5c35e108f5ebd5000184599e 5c6fc2aae51f6c0001dd2fa1 5e76ab49dec4562243b421f9
+round-marzipan,1,10,0.1,1,5e76ab49dec4562243b421f9
+red-chutney,2,10,0.2,2,5c35e108f5ebd5000184599e 5e76ab49dec4562243b421f9
+round-disk,2,10,0.2,2,5cea706c0afd6e0001a9e93e 5e76ab49dec4562243b421f9
+red-jade,2,10,0.2,2,5c56059aa469aa0001660cb6 5e76ab49dec4562243b421f9
+round-room,2,10,0.2,2,5c35e108f5ebd5000184599e 5e76ab49dec4562243b421f9
+roll-backboard,0,10,0.0,0,
+roll-cylinder,0,10,0.0,0,
+roll-ball,0,10,0.0,0,
+roll-bucket,0,10,0.0,0,
+roll-cart,0,10,0.0,0,
+roll-quoit,0,10,0.0,0,
+_check4-_check4,0,10,0.0,0,
+_test1-_test1,0,10,0.0,0,

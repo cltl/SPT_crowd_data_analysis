@@ -95,6 +95,17 @@ def clean_annotations_to_file(dict_list_clean, run, group):
         for d in dict_list_clean:
             writer.writerow(d)
 
+def clean_data(run, group, n_q, batch, remove_not_val= True):
+    dict_list_out = load_experiment_data(run, group, n_q, batch, remove_not_val = remove_not_val)
+    contradiction_pairs = load_contradiction_pairs()
+    worker_pair_dict = get_worker_pair_dict(dict_list_out)
+    dict_list_clean, dict_list_discard = clean_annotations(worker_pair_dict,\
+                                                           dict_list_out,\
+                                                           contradiction_pairs,\
+                                                            v = False)
+    clean_annotations_to_file(dict_list_clean, run, group)
+
+
 
 
 def main():
@@ -104,14 +115,7 @@ def main():
     n_q = '*'
     group = 'experiment1'
 
-    # load all files
-    dict_list_out = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-    contradiction_pairs = load_contradiction_pairs()
-    worker_pair_dict = get_worker_pair_dict(dict_list_out)
-    dict_list_clean, dict_list_discard = clean_annotations(worker_pair_dict,\
-                                                           dict_list_out,\
-                                                           contradiction_pairs,\
-                                                            v = False)
-    clean_annotations_to_file(dict_list_clean, run, group)
+    clean_data(run, group, n_q, batch, remove_not_val= True)
+
 if __name__ == '__main__':
     main()

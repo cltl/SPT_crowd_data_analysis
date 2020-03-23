@@ -45,12 +45,23 @@ def load_experiment_data_batch(exp_path, remove_not_val = True):
 
 def replace_id(dict_list_out, mapping_dict, v=False):
 
-    for d in dict_list_out:
-        workerid = d['workerid']
-        if workerid == mapping_dict['out']:
-            d['workerid'] = mapping_dict['summary']
-            if v == True:
-                print(f'Replaced worker id {workerid} with {mapping_dict["summary"]}')
+    if mapping_dict['summary'] == 'NS':
+        to_remove = []
+        for d in dict_list_out:
+            workerid = d['workerid']
+            if workerid == mapping_dict['out']:
+                to_remove.append(d)
+        for d in to_remove:
+            dict_list_out.remove(d)
+
+    else:
+        for d in dict_list_out:
+            workerid = d['workerid']
+            if workerid == mapping_dict['out']:
+                d['workerid'] = mapping_dict['summary']
+                if v == True:
+                    print(f'Replaced worker id {workerid} with {mapping_dict["summary"]}')
+
 
 
 def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
@@ -75,7 +86,6 @@ def load_experiment_summaries_batch(exp_path, remove_not_val = True):
     dir_summary = '../data/prolific_summaries'
     with open(f'{dir_summary}/{exp_path}') as infile:
         dict_list_sum = list(csv.DictReader(infile))
-
     if remove_not_val == True:
         dir_summary = '../data/prolific_summaries/'
         with open(f'{dir_summary}/{exp_path}') as infile:
@@ -157,7 +167,7 @@ def get_worker_pair_dict(dict_list_out):
     return worker_pair_dict
 
 
-def get_id_mapping(exp_path, remove_not_val = True):
+def get_id_mapping(exp_path, remove_not_val = True, v=False):
     dict_list_sum_batch = load_experiment_summaries_batch(exp_path,\
                                                           remove_not_val = remove_not_val)
     dict_list_out_batch = load_experiment_data_batch(exp_path,\
@@ -170,12 +180,33 @@ def get_id_mapping(exp_path, remove_not_val = True):
     w_in_out_only = worker_ids_out.difference(worker_ids_sum)
     matching_ids = worker_ids_sum.intersection(worker_ids_out)
 
+    if v == True:
+        print(f'{len(matching_ids)} out of {len(worker_ids_out)} match.')
+
     if len(w_in_summary_only) == 1 and len(w_in_out_only) == 1:
         mapping_dict = dict()
         mapping_dict['out'] = list(w_in_out_only)[0]
         mapping_dict['summary'] = list(w_in_summary_only)[0]
+    elif len(w_in_out_only) == 1 and len(w_in_summary_only) == 0:
+        if v == True:
+            print('invalid submission in output')
+        mapping_dict = dict()
+        mapping_dict['out'] = list(w_in_out_only)[0]
+        mapping_dict['summary'] = 'NS'
     else:
+        if v == True:
+            print(f'mapping not possible or necessary because:')
+            print(f'n ids in summary only: {len(w_in_summary_only)}')
+            print(f'n ids in output only: {len(w_in_out_only)},  {list(w_in_out_only)[0]}')
         mapping_dict = None
 
     #print(f'{len(matching_ids)} out of {len(worker_ids_sum)} workerids match.')
     return mapping_dict
+
+def load_experiment_data_clean(run, group):
+
+    dir_output = '../data/prolific_output_clean/'
+    filepath = f'run{run}-group_{group}.csv'
+    with open(f'{dir_output}{filepath}') as infile:
+        dict_list_out =  list(csv.DictReader(infile))
+    return dict_list_out

@@ -1,11 +1,13 @@
 from utils import get_id_mapping
 
-def analyze_worker_ids(exp_path, remove_not_val = True):
+def analyze_worker_ids(exp_path, remove_not_val = True, v = True):
 
-    mapping_dict = get_id_mapping(exp_path, remove_not_val = True)
+    mapping_dict = get_id_mapping(exp_path, remove_not_val = True, v = v)
     if mapping_dict != None:
         print(f'Id in output but not summaries: {mapping_dict["out"]}')
         print(f'Id in summary but not output: {mapping_dict["summary"]}')
+    else:
+        print('matching not possible')
 
 
 def main():

@@ -229,6 +229,29 @@ def analyze_workers_batch(run, group, batch, n_q):
     print(f'worker with most contradictions in total: {worker_most_all}')
 
 
+    # Compare current run to old run
+    # load old results
+    run = '1'
+    batch = '*'
+    n_q = '*'
+    group = 'experiment1'
+    print()
+    print(f'analyzing all annotations of run {run}')
+    filepath_pairs_all, filepath_cont_all = contradiction_analysis(contradiction_pairs,\
+                                run, group, n_q, batch, remove_not_val = True)
+    print()
+    # load new results
+    run = '3'
+    batch = '*'
+    n_q = '*'
+    group = 'experiment1'
+    print()
+    print(f'analyzing all annotations of run {run}')
+    filepath_pairs_all, filepath_cont_all = contradiction_analysis(contradiction_pairs,\
+                                run, group, n_q, batch, remove_not_val = True)
+
+
+
 def main():
 
     runs = [1, 3]
