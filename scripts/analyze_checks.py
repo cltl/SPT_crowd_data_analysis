@@ -1,7 +1,7 @@
 import csv
 from collections import defaultdict
 from collections import Counter
-from utils import load_experiement_data_batch
+from utils import load_experiment_data_batch
 from utils import parse_answer
 from utils import load_experiment_data
 import pandas as pd
@@ -84,6 +84,7 @@ def analysis_all_annotations(group):
     #for w, cnt in worker_fail_cnts.most_common():
      #   print(w, cnt)
     print(f'highest number of fails: {worker_fail_cnts.most_common(1)}')
+    print()
     print(f'find general analysis here: {dir_path}{file_path}')
     print(f'find check analysis overview here: {dir_path}{file_path_overview}')
     return worker_fail_dict
@@ -95,9 +96,10 @@ def analysis_current_batch(run, batch, n_q, group):
     dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
     worker_fail_dict = get_tests_and_checks(dict_list)
     print(f'Annotations in batch {batch}: {len(dict_list)}')
-    print(f'Fails in batch {batch}:')
+    print(f'Workers with fails in batch {batch}: {len(worker_fail_dict)}')
     for w, fails in worker_fail_dict.items():
         print(f'{w} - number of fails: {len(fails)} - types of fails {len(set(fails))}')
+    print()
     fail_dicts = get_fail_dicts(worker_fail_dict)
     fail_df = pd.DataFrame(fail_dicts)
     analysis_path = f'{dir_path}{file_path}'
@@ -114,7 +116,7 @@ def analyze_batch_checks(run, batch, n_q, group):
         for f in fails:
             print(f)
     worker_fail_dict_total = analysis_all_annotations(group)
-
+    print()
     for w, f in worker_fail_dict.items():
         total_fails = worker_fail_dict_total[w]
         print(f'worker {w} has a total of {len(total_fails)} fails')

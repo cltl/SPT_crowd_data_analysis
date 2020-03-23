@@ -31,18 +31,27 @@ def remove_not_valied(dict_list_out, dict_list_sum):
     return dict_list_out_clean
 
 
-def load_experiement_data_batch(exp_path, remove_not_val = True):
+def load_experiment_data_batch(exp_path, remove_not_val = True):
 
     dir_output = '../data/prolific_output/'
     with open(f'{dir_output}/{exp_path}') as infile:
         dict_list_out = list(csv.DictReader(infile))
     if remove_not_val == True:
-        file_path = exp_path.split('/', )
         dir_summary = '../data/prolific_summaries/'
         with open(f'{dir_summary}/{exp_path}') as infile:
             dict_list_sum = list(csv.DictReader(infile))
         dict_list_out = remove_not_valied(dict_list_out, dict_list_sum)
     return dict_list_out
+
+def replace_id(dict_list_out, mapping_dict, v=False):
+
+    for d in dict_list_out:
+        workerid = d['workerid']
+        if workerid == mapping_dict['out']:
+            d['workerid'] = mapping_dict['summary']
+            if v == True:
+                print(f'Replaced worker id {workerid} with {mapping_dict["summary"]}')
+
 
 def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
 
@@ -53,9 +62,40 @@ def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
 
     for f in glob.glob(all_files):
         exp_path = f[len(dir_output):]
-        dict_list_out = load_experiement_data_batch(exp_path, remove_not_val = remove_not_val)
+        dict_list_out = load_experiment_data_batch(exp_path, remove_not_val = remove_not_val)
+        mapping_dict = get_id_mapping(exp_path, remove_not_val = True)
+        if mapping_dict != None:
+            replace_id(dict_list_out, mapping_dict)
         all_dict_list_out.extend(dict_list_out)
     return all_dict_list_out
+
+
+def load_experiment_summaries_batch(exp_path, remove_not_val = True):
+
+    dir_summary = '../data/prolific_summaries'
+    with open(f'{dir_summary}/{exp_path}') as infile:
+        dict_list_sum = list(csv.DictReader(infile))
+
+    if remove_not_val == True:
+        dir_summary = '../data/prolific_summaries/'
+        with open(f'{dir_summary}/{exp_path}') as infile:
+            dict_list_sum = list(csv.DictReader(infile))
+        dict_list_sum = remove_not_valied(dict_list_sum, dict_list_sum)
+    return dict_list_sum
+
+
+def load_experiment_summaries(run, group, n_q, batch, remove_not_val = True):
+
+    all_dict_list_sum = []
+
+    dir_sum = '../data/prolific_summaries'
+    all_files = f'{dir_sum}/run{run}-group_{group}/qu{n_q}-s_qu{n_q}-batch{batch}.csv'
+
+    for f in glob.glob(all_files):
+        exp_path = f[len(dir_sum):]
+        dict_list_sum = load_experiment_summaries_batch(exp_path, remove_not_val = remove_not_val)
+        all_dict_list_sum.extend(dict_list_sum)
+    return all_dict_list_sum
 
 
 def get_pair_dict(dict_list):
@@ -115,3 +155,27 @@ def get_worker_pair_dict(dict_list_out):
         pair_dict = get_pair_dict(worker_dict_list)
         worker_pair_dict[worker] = pair_dict
     return worker_pair_dict
+
+
+def get_id_mapping(exp_path, remove_not_val = True):
+    dict_list_sum_batch = load_experiment_summaries_batch(exp_path,\
+                                                          remove_not_val = remove_not_val)
+    dict_list_out_batch = load_experiment_data_batch(exp_path,\
+                                                     remove_not_val = remove_not_val)
+
+    worker_ids_sum = set([d['participant_id'] for d in dict_list_sum_batch])
+    worker_ids_out = set([d['workerid'] for d in dict_list_out_batch])
+
+    w_in_summary_only = worker_ids_sum.difference(worker_ids_out)
+    w_in_out_only = worker_ids_out.difference(worker_ids_sum)
+    matching_ids = worker_ids_sum.intersection(worker_ids_out)
+
+    if len(w_in_summary_only) == 1 and len(w_in_out_only) == 1:
+        mapping_dict = dict()
+        mapping_dict['out'] = list(w_in_out_only)[0]
+        mapping_dict['summary'] = list(w_in_summary_only)[0]
+    else:
+        mapping_dict = None
+
+    #print(f'{len(matching_ids)} out of {len(worker_ids_sum)} workerids match.')
+    return mapping_dict
