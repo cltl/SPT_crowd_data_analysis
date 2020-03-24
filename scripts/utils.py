@@ -197,7 +197,7 @@ def get_id_mapping(exp_path, remove_not_val = True, v=False):
         if v == True:
             print(f'mapping not possible or necessary because:')
             print(f'n ids in summary only: {len(w_in_summary_only)}')
-            print(f'n ids in output only: {len(w_in_out_only)},  {list(w_in_out_only)[0]}')
+            print(f'n ids in output only: {len(w_in_out_only)}')
         mapping_dict = None
 
     #print(f'{len(matching_ids)} out of {len(worker_ids_sum)} workerids match.')
@@ -205,7 +205,7 @@ def get_id_mapping(exp_path, remove_not_val = True, v=False):
 
 def load_experiment_data_clean(run, group):
 
-    dir_output = '../data/prolific_output_clean/'
+    dir_output = '../data/prolific_output_no_contradicting_annotations/'
     filepath = f'run{run}-group_{group}.csv'
     with open(f'{dir_output}{filepath}') as infile:
         dict_list_out =  list(csv.DictReader(infile))

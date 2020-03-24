@@ -1,4 +1,5 @@
 import csv
+import os
 from collections import defaultdict
 from collections import Counter
 
@@ -86,7 +87,10 @@ def clean_annotations(worker_pair_dict, dict_list_out, contradiction_pairs, v = 
 
 
 def clean_annotations_to_file(dict_list_clean, run, group):
-    dir_path = '../data/prolific_output_clean'
+    dir_path = '../data/prolific_output_no_contradicting_annotations'
+    if not os.path.isdir(dir_path):
+        os.mkdir(dir_path)
+
     filepath = f'run{run}-group_{group}.csv'
     fieldnames = dict_list_clean[0].keys()
     with open(f'{dir_path}/{filepath}', 'w') as outfile:

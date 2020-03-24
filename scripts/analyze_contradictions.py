@@ -2,6 +2,7 @@ from collections import defaultdict
 from collections import Counter
 import csv
 import pandas as pd
+import os
 
 from utils import get_pair_dict
 from utils import load_experiment_data
@@ -10,7 +11,6 @@ from utils import load_contradiction_pairs
 
 from utils import get_relation_counts
 from utils import consistency_check
-
 
 
 def dicts_to_file(dicts, name):
@@ -121,9 +121,38 @@ def collect_contradictions(worker_pair_dict, dict_list_out, contradiction_pairs,
     print('Percentage of contradictory pair annotations of total pair annotations:')
     print(round((pairs_with_contradiction/pair_annotations) *100, 2))
     print('most common contradictions')
-    for c, cnt in contradiction_cnt.most_common(3):
+
+    ### add something that writes it to file
+    cont_count_dict_list = get_cont_count_dicts(contradiction_cnt)
+    return dict_list_pairs, worker_contradiction_cnt, cont_count_dict_list
+
+def get_cont_count_dicts(contradiction_cnt):
+    cont_count_dict_list = []
+    for c, cnt in contradiction_cnt.most_common():
         print(c, cnt)
-    return dict_list_pairs, worker_contradiction_cnt
+        cont_dict = dict()
+        cont_dict['contradiction'] = '-'.join(c)
+        cont_dict['count'] = cnt
+        cont_count_dict_list.append(cont_dict)
+    return cont_count_dict_list
+
+
+def get_relations_in_contradictions(cont_count_dict_list):
+
+    relation_in_cont_cnt = Counter()
+    for d in cont_count_dict_list:
+        pair = d['contradiction'].split('-')
+        cnt = d['count']
+        for rel in pair:
+            relation_in_cont_cnt[rel] += cnt
+
+    relation_cont_dicts = []
+    for rel, cnt in relation_in_cont_cnt.most_common():
+        d = dict()
+        d['relation'] = rel
+        d['count'] = cnt
+        relation_cont_dicts.append(d)
+    return relation_cont_dicts
 
 
 def contradiction_analysis(contradiction_pairs, run, group, n_q, batch, remove_not_val = True):
@@ -131,19 +160,45 @@ def contradiction_analysis(contradiction_pairs, run, group, n_q, batch, remove_n
     dict_list_out = load_experiment_data(run, group, n_q, batch,\
                                          remove_not_val = remove_not_val)
     worker_pair_dict = get_worker_pair_dict(dict_list_out)
-    dict_list_pairs, worker_contradiction_cnt = collect_contradictions(worker_pair_dict, dict_list_out,\
+    dict_list_pairs, worker_contradiction_cnt, cont_count_dicts = collect_contradictions(\
+                                            worker_pair_dict, dict_list_out,\
                                             contradiction_pairs, v = False)
 
     dict_list_worker_contradictions = worker_contradictions_sorted(worker_contradiction_cnt)
+    relations_in_contradictions = get_relations_in_contradictions(cont_count_dicts)
     worker_contradictions_df = pd.DataFrame(dict_list_worker_contradictions)
-    dir_path = '../analyses/contradiction/'
+    contradictions_df = pd.DataFrame(cont_count_dicts)
+    relations_df = pd.DataFrame(relations_in_contradictions)
+
+    dir_path = '../analyses/contradiction/pairs/'
+    os.makedirs(dir_path, exist_ok=True)
     pair_cont_name = 'pairs_removed'
     filepath_pairs = f'{dir_path}{pair_cont_name}-run{run}-group_{group}-batch{batch}.csv'
+    filepath_pairs = filepath_pairs.replace('*', '-all-')
     dicts_to_file(dict_list_pairs, filepath_pairs)
+
+    dir_path = '../analyses/contradiction/relations/'
+    os.makedirs(dir_path, exist_ok=True)
+    cont_name = 'relation_pairs'
+    filepath_rel_conts = f'{dir_path}{cont_name}-run{run}-group_{group}-batch{batch}.csv'
+    filepath_rel_conts = filepath_rel_conts.replace('*', '-all-')
+    contradictions_df.to_csv(filepath_rel_conts)
+
+    cont_name = 'relations'
+    filepath_rel_conts = f'{dir_path}{cont_name}-run{run}-group_{group}-batch{batch}.csv'
+    filepath_rel_conts = filepath_rel_conts.replace('*', '-all-')
+    relations_df.to_csv(filepath_rel_conts)
+
+    dir_path = '../analyses/contradiction/workers/'
+    os.makedirs(dir_path, exist_ok=True)
     worker_cont_name = 'worker_contradictions'
     filepath_cont = f'{dir_path}{worker_cont_name}-run{run}-group_{group}-batch{batch}.csv'
+    filepath_cont = filepath_cont.replace('*', '-all-')
     worker_contradictions_df.to_csv(filepath_cont)
+
+
     return filepath_pairs, filepath_cont
+
 
 
 def run_comparison(runs, group):
@@ -163,7 +218,9 @@ def run_comparison(runs, group):
     comparison_dicts = get_comparison_dicts(pair_analysis_dict, run_analysis_dict)
 
     runs = '-'.join([str(run) for run in run_analysis_dict.keys()])
-    analysis_path = f'../analyses/contradiction/comparison_pairs_removed-runs{runs}.csv'
+    dir_path = '../analyses/contradiction/pairs/'
+    os.makedirs(dir_path, exist_ok=True)
+    analysis_path = f'{dir_path}comparison_pairs_removed-runs{runs}.csv'
 
     average_dict = get_average_dict(run_analysis_dict, comparison_dicts)
     average_dict_row = dict()
@@ -188,6 +245,32 @@ def load_worker_cont_counts(filepath_cont):
     return worker_cont_dict
 
 
+def print_batch_analysis(filepath_cont_batch, filepath_cont_all, filepath_pairs_batch):
+
+    worker_cont_dict_batch = load_worker_cont_counts(filepath_cont_batch)
+    worker_cont_dict_all = load_worker_cont_counts(filepath_cont_all)
+
+    len_name_dir = len('../analyses/contradiction/pairs/pairs_removed-')
+    name_batch = filepath_pairs_batch[len_name_dir:]
+    worker_most_batch, cont_batch = worker_cont_dict_batch.most_common(1)[0]
+    worker_most_all, cont_all = worker_cont_dict_all.most_common(1)[0]
+    print()
+    print(f'workers with most contradictions on batch {name_batch}:')
+
+    for w, cnt in worker_cont_dict_batch.most_common():
+        print(f'worker: {w}: {cnt}')
+        #print(f'number of contradictions: {cont_batch}')
+
+    if worker_most_batch in worker_cont_dict_all:
+        worker_n_cont_all = worker_cont_dict_all[worker_most_batch]
+    else:
+        worker_n_cont_all = 0
+    print(f'number of all contradictions of {worker_most_batch}: {worker_n_cont_all}')
+    print(f'highest number of contradictions by a worker: {cont_all}')
+    print(f'worker with most contradictions in total: {worker_most_all}')
+
+
+
 def analyze_workers_batch(run, group, batch, n_q):
 
     # load results of current batch
@@ -207,28 +290,9 @@ def analyze_workers_batch(run, group, batch, n_q):
     filepath_pairs_all, filepath_cont_all = contradiction_analysis(contradiction_pairs,\
                                 run, group, n_q, batch, remove_not_val = True)
 
-
-    worker_cont_dict_batch = load_worker_cont_counts(filepath_cont_batch)
-    worker_cont_dict_all = load_worker_cont_counts(filepath_cont_all)
-
-    len_name_dir = len('../analyses/contradiction/pairs_removed-')
-    name_batch = filepath_pairs_batch[len_name_dir:]
-    worker_most_batch, cont_batch = worker_cont_dict_batch.most_common(1)[0]
-    worker_most_all, cont_all = worker_cont_dict_all.most_common(1)[0]
     print()
-    print(f'worker with most contradictions on batch {name_batch}:')
-    print(f'worker: {worker_most_batch}')
-    print(f'number of contradictions: {cont_batch}')
-
-    if worker_most_batch in worker_cont_dict_all:
-        worker_n_cont_all = worker_cont_dict_all[worker_most_batch]
-    else:
-        worker_n_cont_all = 0
-    print(f'number of all contradictions of {worker_most_batch}: {worker_n_cont_all}')
-    print(f'highest number of contradictions by a worker: {cont_all}')
-    print(f'worker with most contradictions in total: {worker_most_all}')
-
-
+    print('compare annotators in batch to all annotators')
+    print_batch_analysis(filepath_cont_batch, filepath_cont_all, filepath_pairs_batch)
     # Compare current run to old run
     # load old results
     run = '1'
@@ -251,18 +315,17 @@ def analyze_workers_batch(run, group, batch, n_q):
                                 run, group, n_q, batch, remove_not_val = True)
 
 
-
 def main():
+
+    run = 3
+    batch = 13
+    n_q = 70
+    group = 'experiment1'
+    analyze_workers_batch(run, group, batch, n_q)
 
     runs = [1, 3]
     group = 'experiment1'
     run_comparison(runs, group)
-
-    run = 3
-    batch = 6
-    n_q = 70
-    group = 'experiment1'
-    analyze_workers_batch(run, group, batch, n_q)
 
 if __name__ == '__main__':
     main()

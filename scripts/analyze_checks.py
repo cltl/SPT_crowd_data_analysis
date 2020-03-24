@@ -17,7 +17,7 @@ def get_tests_and_checks(dict_list):
                 correct_answer = 'true'
             elif quid.startswith('test'):
                 correct_answer = d['triple'].split('-')[0].split('_')[1]
-            else:
+            elif quid == 'check4':
                 # if quid == check4 (I am answering questions at random)
                 correct_answer = 'false'
             #check if correct
@@ -119,7 +119,7 @@ def analyze_batch_checks(run, batch, n_q, group):
     print()
     for w, f in worker_fail_dict.items():
         total_fails = worker_fail_dict_total[w]
-        print(f'worker {w} has a total of {len(total_fails)} fails')
+        print(f'worker {w} has {len(f)} in batch {batch} and a total of {len(total_fails)} fails')
 
 def main():
     run = 3

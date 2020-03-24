@@ -6,8 +6,6 @@ def analyze_worker_ids(exp_path, remove_not_val = True, v = True):
     if mapping_dict != None:
         print(f'Id in output but not summaries: {mapping_dict["out"]}')
         print(f'Id in summary but not output: {mapping_dict["summary"]}')
-    else:
-        print('matching not possible')
 
 
 def main():
