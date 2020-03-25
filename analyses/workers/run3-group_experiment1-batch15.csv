@@ -1,0 +1,11 @@
+,workerid,n_annotations,n_contradictions,n_fails,contradiction_annotation_ratio,fail_annotation_ratio,average_time_question,"('implied_category', 'rare')","('affording_activity', 'unusual')","('implied_category', 'unusual')","('typical_of_concept', 'unusual')","('rare', 'typical_of_concept')","('rare', 'typical_of_property')","('affording_activity', 'impossible')","('typical_of_property', 'unusual')","('impossible', 'typical_of_property')","('implied_category', 'impossible')","('impossible', 'typical_of_concept')"
+3,5cae11e9d59a05001961a299,80,8,0,0.1,0.0,9.013662499999999,,2.0,2.0,2.0,,,1.0,1.0,,,
+0,59c129a4123c6a0001234c94,80,4,0,0.05,0.0,7.3732625,1.0,1.0,1.0,1.0,,,,,,,
+4,5cf5475052e49400153b3c5d,80,4,0,0.05,0.0,12.545987499999999,,,,,,,1.0,,1.0,1.0,1.0
+2,5c67338e7d17f800013f6176,80,2,0,0.025,0.0,3.345975,,,,,1.0,1.0,,,,,
+6,5d553d4e6416e9001aeaa8a9,80,1,0,0.0125,0.0,4.785375,,,1.0,,,,,,,,
+1,5c3a5c079e794d000129a42d,80,0,0,0.0,0.0,8.895362500000001,,,,,,,,,,,
+5,5d4b34eef76ba30018751137,80,0,0,0.0,0.0,21.443175,,,,,,,,,,,
+7,5d97091b1787f60011e03cdf,80,0,0,0.0,0.0,11.2809375,,,,,,,,,,,
+8,5e73375c6cfd2c2803d350d6,80,0,0,0.0,0.0,16.157725,,,,,,,,,,,
+9,5de4467a7d441742885750dc,80,0,0,0.0,0.0,16.3537,,,,,,,,,,,
