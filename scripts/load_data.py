@@ -1,5 +1,8 @@
 import glob
 import csv
+import uuid
+import os
+
 
 
 def parse_answer(answer):
@@ -58,7 +61,7 @@ def replace_id(dict_list_out, mapping_dict, v=False):
                 if v == True:
                     print(f'Replaced worker id {workerid} with {mapping_dict["summary"]}')
 
-def remove_not_valied(dict_list_out, dict_list_sum):
+def remove_not_valid(dict_list_out, dict_list_sum):
     #worker_dict_out = sort_by_workers(dict_list_out)
     status_include = ['AWAITING REVIEW', 'APPROVED']
     dict_list_out_clean = []
@@ -76,17 +79,6 @@ def remove_not_valied(dict_list_out, dict_list_sum):
     # [j for sub in ini_list for j in sub]
     return dict_list_out_clean
 
-def load_experiment_data_batch(exp_path, remove_not_val = True):
-
-    dir_output = '../data/prolific_output/'
-    with open(f'{dir_output}/{exp_path}') as infile:
-        dict_list_out = list(csv.DictReader(infile))
-    if remove_not_val == True:
-        dir_summary = '../data/prolific_summaries/'
-        with open(f'{dir_summary}/{exp_path}') as infile:
-            dict_list_sum = list(csv.DictReader(infile))
-        dict_list_out = remove_not_valied(dict_list_out, dict_list_sum)
-    return dict_list_out
 
 
 def load_experiment_summaries_batch(exp_path, remove_not_val = True):
@@ -98,7 +90,7 @@ def load_experiment_summaries_batch(exp_path, remove_not_val = True):
         dir_summary = '../data/prolific_summaries/'
         with open(f'{dir_summary}/{exp_path}') as infile:
             dict_list_sum = list(csv.DictReader(infile))
-        dict_list_sum = remove_not_valied(dict_list_sum, dict_list_sum)
+        dict_list_sum = remove_not_valid(dict_list_sum, dict_list_sum)
     return dict_list_sum
 
 def add_time_info(dict_list_out_batch, dict_list_sum_batch):
@@ -125,6 +117,47 @@ def process_triple_and_answer(dict_list_out):
 
 
 
+def load_batch_data_raw(f):
+    with open(f) as infile:
+        dict_list = list(csv.DictReader(infile))
+    return dict_list
+
+def write_batch_data_uuid(dict_list, f_uuid):
+    fieldnames = dict_list[0].keys()
+    with open(f_uuid, 'w') as outfile:
+        writer = csv.DictWriter(outfile, fieldnames = fieldnames)
+        writer.writeheader()
+        for d in dict_list:
+            writer.writerow(d)
+
+
+def add_unique_ids(exp_path):
+    path_output = f'../data/prolific_output/{exp_path}'
+    path_output_uuid = f'../data/prolific_output_uuid/{exp_path}'
+    if not os.path.isfile(path_output_uuid):
+        print('creating file with uuid', exp_path)
+        dir_exp = exp_path.split('/')[0]
+        dict_list = load_batch_data_raw(path_output)
+        for d in dict_list:
+            d['uuid'] = uuid.uuid4()
+        os.makedirs(f'../data/prolific_output_uuid/{dir_exp}/', exist_ok=True)
+        write_batch_data_uuid(dict_list, path_output_uuid)
+        print(f'added unique ids - file can be found at: {path_output_uuid}')
+
+
+def load_experiment_data_batch(exp_path, remove_not_val = True):
+
+    dir_output = '../data/prolific_output_uuid/'
+    with open(f'{dir_output}/{exp_path}') as infile:
+        dict_list_out = list(csv.DictReader(infile))
+    if remove_not_val == True:
+        dir_summary = '../data/prolific_summaries/'
+        with open(f'{dir_summary}/{exp_path}') as infile:
+            dict_list_sum = list(csv.DictReader(infile))
+        dict_list_out = remove_not_valid(dict_list_out, dict_list_sum)
+    return dict_list_out
+
+
 def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
 
     all_dict_list_out = []
@@ -133,26 +166,26 @@ def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
     all_files = f'{dir_output}run{run}-group_{group}/qu{n_q}-s_qu{n_q}-batch{batch}.csv'
 
     for f in glob.glob(all_files):
+
+        # check if files already have unique ids
         exp_path = f[len(dir_output):]
+        add_unique_ids(exp_path)
         dict_list_out_batch = load_experiment_data_batch(exp_path, remove_not_val = remove_not_val)
         dict_list_sum_batch = load_experiment_summaries_batch(exp_path, remove_not_val = remove_not_val)
         match_ids(dict_list_out_batch, dict_list_sum_batch, remove_not_val = True, v=False)
-        #for d in dict_list_sum_batch:
-         #   print(d.keys())
         add_time_info(dict_list_out_batch, dict_list_sum_batch)
         process_triple_and_answer(dict_list_out_batch)
         all_dict_list_out.extend(dict_list_out_batch)
     return all_dict_list_out
 
-
 def main():
     run = 3
-    batch = 13
+    batch = 16
     n_q = 70
     group = 'experiment1'
 
     data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-    print(data_dict_list[0].keys())
+
 
 if __name__ == '__main__':
     main()

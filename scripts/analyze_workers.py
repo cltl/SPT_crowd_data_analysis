@@ -1,8 +1,11 @@
+# add annotations to worker file
+
+
 from load_data import load_experiment_data
 from utils_analysis import load_contradiction_pairs
 from utils_analysis import collect_contradictions
 from utils_analysis import sort_by_key
-
+from utils_analysis import get_annotation_ids
 
 from collections import Counter
 import pandas as pd
@@ -64,7 +67,6 @@ def get_worker_analysis(data_dict_list, name):
         fails = get_tests_and_checks(dl_worker)
         d['workerid'] = worker
         d['n_annotations'] = n_annotations
-
         cont_cnt = Counter()
         data_by_pair = sort_by_key(dl_worker, ['property', 'concept'])
         for pair, dl_pair in data_by_pair.items():
@@ -76,6 +78,7 @@ def get_worker_analysis(data_dict_list, name):
         d['contradiction_annotation_ratio'] = n_contradictions/n_annotations
         d['fail_annotation_ratio'] = len(fails) / n_annotations
         d['average_time_question'] = get_average_time_worker(dl_worker)
+        d['annotations'] = ' '.join(get_annotation_ids(dl_worker))
         # add contradiction_type analysis
         d.update(cont_cnt)
         worker_data_dicts.append(d)
@@ -86,14 +89,14 @@ def get_worker_analysis(data_dict_list, name):
     out_dir = '../analyses/workers/'
     os.makedirs(out_dir, exist_ok=True)
     filepath = f'{out_dir}{name}.csv'
-    worker_df.to_csv(filepath)
+    worker_df.to_csv(filepath, index=False)
     return worker_df, filepath
 
 
 def main():
     # analyze all data:
-    run = '1'
-    batch = '*'
+    run = '3'
+    batch = '16'
     n_q = '*'
     group = 'experiment1'
 

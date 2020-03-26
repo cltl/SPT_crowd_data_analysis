@@ -54,3 +54,10 @@ def load_contradiction_pairs():
         for line in infile:
             contradictions.append(set(line.strip('\n').split(',')))
     return contradictions
+
+def get_annotation_ids(dict_list):
+    ids = []
+    for d in dict_list:
+        uuid = d['uuid']
+        ids.append(uuid)
+    return ids

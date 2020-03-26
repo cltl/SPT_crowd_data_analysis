@@ -1,8 +1,4 @@
-from utils import load_experiment_data
-from utils import parse_answer
-from utils import load_experiment_data_clean
-from remove_contradictory_answers import clean_data
-
+from load_data import load_experiment_data
 from nltk import agreement
 
 import csv
@@ -14,12 +10,11 @@ def create_matrix(dict_list):
         quid = d['quid']
         quid_dict[quid].append(d)
 
-
     all_rows = []
     for quid, ds in quid_dict.items():
         for n, d in enumerate(ds):
             worker = n
-            answer = parse_answer(d['answer'])
+            answer = d['answer']
             row = [worker, quid, answer]
             all_rows.append(row)
     return all_rows
@@ -67,14 +62,7 @@ def proportional_agreement_pairs(matrix):
     overall = agreements/len(unit_dict)
     return overall
 
-def get_agreement(run, group, batch, n_q, status):
-
-    print(f'Analyzing run {run} of experiment group {group} ({status}):')
-    if status == 'clean':
-        clean_data(run, group, n_q, batch, remove_not_val= True)
-        dict_list_out = load_experiment_data_clean(run, group)
-    else:
-        dict_list_out = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+def get_agreement(dict_list_out):
     matrix = create_matrix(dict_list_out)
     ratingtask = agreement.AnnotationTask(data=matrix)
     alpha = ratingtask.alpha()
@@ -84,14 +72,13 @@ def get_agreement(run, group, batch, n_q, status):
     print()
 
 def main():
-    run = 3
+    run = 1
     group = 'experiment1'
     batch = '*'
     n_q = '*'
-    statuses = ['original', 'clean']
     print(f'--- analyzing run {run} ---')
-    for status in statuses:
-        get_agreement(run, group, batch, n_q, status)
+    dict_list_out = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+    get_agreement(dict_list_out)
 
 if __name__ == '__main__':
     main()

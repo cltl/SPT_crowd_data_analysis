@@ -2,12 +2,11 @@ from load_data import load_experiment_data
 from utils_analysis import load_contradiction_pairs
 from utils_analysis import collect_contradictions
 from utils_analysis import sort_by_key
+from utils_analysis import get_annotation_ids
 
 from collections import Counter
 import pandas as pd
 import os
-
-
 
 def get_cont_type_dicts(contradictions, cont_type_cnt):
     contradiction_dict = dict()
@@ -69,11 +68,14 @@ def get_pair_analysis(data_dict_list, name):
         d['n_annotations'] = n_annotations
         n_workers = len(data_by_worker)
         d['n_workers'] = n_workers
+        annoation_ids_with_contradictions = []
         for worker, dl_worker in data_by_worker.items():
             av_time_all_workers.append(get_average_time_worker(dl_worker))
             pair_worker_cont = collect_contradictions(dl_worker, contradictions, threshold = 0)
             if len(pair_worker_cont) > 0:
                 workers_with_contradictions.append(worker)
+                # collect annotation_ids
+                annoation_ids_with_contradictions.extend(get_annotation_ids(dl_worker))
             cont_cnt.update(pair_worker_cont)
         n_contradictions = sum(cont_cnt.values())
         d['n_contradictions'] = n_contradictions
@@ -87,6 +89,7 @@ def get_pair_analysis(data_dict_list, name):
         d['workers_not_contradicting'] = ' '.join(workers_not_contradicting)
         # add contradiction_type analysis
         d.update(cont_cnt)
+        d['annotations_with_contradiction'] = ' '.join(annoation_ids_with_contradictions)
         pair_data_dicts.append(d)
 
     pair_df = pd.DataFrame(pair_data_dicts)
@@ -95,7 +98,7 @@ def get_pair_analysis(data_dict_list, name):
     out_dir = '../analyses/pairs/'
     os.makedirs(out_dir, exist_ok=True)
     filepath = f'{out_dir}{name}.csv'
-    pair_df.to_csv(filepath)
+    pair_df.to_csv(filepath, index=False)
     return pair_df, filepath
 
 def show_pairs_of_worker(worker, df):
