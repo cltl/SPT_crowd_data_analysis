@@ -2,6 +2,7 @@ import glob
 import csv
 import uuid
 import os
+from utils_analysis import sort_by_key
 
 
 
@@ -158,15 +159,32 @@ def load_experiment_data_batch(exp_path, remove_not_val = True):
     return dict_list_out
 
 
+def remove_singletons(data_dict_list, v=False):
+    clean_data = []
+    data_by_pair = sort_by_key(data_dict_list, ['property', 'concept'])
+    for pair, dl in data_by_pair.items():
+        data_by_relation = sort_by_key(dl, ['relation'])
+        if len(data_by_relation) == 1:
+            relation = list(data_by_relation.keys())[0]
+            if relation != '_check' and not relation.startswith('test_'):
+                continue
+            else:
+                clean_data.extend(dl)
+        else:
+            clean_data.extend(dl)
+    if v == True:
+        print(f'number of questions: {len(data_dict_list)}')
+        print(f'number of questions without singletons: {len(clean_data)}')
+    return clean_data
+
 def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
 
     all_dict_list_out = []
 
     dir_output = '../data/prolific_output/'
     all_files = f'{dir_output}run{run}-group_{group}/qu{n_q}-s_qu{n_q}-batch{batch}.csv'
-
+    annotations_discarded = 0.0
     for f in glob.glob(all_files):
-
         # check if files already have unique ids
         exp_path = f[len(dir_output):]
         add_unique_ids(exp_path)
@@ -175,8 +193,12 @@ def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
         match_ids(dict_list_out_batch, dict_list_sum_batch, remove_not_val = True, v=False)
         add_time_info(dict_list_out_batch, dict_list_sum_batch)
         process_triple_and_answer(dict_list_out_batch)
-        all_dict_list_out.extend(dict_list_out_batch)
+        dict_list_out_clean = remove_singletons(dict_list_out_batch)
+        annotations_discarded += len(dict_list_out_batch) - len(dict_list_out_clean)
+        all_dict_list_out.extend(dict_list_out_clean)
+    print(f'Discarded {annotations_discarded} annotations.')
     return all_dict_list_out
+
 
 def main():
     run = 3

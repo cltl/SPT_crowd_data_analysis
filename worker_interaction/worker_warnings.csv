@@ -1,12 +1,16 @@
-worker	 data 	warned	 date rejected	 blacklisted	notes
-5c1d4d88508cfd000103dc47	03/20/20	yes			contradictions and failed checks
-5d76a2dc2a476a0001ce6843	03/23/20	yes			contradictions and failed checks
-5e76ab49dec4562243b421f9	03/23/20	yes			contradictions and failed checks
-5c35e108f5ebd5000184599e	03/23/20	yes			contradictions and failed checks
-5dc029217fa54e4545661559	03/24/20	yes			contradictions and failed checks
-5c8d3f8bf756d40016683868	03/24/20	yes			25 contradictions
-5e6a3ff6a21e120a40d76a84	03/24/20	yes			17 + failed check
-5bfe6f8c6e6cd80001bea615	03/24/20	yes			14  only 4 minutes
-5e7376da9674532c00ed8b18	03/25/20	yes			contradictions and very low time spent on the task
-5e4b00acecbca8011a7319c1	03/25/02	yes			contradictions 
-5c2bd5f88c234c00018b91f8	03/26/20	yes			contradictions 
+worker	 data 	action	 date rejected	 blacklisted	notes
+5c1d4d88508cfd000103dc47	03/20/20	warned			contradictions and failed checks
+5d76a2dc2a476a0001ce6843	03/23/20	warned			contradictions and failed checks
+5e76ab49dec4562243b421f9	03/23/20	warned			contradictions and failed checks
+5c35e108f5ebd5000184599e	03/23/20	warned			contradictions and failed checks
+5dc029217fa54e4545661559	03/24/20	warned			contradictions and failed checks
+5c8d3f8bf756d40016683868	03/24/20	warned			25 contradictions
+5e6a3ff6a21e120a40d76a84	03/24/20	warned			17 + failed check
+5bfe6f8c6e6cd80001bea615	03/24/20	warned			14  only 4 minutes
+5e7376da9674532c00ed8b18	03/25/20	warned			contradictions and very low time spent on the task
+5e4b00acecbca8011a7319c1	03/25/02	warned			contradictions 
+5c2bd5f88c234c00018b91f8	03/26/20	warned			contradictions 
+5e777586ccc2372dd1311e30	03/27/20	warned			
+5a2146bb772bc40001ba093e	03/27/20	warned			
+5e4e86b070e1ed2d6e4e3f62	03/27/20	warned			
+5e7cbbbcf0a5a004b60b48f7	03/27/20	warned			
