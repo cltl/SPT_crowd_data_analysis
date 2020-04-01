@@ -1,0 +1,12 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Current Country of Residence,Employment Status,First Language,Nationality,Sex,Student Status
+5e7e1c9092f2f34be551a13a,5b074050d4b87a00017773ef,TIMED-OUT,2020-03-27 15:32:38.282000,,407617.629586,23,96,0,100,,,United States,Germany,Full-Time,English,United States,Male,Yes
+5e7e1c9ab863744b2860486e,5d9c97f1bfb05c00129da6cf,AWAITING REVIEW,2020-03-27 15:32:47.352000,2020-03-27 15:40:43.054000,475.702,25,9,0,100,,46F8278C,France,France,Unemployed (and job seeking),French,France,Male,No
+5e7e1c9f31cd9604027b1c46,5db54b75a3df85000edfa2cf,AWAITING REVIEW,2020-03-27 15:32:51.827000,2020-03-27 15:40:44.363000,472.536,33,10,0,100,,46F8278C,Canada,,Unemployed (and job seeking),English,Canada,Female,No
+5e7e1ca5fe1b7d05f6fc1baf,5e722532d302e9150b775daf,AWAITING REVIEW,2020-03-27 15:32:53.620000,2020-03-27 15:50:57.828000,1084.208,23,6,0,100,,46F8278C,,,,,,Female,
+5e7e1cb3def7d04bb38bd48a,5d87ca81c3cecc0001747172,AWAITING REVIEW,2020-03-27 15:33:07.279000,2020-03-27 15:40:23.933000,436.654,20,10,0,100,,46F8278C,Slovakia,,Unemployed (and job seeking),Slovak,Poland,Male,Yes
+5e7e1cb80d30e205333d80d8,5e1dbd64cb101b000bd09818,AWAITING REVIEW,2020-03-27 15:33:16.250000,2020-03-27 15:41:19.936000,483.686,21,7,0,100,,46F8278C,,,,English,,,
+5e7e1cb9000e704b56ce7242,5d2a471d608cc7000106fe48,AWAITING REVIEW,2020-03-27 15:33:17.701000,2020-03-27 15:42:17.338000,539.637,44,1,0,100,,46F8278C,,,,,,,
+5e7e1cbd4f63944d611ad8ad,59bfa457d9e6ba0001b5f2bf,AWAITING REVIEW,2020-03-27 15:33:19.285000,2020-03-27 15:41:46.887000,507.602,36,189,1,100,,46F8278C,United Kingdom,United Kingdom,"Not in paid work (e.g. homemaker', 'retired or disabled)",English,United Kingdom,Female,No
+5e7e1cbd2b00614bc4f9609c,5c6b0f0dec453a00014d6a5c,AWAITING REVIEW,2020-03-27 15:33:22.874000,2020-03-27 15:41:59.420000,516.546,21,107,2,99,,46F8278C,Italy,Italy,"Not in paid work (e.g. homemaker', 'retired or disabled)",Italian,Italy,Male,Yes
+5e7e1cbeb863744b2860486f,5d9943563cc967001452334a,AWAITING REVIEW,2020-03-27 15:33:20.430000,2020-03-27 15:46:04.769000,764.339,19,53,0,100,,46F8278C,Canada,Canada,Other,English,Canada,Male,Yes
+5e7e2a099f0aba4d6cd0aa7b,5b222aff59f9620001c109cb,AWAITING REVIEW,2020-03-27 16:30:01.322000,2020-03-27 16:42:05.945000,724.623,27,448,3,100,,46F8278C,Finland,Finland,Unemployed (and job seeking),Finnish,Finland,Male,No
