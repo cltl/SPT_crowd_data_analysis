@@ -62,14 +62,20 @@ def proportional_agreement_pairs(matrix):
     overall = agreements/len(unit_dict)
     return overall
 
-def get_agreement(dict_list_out):
+def get_agreement(dict_list_out, v=True):
+    agreement_dict = dict()
     matrix = create_matrix(dict_list_out)
     ratingtask = agreement.AnnotationTask(data=matrix)
     alpha = ratingtask.alpha()
     prop = proportional_agreement_pairs(matrix)
-    print(f"Krippendorff's alpha: {alpha}")
-    print(f"Proportional agreement (pairwise): {prop}")
-    print()
+    if v == True:
+        print(f"Krippendorff's alpha: {alpha}")
+        print(f"Proportional agreement (pairwise): {prop}")
+        print()
+    agreement_dict['Krippendorff'] = alpha
+    agreement_dict['Proportional'] = prop
+    return agreement_dict
+
 
 def main():
     run = 1
