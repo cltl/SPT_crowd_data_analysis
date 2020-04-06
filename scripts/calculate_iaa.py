@@ -1,8 +1,56 @@
+
 from load_data import load_experiment_data
 from nltk import agreement
 
 import csv
 from collections import defaultdict
+
+
+
+def load_rel_level_mapping(mapping = 'levels'):
+    # load mapping
+    rel_level_dict = dict()
+    with open('../scheme/relation_overview_run3.csv') as infile:
+            mapping_dicts = list(csv.DictReader(infile))
+
+    if mapping == 'levels':
+        for d in mapping_dicts:
+            rel = d['relation']
+            l = d['level']
+            rel_level_dict[rel] = l
+
+    elif mapping == 'pos_neg':
+        for d in mapping_dicts:
+            rel = d['relation']
+            l = d['level']
+            if l in ['all', 'some']:
+                rel_level_dict[rel] = 'pos'
+            else:
+                rel_level_dict[rel] = 'neg'
+    elif mapping == 'similar_relations':
+        for d in mapping_dicts:
+            rel = d['relation']
+            l = d['level']
+            if rel in ['variability_limited', 'variability_open']:
+                rel_level_dict[rel] = 'variability'
+            elif rel in ['unusual', 'rare']:
+                rel_level_dict[rel] = 'unusual_rare'
+            else:
+                rel_level_dict[rel] = rel
+
+    return rel_level_dict
+
+def get_collapsed_relations(dict_list, mapping = 'levels'):
+
+    level_rel_dict = load_rel_level_mapping(mapping = mapping)
+    for d in dict_list:
+        prop = d['property']
+        concept = d['concept']
+        rel = d['relation']
+        if rel in level_rel_dict:
+            level = level_rel_dict[rel]
+            d['quid'] = f'{prop}-{concept}-{level}'
+
 
 def create_matrix(dict_list):
     quid_dict = defaultdict(list)
@@ -62,8 +110,11 @@ def proportional_agreement_pairs(matrix):
     overall = agreements/len(unit_dict)
     return overall
 
-def get_agreement(dict_list_out, v=True):
+def get_agreement(dict_list_out, collapse_relations = False, v=True):
     agreement_dict = dict()
+    if collapse_relations != False:
+        print(collapse_relations)
+        get_collapsed_relations(dict_list_out, collapse_relations)
     matrix = create_matrix(dict_list_out)
     ratingtask = agreement.AnnotationTask(data=matrix)
     alpha = ratingtask.alpha()
@@ -78,13 +129,27 @@ def get_agreement(dict_list_out, v=True):
 
 
 def main():
-    run = 1
+    run = 3
     group = 'experiment1'
     batch = '*'
     n_q = '*'
     print(f'--- analyzing run {run} ---')
     dict_list_out = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
     get_agreement(dict_list_out)
+
+    print(f'--- analyzing run {run} --- ')
+
+    collapse_relations = 'pos_neg'
+    print(f'collapsing {collapse_relations}')
+    get_agreement(dict_list_out, collapse_relations = collapse_relations)
+
+    collapse_relations = 'levels'
+    print(f'collapsing {collapse_relations}')
+    get_agreement(dict_list_out, collapse_relations = collapse_relations)
+
+    collapse_relations = 'similar_relations'
+    print(f'collapsing {collapse_relations}')
+    get_agreement(dict_list_out, collapse_relations = collapse_relations)
 
 if __name__ == '__main__':
     main()

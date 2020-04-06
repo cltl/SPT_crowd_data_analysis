@@ -1,0 +1,13 @@
+level,relation
+all,affording_activity
+all,typical_of_property
+all,implied_category
+all,afforded_usual
+all,afforded_unusual
+all,typical_of_concept
+some,variability_limited
+some,variability_open
+few,rare
+few,unusual
+creative,creative
+few,impossible
