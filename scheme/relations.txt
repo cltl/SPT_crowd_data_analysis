@@ -1,0 +1,12 @@
+afforded_usual
+afforded_unusual
+implied_category
+typical_of_property
+typical_of_concept
+affording_activity
+variability_limited
+variability_open
+rare
+unusual
+impossible
+creative
