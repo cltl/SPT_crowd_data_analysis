@@ -60,3 +60,13 @@ IT manager	04/07/20	watch but cannot match
 55f6ed3032af740005171b36	watch				
 5c695e5a0d80fd000142743f	04/08/20	well done			
 5d7a5163c1f9be0001e4f891	04/08/20	warned			
+5e848d5ec880ee02fbba41b0	04/09/20	warned			35 contradictions
+5e624b994ea064039093b3fd	04/09/20	warned			31 contradictions + fail
+5ca0ab3d073bc1001209fd58	04/09/20	warned			33 contradictions + fail 
+5e87276d17cdf1028850af59	04/09/20	warned			54 contradictions + fail
+5d4c5e4baf102c001a385bf0	04/09/20	warned			43 contradictions
+5e8d690133b50414025ce479	04/09/20	well done			3 contradictions on a difficult set
+5dc5c8cfb1dabb44812d5f1d	04/09/20	well done			0
+5e33190a5a41122e93c40989	04/09/20	well done			0
+111	Warn - not possible				39 contradictions, no match to id
+5aade0fe917b3b00010d4879	04/09/20	well done			
