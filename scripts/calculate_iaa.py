@@ -1,5 +1,8 @@
+# check collapsed agreement
+
 
 from load_data import load_experiment_data
+from utils_analysis import sort_by_key
 from nltk import agreement
 
 import csv
@@ -42,14 +45,29 @@ def load_rel_level_mapping(mapping = 'levels'):
 
 def get_collapsed_relations(dict_list, mapping = 'levels'):
 
+    collapsed_dicts = []
     level_rel_dict = load_rel_level_mapping(mapping = mapping)
-    for d in dict_list:
-        prop = d['property']
-        concept = d['concept']
-        rel = d['relation']
-        if rel in level_rel_dict:
-            level = level_rel_dict[rel]
-            d['quid'] = f'{prop}-{concept}-{level}'
+    dict_list_by_worker = sort_by_key(dict_list, ['workerid'])
+    for w, dicts in dict_list_by_worker.items():
+        dicts_by_level = defaultdict(list)
+        for d in dicts:
+            rel = d['relation']
+            if rel in level_rel_dict:
+                level = level_rel_dict[rel]
+                dicts_by_level[level].append(d)
+        for level, dicts in dicts_by_level.items():
+            new_d = dict()
+            dicts_by_pair = sort_by_key(dicts, ['property', 'concept'])
+            for pair, p_dicts in dicts_by_pair.items():
+                new_d['quid'] = f'{pair}-{level}'
+                new_d['workerid'] = w
+                answers = [d['answer'] for d in p_dicts]
+                if 'true' in answers:
+                    new_d['answer'] = 'true'
+                else:
+                    new_d['answer'] = 'false'
+                collapsed_dicts.append(new_d)
+    return collapsed_dicts
 
 
 def create_matrix(dict_list):
@@ -114,7 +132,7 @@ def get_agreement(dict_list_out, collapse_relations = False, v=True):
     agreement_dict = dict()
     if collapse_relations != False:
         print(collapse_relations)
-        get_collapsed_relations(dict_list_out, collapse_relations)
+        dict_list_out = get_collapsed_relations(dict_list_out, collapse_relations)
     matrix = create_matrix(dict_list_out)
     ratingtask = agreement.AnnotationTask(data=matrix)
     alpha = ratingtask.alpha()
