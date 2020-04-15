@@ -1,3 +1,5 @@
+# Pair analysis
+
 from load_data import load_experiment_data
 from utils_analysis import load_contradiction_pairs
 from utils_analysis import collect_contradictions
@@ -69,9 +71,14 @@ def get_pair_analysis(data_dict_list, name):
         n_workers = len(data_by_worker)
         d['n_workers'] = n_workers
         annoation_ids_with_contradictions = []
+        n_possible_contradictions = 0
         for worker, dl_worker in data_by_worker.items():
             av_time_all_workers.append(get_average_time_worker(dl_worker))
             pair_worker_cont = collect_contradictions(dl_worker, contradictions, threshold = 0)
+            relations = [d['relation'] for d in dl_worker]
+            for r1, r2 in contradictions:
+                if r1 in relations and r2 in relations:
+                    n_possible_contradictions += 1
             if len(pair_worker_cont) > 0:
                 workers_with_contradictions.append(worker)
                 # collect annotation_ids
@@ -82,6 +89,10 @@ def get_pair_analysis(data_dict_list, name):
         d['n_workers_contradicting'] = len(workers_with_contradictions)
         d['ratio_workers_contradicting'] = len(workers_with_contradictions)/n_workers
         d['contradiction_annotation_ratio'] = n_contradictions/n_annotations
+        if n_possible_contradictions != 0:
+            d['contradiction_poss_contradiction_ratio'] = n_contradictions/n_possible_contradictions
+        else:
+            d['contradiction_poss_contradiction_ratio'] = 0
         d['average_time_pair'] = sum(av_time_all_workers)/len(av_time_all_workers)
         d['workers_contradicting'] = ' '.join(workers_with_contradictions)
         workers_not_contradicting = [w for w in data_by_worker if w \
@@ -94,7 +105,7 @@ def get_pair_analysis(data_dict_list, name):
 
     pair_df = pd.DataFrame(pair_data_dicts)
     # sort by contradiction to annotation ratio
-    pair_df.sort_values('contradiction_annotation_ratio', axis=0, ascending=False, inplace=True)
+    pair_df.sort_values('ratio_workers_contradicting', axis=0, ascending=False, inplace=True)
     out_dir = '../analyses/pairs/'
     os.makedirs(out_dir, exist_ok=True)
     filepath = f'{out_dir}{name}.csv'
@@ -189,6 +200,16 @@ def main():
     print(f'analysis can be found at: {filepath}')
 
     run = '3'
+    batch = '*'
+    n_q = '*'
+    group = 'experiment1'
+
+    data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+    name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
+    df2, filepath = get_pair_analysis(data_dict_list, name)
+    print(f'analysis can be found at: {filepath}')
+
+    run = '*'
     batch = '*'
     n_q = '*'
     group = 'experiment1'

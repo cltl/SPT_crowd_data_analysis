@@ -1,3 +1,6 @@
+# code analyze workers
+
+
 # add annotations to worker file
 
 
@@ -69,23 +72,35 @@ def get_worker_analysis(data_dict_list, name):
         d['n_annotations'] = n_annotations
         cont_cnt = Counter()
         data_by_pair = sort_by_key(dl_worker, ['property', 'concept'])
+        n_possible_contradictions = 0
+        pairs_with_cont = 0
         for pair, dl_pair in data_by_pair.items():
             pair_contradictions = collect_contradictions(dl_pair, contradictions, threshold = 0)
+            relations = [d['relation'] for d in dl_pair]
+            for r1, r2 in contradictions:
+                if r1 in relations and r2 in relations:
+                    n_possible_contradictions += 1
             cont_cnt.update(pair_contradictions)
+            if len(pair_contradictions) != 0:
+                pairs_with_cont += 1
         n_contradictions = sum(cont_cnt.values())
         d['n_contradictions'] = n_contradictions
         d['n_fails'] = len(fails)
         d['contradiction_annotation_ratio'] = n_contradictions/n_annotations
+        if n_possible_contradictions != 0:
+            d['contradiction_poss_contradiction_ratio'] = n_contradictions/n_possible_contradictions
+        else:
+            d['contradiction_poss_contradiction_ratio'] = 0
         d['fail_annotation_ratio'] = len(fails) / n_annotations
+        d['contradictory_pairs_ratio'] = pairs_with_cont/len(data_by_pair)
         d['average_time_question'] = get_average_time_worker(dl_worker)
         d['annotations'] = ' '.join(get_annotation_ids(dl_worker))
         # add contradiction_type analysis
         d.update(cont_cnt)
         worker_data_dicts.append(d)
-
     worker_df = pd.DataFrame(worker_data_dicts)
     # sort by contradiction to annotation ratio
-    worker_df.sort_values('contradiction_annotation_ratio', axis=0, ascending=False, inplace=True)
+    worker_df.sort_values('contradiction_poss_contradiction_ratio', axis=0, ascending=False, inplace=True)
     out_dir = '../analyses/workers/'
     os.makedirs(out_dir, exist_ok=True)
     filepath = f'{out_dir}{name}.csv'
@@ -95,8 +110,8 @@ def get_worker_analysis(data_dict_list, name):
 
 def main():
     # analyze all data:
-    run = '3'
-    batch = '16'
+    run = '*'
+    batch = '*'
     n_q = '*'
     group = 'experiment1'
 
