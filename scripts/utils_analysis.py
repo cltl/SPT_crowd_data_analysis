@@ -52,7 +52,8 @@ def load_contradiction_pairs():
     contradictions = []
     with open('../scheme/contradictions.csv') as infile:
         for line in infile:
-            contradictions.append(set(line.strip('\n').split(',')))
+            if 'afforded_unusual' not in line:
+                contradictions.append(set(line.strip('\n').split(',')))
     return contradictions
 
 def get_annotation_ids(dict_list):
