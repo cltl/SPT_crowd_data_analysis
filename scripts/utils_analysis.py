@@ -1,5 +1,6 @@
 from collections import defaultdict
 from collections import Counter
+import pandas as pd
 
 def sort_by_key(data_dict_list, keys):
 
@@ -62,3 +63,12 @@ def get_annotation_ids(dict_list):
         uuid = d['uuid']
         ids.append(uuid)
     return ids
+
+
+def load_analysis(analysis_type, run, exp_name, batch):
+    #../analyses/pairs/run-all--group_experiment1-batch-all-.csv
+    # run3-group_experiment1-batch53.csv
+    path = f'../analyses/{analysis_type}/run{run}-group_{exp_name}-batch{batch}.csv'
+    path = path.replace('*', '-all-')
+    df = pd.read_csv(path)
+    return df

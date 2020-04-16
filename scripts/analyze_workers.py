@@ -87,6 +87,7 @@ def get_worker_analysis(data_dict_list, name):
         d['n_contradictions'] = n_contradictions
         d['n_fails'] = len(fails)
         d['contradiction_annotation_ratio'] = n_contradictions/n_annotations
+        d['n_possible_contradictions'] = n_possible_contradictions
         if n_possible_contradictions != 0:
             d['contradiction_poss_contradiction_ratio'] = n_contradictions/n_possible_contradictions
         else:
@@ -96,6 +97,9 @@ def get_worker_analysis(data_dict_list, name):
         d['average_time_question'] = get_average_time_worker(dl_worker)
         d['annotations'] = ' '.join(get_annotation_ids(dl_worker))
         # add contradiction_type analysis
+        #for cont, cnt in cont_cnt.items():
+        #    cont_str = '-'.join(cont)
+        #    d[f'cont-{cont_str}'] = cnt
         d.update(cont_cnt)
         worker_data_dicts.append(d)
     worker_df = pd.DataFrame(worker_data_dicts)

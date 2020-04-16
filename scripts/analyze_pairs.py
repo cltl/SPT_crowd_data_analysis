@@ -89,6 +89,7 @@ def get_pair_analysis(data_dict_list, name):
         d['n_workers_contradicting'] = len(workers_with_contradictions)
         d['ratio_workers_contradicting'] = len(workers_with_contradictions)/n_workers
         d['contradiction_annotation_ratio'] = n_contradictions/n_annotations
+        d['n_possible_contradictions'] = n_possible_contradictions
         if n_possible_contradictions != 0:
             d['contradiction_poss_contradiction_ratio'] = n_contradictions/n_possible_contradictions
         else:
@@ -99,6 +100,9 @@ def get_pair_analysis(data_dict_list, name):
                                      not in workers_with_contradictions]
         d['workers_not_contradicting'] = ' '.join(workers_not_contradicting)
         # add contradiction_type analysis
+        #for cont, cnt in cont_cnt.items():
+        #    cont_str = '-'.join(cont)
+        #    d[f'cont-{cont_str}'] = cnt
         d.update(cont_cnt)
         d['annotations_with_contradiction'] = ' '.join(annoation_ids_with_contradictions)
         pair_data_dicts.append(d)
