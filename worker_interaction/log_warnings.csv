@@ -1,72 +1,79 @@
-worker	 data 	action	 date rejected	 blacklisted	notes
-5c1d4d88508cfd000103dc47	03/20/20	warned			contradictions and failed checks
-5d76a2dc2a476a0001ce6843	03/23/20	warned			contradictions and failed checks
-5e76ab49dec4562243b421f9	03/23/20	warned			contradictions and failed checks
-5c35e108f5ebd5000184599e	03/23/20	warned			contradictions and failed checks
-5dc029217fa54e4545661559	03/24/20	warned			contradictions and failed checks
-5c8d3f8bf756d40016683868	03/24/20	warned			25 contradictions
-5e6a3ff6a21e120a40d76a84	03/24/20	warned			17 + failed check
-5bfe6f8c6e6cd80001bea615	03/24/20	warned			14  only 4 minutes
-5e7376da9674532c00ed8b18	03/25/20	warned			contradictions and very low time spent on the task
-5e4b00acecbca8011a7319c1	03/25/02	warned			contradictions 
-5c2bd5f88c234c00018b91f8	03/26/20	warned			contradictions 
-5e777586ccc2372dd1311e30	03/27/20	warned			
-5a2146bb772bc40001ba093e	03/27/20	warned			
-5e4e86b070e1ed2d6e4e3f62	03/27/20	warned			
-5e7cbbbcf0a5a004b60b48f7	03/27/20	warned			
-5ba4f45c4286a00001ea457f	04/01/20	warned			
-5d87ca81c3cecc0001747172	04/01/20	warned			
-5d87ca81c3cecc0001747172	04/01/20	warned			
-5c4e2d07c401980001ab62d9	04/01/20	watching			
-5beca582fcb5fe0001259b1e	04/01/20	warned			
-5d494d958e0dc5001a99a392	04/01/20	watching			
-5c1f3a7c10677f0001da2157	04/02/20	warned			
-5cadf60419bbcd0001c74e7b	04/02/20	warned			
-5e3bf0fb13ec10021f353261	04/02/20	warned			
-5e4c058c4335e2058da46217	04/02/20	warned			contradictions in two sets - reject next time 
-5c0f6a0c0058fa0001c6d9d4	04/02/20	warned			
-5c042ba4bb85e60001c05c83	04/02/20	warned			
-5e85b24a3b649e1a199f23ed	04/02/20	warned			
-5d7645bbe8351c0016f3f50f	04/03/20	warned			
-5c73e5d89b46930001ee7edc	04/03/20	warned			
-56e0246fa3b147000ac579f3	04/03/20	well done			
-5b222aff59f9620001c109cb	04/03/20	well done			
-5e6504672a0d1627bc5e2b69	04/03/20	well done			
-5ddd128c961cb3c6780ff181	04/03/20	watching			seems to have been a difficult batch
-5e85da5281f7de1dc6d86250	04/03/20	watching			seems to have been a difficult batch
-5e86972528aacd2d57010c07	04/03/20	watching			seems to have been a difficult batch
-5c129f53c27527000196c925	04/03/20	warned			
-5c62ed99eed63200017d88c3	04/03/20	watching			
-5c8831d20d005a00131367d3	04/06/20	warned			
-5e61391b8f3f89033279a67a	04/06/20	warned			
-5d323affa754dc00018b15cc	04/06/20	warned			two batches with many contradictions 83 contradictions!
-5a06f0579b760100013a6d8c	04/06/20	watching			
-5bfed16ca1f050000102693c	04/06/20	warned			
-5aff2de2a415960001f26f36	04/06/20	well done			
-594ec14a3e9d730001924da6	04/06/20	watch 			23 contradictions
-5e85d88e1d6de805083b051f	04/07/20	watch 			
-IT manager	04/07/20	watch but cannot match			
-5daf6f5d5f543b00151fb4fc	04/07/20	well done			
-5e790f7147422a4bfcd6e560	04/07/20	watch 			
-5e76711f4abffa04523a1ba9	watch				
-5e6d64ec850d5132cc259058	watch				15 contradictions
-5d4fd539bd127b0019c6dd97	04/08/20	well done			
-5cf97cad3c3cdd0016f1144c	watch				16 contradictions
-5e8225c35fc9ef052cbd026c	watch				25 contradictions
-5e3628fe1cdf265e0d75cdf2	watch				
-5e81179b321a6d07fb62616f	watch				
-5a1c5d30df3fa800015c4f66	04/08/20	well done			
-5d6ef000391fb4001a97337d	04/08/20				
-55f6ed3032af740005171b36	watch				
-5c695e5a0d80fd000142743f	04/08/20	well done			
-5d7a5163c1f9be0001e4f891	04/08/20	warned			
-5e848d5ec880ee02fbba41b0	04/09/20	warned			35 contradictions
-5e624b994ea064039093b3fd	04/09/20	warned			31 contradictions + fail
-5ca0ab3d073bc1001209fd58	04/09/20	warned			33 contradictions + fail 
-5e87276d17cdf1028850af59	04/09/20	warned			54 contradictions + fail
-5d4c5e4baf102c001a385bf0	04/09/20	warned			43 contradictions
-5e8d690133b50414025ce479	04/09/20	well done			3 contradictions on a difficult set
-5dc5c8cfb1dabb44812d5f1d	04/09/20	well done			0
-5e33190a5a41122e93c40989	04/09/20	well done			0
-111	Warn - not possible				39 contradictions, no match to id
-5aade0fe917b3b00010d4879	04/09/20	well done			
+worker	 data 	action	 date rejected	 blacklisted	notes																
+5c1d4d88508cfd000103dc47	03/20/20	warned			contradictions and failed checks																
+5d76a2dc2a476a0001ce6843	03/23/20	warned			contradictions and failed checks																
+5e76ab49dec4562243b421f9	03/23/20	warned			contradictions and failed checks																
+5c35e108f5ebd5000184599e	03/23/20	warned			contradictions and failed checks																
+5dc029217fa54e4545661559	03/24/20	warned			contradictions and failed checks																
+5c8d3f8bf756d40016683868	03/24/20	warned			25 contradictions																
+5e6a3ff6a21e120a40d76a84	03/24/20	warned			17 + failed check																
+5bfe6f8c6e6cd80001bea615	03/24/20	warned			14  only 4 minutes																
+5e7376da9674532c00ed8b18	03/25/20	warned			contradictions and very low time spent on the task																
+5e4b00acecbca8011a7319c1	03/25/02	warned			contradictions 																
+5c2bd5f88c234c00018b91f8	03/26/20	warned			contradictions 																
+5e777586ccc2372dd1311e30	03/27/20	warned																			
+5a2146bb772bc40001ba093e	03/27/20	warned																			
+5e4e86b070e1ed2d6e4e3f62	03/27/20	warned																			
+5e7cbbbcf0a5a004b60b48f7	03/27/20	warned																			
+5ba4f45c4286a00001ea457f	04/01/20	warned																			
+5d87ca81c3cecc0001747172	04/01/20	warned																			
+5d87ca81c3cecc0001747172	04/01/20	warned																			
+5c4e2d07c401980001ab62d9	04/01/20	watching																			
+5beca582fcb5fe0001259b1e	04/01/20	warned																			
+5d494d958e0dc5001a99a392	04/01/20	watching																			
+5c1f3a7c10677f0001da2157	04/02/20	warned																			
+5cadf60419bbcd0001c74e7b	04/02/20	warned																			
+5e3bf0fb13ec10021f353261	04/02/20	warned																			
+5e4c058c4335e2058da46217	04/02/20	warned			contradictions in two sets - reject next time 																
+5c0f6a0c0058fa0001c6d9d4	04/02/20	warned																			
+5c042ba4bb85e60001c05c83	04/02/20	warned																			
+5e85b24a3b649e1a199f23ed	04/02/20	warned																			
+5d7645bbe8351c0016f3f50f	04/03/20	warned																			
+5c73e5d89b46930001ee7edc	04/03/20	warned																			
+56e0246fa3b147000ac579f3	04/03/20	well done																			
+5b222aff59f9620001c109cb	04/03/20	well done																			
+5e6504672a0d1627bc5e2b69	04/03/20	well done																			
+5ddd128c961cb3c6780ff181	04/03/20	watching			seems to have been a difficult batch																
+5e85da5281f7de1dc6d86250	04/03/20	watching			seems to have been a difficult batch																
+5e86972528aacd2d57010c07	04/03/20	watching			seems to have been a difficult batch																
+5c129f53c27527000196c925	04/03/20	warned																			
+5c62ed99eed63200017d88c3	04/03/20	watching																			
+5c8831d20d005a00131367d3	04/06/20	warned																			
+5e61391b8f3f89033279a67a	04/06/20	warned																			
+5d323affa754dc00018b15cc	04/06/20	warned			two batches with many contradictions 83 contradictions!																
+5a06f0579b760100013a6d8c	04/06/20	watching																			
+5bfed16ca1f050000102693c	04/06/20	warned																			
+5aff2de2a415960001f26f36	04/06/20	well done																			
+594ec14a3e9d730001924da6	04/06/20	watch 			23 contradictions																
+5e85d88e1d6de805083b051f	04/07/20	watch 																			
+IT manager	04/07/20	watch but cannot match																			
+5daf6f5d5f543b00151fb4fc	04/07/20	well done																			
+5e790f7147422a4bfcd6e560	04/07/20	watch 																			
+5e76711f4abffa04523a1ba9	watch																				
+5e6d64ec850d5132cc259058	watch				15 contradictions																
+5d4fd539bd127b0019c6dd97	04/08/20	well done																			
+5cf97cad3c3cdd0016f1144c	watch				16 contradictions																
+5e8225c35fc9ef052cbd026c	watch				25 contradictions																
+5e3628fe1cdf265e0d75cdf2	watch																				
+5e81179b321a6d07fb62616f	watch																				
+5a1c5d30df3fa800015c4f66	04/08/20	well done																			
+5d6ef000391fb4001a97337d	04/08/20																				
+55f6ed3032af740005171b36	watch																				
+5c695e5a0d80fd000142743f	04/08/20	well done																			
+5d7a5163c1f9be0001e4f891	04/08/20	warned																			
+5e848d5ec880ee02fbba41b0	04/09/20	warned			35 contradictions																
+5e624b994ea064039093b3fd	04/09/20	warned			31 contradictions + fail																
+5ca0ab3d073bc1001209fd58	04/09/20	warned			33 contradictions + fail 																
+5e87276d17cdf1028850af59	04/09/20	warned			54 contradictions + fail																
+5d4c5e4baf102c001a385bf0	04/09/20	warned			43 contradictions																
+5e8d690133b50414025ce479	04/09/20	well done			3 contradictions on a difficult set																
+5dc5c8cfb1dabb44812d5f1d	04/09/20	well done			0																
+5e33190a5a41122e93c40989	04/09/20	well done			0																
+111	Warn - not possible				39 contradictions	 no match to id															
+5aade0fe917b3b00010d4879	04/09/20	well done																			
+56e99d054111eb000c77885b	04/22/20	well done			84	0	0	0	19.148639	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	
+5aae762bc4e8f200014b3f88	04/22/20	well done			0	84	0	0	0	9.914667	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+5aae93f5fb22320001baaaac	04/22/20	well done			0	84	0	0	0	11.753167	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+5c3fb75eca00d30001c5187d	04/22/20	well done																			
+59007be801efbd0001856baf	04/23/20	well done			72	0	0.013889	0	10.793125	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	
+5e6e35cac8f7653d80726811	04/23/20	well done			0	72	0	0.013889	0	9.578764	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+5e9b4d1efab83b050f3bd741	04/23/20	well done																			
