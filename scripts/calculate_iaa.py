@@ -4,7 +4,8 @@
 from load_data import load_experiment_data
 from utils_analysis import sort_by_key
 from nltk import agreement
-
+from sklearn.metrics import cohen_kappa_score
+import numpy as np
 import csv
 from collections import defaultdict
 
@@ -70,6 +71,8 @@ def get_collapsed_relations(dict_list, mapping = 'levels'):
     return collapsed_dicts
 
 
+
+
 def create_matrix(dict_list):
     quid_dict = defaultdict(list)
     for d in dict_list:
@@ -79,47 +82,38 @@ def create_matrix(dict_list):
     all_rows = []
     for quid, ds in quid_dict.items():
         for n, d in enumerate(ds):
-            worker = n
+            worker = d['workerid']
             answer = d['answer']
             row = [worker, quid, answer]
             all_rows.append(row)
     return all_rows
 
-def coder_pairs(n_annotators):
 
-    annotators = list(range(n_annotators))
-    pairs = set()
-    for i in annotators:
-        for j in annotators:
-            if i != j:
-                pair = (i, j)
-                pair_rev = (j, i)
-                if pair_rev not in pairs:
-                    pairs.add(pair)
-    return pairs
 
 def proportional_agreement_pairs(matrix):
     """
     data: list of triples representing instances: (worker, unit, label)
     """
 
-    unit_dict = defaultdict(list)
+    unit_dict = defaultdict(dict)
     agreements = 0.0
 
     all_labels = set()
     for w, u, l in matrix:
         all_labels.add(l)
-        unit_dict[u].append(l)
+        unit_dict[u][w] = l
 
-    for u, judgements in unit_dict.items():
-        n_annotators = len(judgements)
-        pairs = coder_pairs(n_annotators)
+    for u, worker_judgment_dict in unit_dict.items():
+        #n_annotators = len(judgements)
         ag_cnt = 0.0
+        workers = worker_judgment_dict.keys()
+        pairs = coder_pairs_unit(workers)
         for i, j in pairs:
-            li = judgements[i]
-            lj = judgements[j]
-            if li == lj:
-                ag_cnt += 1
+            if i in worker_judgment_dict and j in worker_judgment_dict:
+                li = worker_judgment_dict[i]
+                lj = worker_judgment_dict[j]
+                if li == lj:
+                    ag_cnt += 1
         if ag_cnt != 0:
             agreement_unit = ag_cnt /len(pairs)
         else:
@@ -127,6 +121,66 @@ def proportional_agreement_pairs(matrix):
         agreements += agreement_unit
     overall = agreements/len(unit_dict)
     return overall
+
+
+
+
+def coder_pairs_unit(workers):
+
+    pairs = set()
+    for i in workers:
+        for j in workers:
+            if i != j:
+                pair = (i, j)
+                pair_rev = (j, i)
+                if pair_rev not in pairs:
+                    pairs.add(pair)
+    return pairs
+
+def coder_pairs_matrix(matrix):
+
+    workers = [m[0] for m in matrix]
+
+    pairs = set()
+    for i in workers:
+        for j in workers:
+            if i != j:
+                pair = (i, j)
+                pair_rev = (j, i)
+                if pair_rev not in pairs:
+                    pairs.add(pair)
+    return pairs
+
+
+def get_average_kappa(matrix):
+    pairs = coder_pairs_matrix(matrix)
+    unit_dict = defaultdict(dict)
+    pair_unit_dict = defaultdict(list)
+    for w, u, l in matrix:
+        unit_dict[u][w] = l
+    all_pair_answers = []
+    sum_kappas =0.0
+    sum_valid_pairs = 0.0
+    for wi, wj in pairs:
+        pair_label_dict = defaultdict(list)
+        for u, worker_l_dict in unit_dict.items():
+            if wi in worker_l_dict and wj in worker_l_dict:
+                pair_label_dict[wi].append(worker_l_dict[wi])
+                pair_label_dict[wj].append(worker_l_dict[wj])
+        labels_i = pair_label_dict[wi]
+        labels_j = pair_label_dict[wj]
+        if len(labels_i) > 0:
+            kappa = cohen_kappa_score(labels_i, labels_j)
+            if not np.isnan(kappa):
+                sum_kappas += kappa
+                sum_valid_pairs += 1
+    if sum_valid_pairs != 0:
+        av_kappa = sum_kappas/sum_valid_pairs
+    else:
+        av_kappa = 0
+    return av_kappa
+        #all_pair_answers.append(pair_label_dict)
+
 
 def get_agreement(dict_list_out, collapse_relations = False, v=True):
     agreement_dict = dict()
@@ -137,18 +191,21 @@ def get_agreement(dict_list_out, collapse_relations = False, v=True):
     ratingtask = agreement.AnnotationTask(data=matrix)
     alpha = ratingtask.alpha()
     prop = proportional_agreement_pairs(matrix)
+    average_kappa = get_average_kappa(matrix)
     if v == True:
         print(f"Krippendorff's alpha: {alpha}")
+        print(f"Average Cohen's Kappa (pairwise): {average_kappa}")
         print(f"Proportional agreement (pairwise): {prop}")
         print()
     agreement_dict['Krippendorff'] = alpha
     agreement_dict['Proportional'] = prop
+    agreement_dict['Av_Cohens_kappa'] = average_kappa
     return agreement_dict
 
 
 def main():
-    run = 3
-    group = 'experiment1'
+    run = 4
+    group = 'experiment2'
     batch = '*'
     n_q = '*'
     print(f'--- analyzing run {run} ---')
