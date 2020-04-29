@@ -191,15 +191,15 @@ def get_agreement(dict_list_out, collapse_relations = False, v=True):
     ratingtask = agreement.AnnotationTask(data=matrix)
     alpha = ratingtask.alpha()
     prop = proportional_agreement_pairs(matrix)
-    average_kappa = get_average_kappa(matrix)
+    #average_kappa = get_average_kappa(matrix)
     if v == True:
         print(f"Krippendorff's alpha: {alpha}")
-        print(f"Average Cohen's Kappa (pairwise): {average_kappa}")
+        #print(f"Average Cohen's Kappa (pairwise): {average_kappa}")
         print(f"Proportional agreement (pairwise): {prop}")
         print()
     agreement_dict['Krippendorff'] = alpha
     agreement_dict['Proportional'] = prop
-    agreement_dict['Av_Cohens_kappa'] = average_kappa
+    #agreement_dict['Av_Cohens_kappa'] = average_kappa
     return agreement_dict
 
 
