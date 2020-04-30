@@ -185,46 +185,50 @@ def get_average_kappa(matrix):
 def get_agreement(dict_list_out, collapse_relations = False, v=True):
     agreement_dict = dict()
     if collapse_relations != False:
-        print(collapse_relations)
         dict_list_out = get_collapsed_relations(dict_list_out, collapse_relations)
     matrix = create_matrix(dict_list_out)
     ratingtask = agreement.AnnotationTask(data=matrix)
     alpha = ratingtask.alpha()
     prop = proportional_agreement_pairs(matrix)
-    #average_kappa = get_average_kappa(matrix)
+    average_kappa = get_average_kappa(matrix)
     if v == True:
         print(f"Krippendorff's alpha: {alpha}")
-        #print(f"Average Cohen's Kappa (pairwise): {average_kappa}")
+        print(f"Average Cohen's Kappa (pairwise): {average_kappa}")
         print(f"Proportional agreement (pairwise): {prop}")
         print()
     agreement_dict['Krippendorff'] = alpha
     agreement_dict['Proportional'] = prop
-    #agreement_dict['Av_Cohens_kappa'] = average_kappa
+    agreement_dict['Av_Cohens_kappa'] = average_kappa
     return agreement_dict
 
 
+def get_full_report(dict_list_out, v=False):
+
+    full_ag_dict = dict()
+    versions = ['pos_neg', 'levels', 'similar_relations']
+    if v == True:
+        print(f'--- Full IAA report --- ')
+        print('Full set:')
+    full_ag_dict['full'] = get_agreement(dict_list_out, v=v)
+    for version in versions:
+        if v == True:
+            print(f'collapsing {version}')
+        full_ag_dict[version] = get_agreement(dict_list_out,\
+                                            collapse_relations = version, v=v)
+
+    return full_ag_dict
+
+
+
 def main():
-    run = 4
+    run = "4"
     group = 'experiment2'
     batch = '*'
     n_q = '*'
-    print(f'--- analyzing run {run} ---')
+
     dict_list_out = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-    get_agreement(dict_list_out)
+    get_full_report(dict_list_out)
 
-    print(f'--- analyzing run {run} --- ')
-
-    collapse_relations = 'pos_neg'
-    print(f'collapsing {collapse_relations}')
-    get_agreement(dict_list_out, collapse_relations = collapse_relations)
-
-    collapse_relations = 'levels'
-    print(f'collapsing {collapse_relations}')
-    get_agreement(dict_list_out, collapse_relations = collapse_relations)
-
-    collapse_relations = 'similar_relations'
-    print(f'collapsing {collapse_relations}')
-    get_agreement(dict_list_out, collapse_relations = collapse_relations)
 
 if __name__ == '__main__':
     main()

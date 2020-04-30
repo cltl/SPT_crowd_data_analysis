@@ -15,57 +15,40 @@ def get_contradiction_stats(df):
     contradiction_pairs = [c for c in df.columns if c.startswith('(')]
     contradiction_stats = dict()
     for cont_pair in contradiction_pairs:
-        conts_normalized = []
+        n_conts = []
         for ind, row in df.iterrows():
-            # normalize number of contradictions by number of annotators
-            n_conts = row[cont_pair]
-            if np.isnan(n_conts):
-                n_conts = 0
-            poss_conts = row['n_possible_contradictions']
-            if poss_conts != 0:
-                conts_norm = n_conts/poss_conts
-            else:
-                conts_norm = 0
-            conts_normalized.append(conts_norm)
-        av = sum(conts_normalized)/len(conts_normalized)
-        sd = stdev(conts_normalized)
+            conts = row[cont_pair]
+            if np.isnan(conts):
+                conts = 0.0
+            n_conts.append(conts)
+        av = sum(n_conts)/len(df)
+        sd = stdev(n_conts)
         contradiction_stats[cont_pair] = dict()
         contradiction_stats[cont_pair]['av'] = av
         contradiction_stats[cont_pair]['sd'] = sd
     return contradiction_stats
 
-def get_outliers(pair_row, contradiction_stats):
+def get_outliers(row, contradiction_stats):
     cont_dicts = []
-    contradiction_pairs = [k for k, v in pair_row.items() if k.startswith('(')]
-    poss_conts = pair_row['n_possible_contradictions']
+    contradiction_pairs = [k for k, v in row.items() if k.startswith('(')]
     for p in contradiction_pairs:
-        n_conts = pair_row[p]
-        if poss_conts != 0:
-            conts_norm = n_conts/poss_conts
-        else:
-            conts_norm = 0
-        if np.isnan(conts_norm):
-            conts_norm = 0
+        n_conts = row[p]
         conts_av = contradiction_stats[p]['av']
-        diff = conts_norm - conts_av
+        diff = n_conts - conts_av
         conts_sd = contradiction_stats[p]['sd']
-        if diff > conts_sd:
-           # print('more contradictions than expected')
-            #print(p, conts_per_worker)
+        if n_conts > conts_av + conts_sd:
             d = dict()
             d['contradiction'] = p
-            d['conts_ratio'] = conts_norm
             d['n_conts'] = n_conts
             cont_dicts.append(d)
-        else:
-            continue
-            #print('less contradictions than expected')
-            #print(p, conts_per_worker)
     return cont_dicts
 
 
 def collect_outliers(df):
     contradiction_stats = get_contradiction_stats(df)
+    #for pair, stats in contradiction_stats.items():
+    #    print(pair)
+    #    print(stats['av'], stats['sd'])
     for ind, row in df.iterrows():
         outliers = get_outliers(row, contradiction_stats)
         outlier_cnt = Counter()
@@ -73,7 +56,6 @@ def collect_outliers(df):
             cont = d['contradiction']
             outlier_cnt[cont] += d['n_conts']
         sum_outliers = sum(outlier_cnt.values())
-        #row['n_outliers'] = sum_outliers
         df.loc[ind,'n_outliers'] = sum_outliers
         n_conts = row['n_possible_contradictions']
         if n_conts != 0:
@@ -83,19 +65,25 @@ def collect_outliers(df):
         outlier_contradictions = [d['contradiction']for outlier in outliers]
         df.loc[ind, 'outlier_contradictions'] = ' '.join(set(outlier_contradictions))
 
-def main():
-    analysis_type = 'workers'
-    run = '*'
-    exp_name = 'experiment1'
-    batch = '*'
+def get_worker_contradiction_outlier_analysis(analysis_type, run, exp_name, batch):
     df = load_analysis(analysis_type, run, exp_name, batch)
     collect_outliers(df)
-    dir_path = f'../analyses/outliers_{analysis_type}/'
+    dir_path = f'../analyses/{analysis_type}-outliers/'
     if not os.path.isdir(dir_path):
         os.mkdir(dir_path)
     new_path = f'{dir_path}run{run}-group_{exp_name}-batch{batch}.csv'.replace('*', '-all-')
     df.to_csv(new_path)
     print(f'Results written to: {new_path}')
+    return df
+
+def main():
+    analysis_type = 'workers'
+    run = '4'
+    exp_name = 'experiment2'
+    batch = '*'
+    get_worker_contradiction_outlier_analysis(analysis_type, run, exp_name, batch)
+
+
 
 if __name__ == '__main__':
     main()

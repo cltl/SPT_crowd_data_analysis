@@ -10,6 +10,8 @@ from utils_analysis import collect_contradictions
 from utils_analysis import sort_by_key
 from utils_analysis import get_annotation_ids
 
+from analyze_worker_outliers import get_worker_contradiction_outlier_analysis
+
 from collections import Counter
 import pandas as pd
 import os
@@ -96,11 +98,13 @@ def get_worker_analysis(data_dict_list, name):
         d['contradictory_pairs_ratio'] = pairs_with_cont/len(data_by_pair)
         d['average_time_question'] = get_average_time_worker(dl_worker)
         d['annotations'] = ' '.join(get_annotation_ids(dl_worker))
-        # add contradiction_type analysis
-        #for cont, cnt in cont_cnt.items():
-        #    cont_str = '-'.join(cont)
-        #    d[f'cont-{cont_str}'] = cnt
-        d.update(cont_cnt)
+        # normalize number of contradictions per type by total number of possible contradictions
+        for cont, cnt in cont_cnt.items():
+            if n_possible_contradictions != 0:
+                cnt_norm = cnt/n_possible_contradictions
+            else:
+                cnt_norm = 0
+            d[cont] = cnt_norm
         worker_data_dicts.append(d)
     worker_df = pd.DataFrame(worker_data_dicts)
     # sort by contradiction to annotation ratio
@@ -112,9 +116,11 @@ def get_worker_analysis(data_dict_list, name):
     return worker_df, filepath
 
 
+
+
 def main():
     # analyze all data:
-    run = '*'
+    run = '3'
     batch = '*'
     n_q = '*'
     group = 'experiment1'
@@ -123,6 +129,8 @@ def main():
     name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
     df, filepath = get_worker_analysis(data_dict_list, name)
     print(f'analysis can be found at: {filepath}')
+    analysis_type = 'workers'
+    get_worker_contradiction_outlier_analysis(analysis_type, run, group, batch)
 
 if __name__ == '__main__':
     main()
