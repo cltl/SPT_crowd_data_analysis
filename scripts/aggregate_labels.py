@@ -112,9 +112,10 @@ def get_aggregated_data(run, batch, n_q, group, annotation_filter, iaa=True, v=F
     stats_dict['percent_clean'] = percent_clean
     stats_dict['Alpha_full'] = iaa_dict['full']['Krippendorff']
     stats_dict['Alpha_levels'] = iaa_dict['levels']['Krippendorff']
-    stats_dict['Kappa_full'] = iaa_dict['full']['Av_Cohens_kappa']
-    stats_dict['Kappa_levels'] = iaa_dict['levels']['Av_Cohens_kappa']
+    #stats_dict['Kappa_full'] = iaa_dict['full']['Av_Cohens_kappa']
+    #stats_dict['Kappa_levels'] = iaa_dict['levels']['Av_Cohens_kappa']
     stats_dict['percent_pairs_cont'] = len(pairs_cont)/(len(pairs_cont)+len(pairs_no_cont))
+    stats_dict['number_pairs'] = (len(pairs_cont)+len(pairs_no_cont))
     return all_df, stats_dict
 
 def overview_to_file(stats_df, run, group):
@@ -141,10 +142,10 @@ def get_overview(run, batch, n_q, group):
 
 
 def main():
-    run = '4'
+    run = '*'
     batch = '*'
     n_q = '*'
-    group = 'experiment2'
+    group = 'experiment*'
 
     stats_df = get_overview(run, batch, n_q, group)
 
