@@ -18,7 +18,6 @@ def get_agreement_by_relation(data_dict_list):
     agreement_rel_dict = dict()
     data_by_relation = sort_by_key(data_dict_list, ['relation'])
     for rel, dl_rel in data_by_relation.items():
-        data_by_ex = sort_by_key(dl_rel, ['exampletrue', 'examplefalse'])
         agreement_rel_dict[rel] = get_agreement(dl_rel, v=False)
     return agreement_rel_dict
 
