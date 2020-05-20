@@ -85,18 +85,23 @@ def remove_not_valid(dict_list_out, dict_list_sum):
 def load_experiment_summaries_batch(exp_path, remove_not_val = True):
 
     dir_summary = '../data/prolific_summaries'
-    with open(f'{dir_summary}/{exp_path}') as infile:
-        dict_list_sum = list(csv.DictReader(infile))
-    if remove_not_val == True:
-        dir_summary = '../data/prolific_summaries/'
+    if os.path.isfile(f'{dir_summary}/{exp_path}'):
         with open(f'{dir_summary}/{exp_path}') as infile:
             dict_list_sum = list(csv.DictReader(infile))
-        dict_list_sum = remove_not_valid(dict_list_sum, dict_list_sum)
+        if remove_not_val == True:
+            dir_summary = '../data/prolific_summaries/'
+            with open(f'{dir_summary}/{exp_path}') as infile:
+                dict_list_sum = list(csv.DictReader(infile))
+            dict_list_sum = remove_not_valid(dict_list_sum, dict_list_sum)
+    else:
+        dict_list_sum = []
     return dict_list_sum
 
 def add_time_info(dict_list_out_batch, dict_list_sum_batch):
-
-    worker_time_dict = {d['participant_id']: d['time_taken'] for d in dict_list_sum_batch}
+    if dict_list_sum_batch != []:
+        worker_time_dict = {d['participant_id']: d['time_taken'] for d in dict_list_sum_batch}
+    else:
+        worker_time_dict = dict()
     for d in dict_list_out_batch:
         worker = d['workerid']
         if worker in worker_time_dict:
@@ -153,8 +158,11 @@ def load_experiment_data_batch(exp_path, remove_not_val = True):
         dict_list_out = list(csv.DictReader(infile))
     if remove_not_val == True:
         dir_summary = '../data/prolific_summaries/'
-        with open(f'{dir_summary}/{exp_path}') as infile:
-            dict_list_sum = list(csv.DictReader(infile))
+        if os.path.isfile(f'{dir_summary}/{exp_path}'):
+            with open(f'{dir_summary}/{exp_path}') as infile:
+                dict_list_sum = list(csv.DictReader(infile))
+        else:
+            dict_list_sum = []
         dict_list_out = remove_not_valid(dict_list_out, dict_list_sum)
     return dict_list_out
 
@@ -188,9 +196,36 @@ def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
         # check if files already have unique ids
         exp_path = f[len(dir_output):]
         add_unique_ids(exp_path)
-        dict_list_out_batch = load_experiment_data_batch(exp_path, remove_not_val = remove_not_val)
         dict_list_sum_batch = load_experiment_summaries_batch(exp_path, remove_not_val = remove_not_val)
-        match_ids(dict_list_out_batch, dict_list_sum_batch, remove_not_val = True, v=False)
+        if dict_list_sum_batch != []:
+            dict_list_out_batch = load_experiment_data_batch(exp_path, remove_not_val = remove_not_val)
+            match_ids(dict_list_out_batch, dict_list_sum_batch, remove_not_val = True, v=False)
+            add_time_info(dict_list_out_batch, dict_list_sum_batch)
+            process_triple_and_answer(dict_list_out_batch)
+            dict_list_out_clean = remove_singletons(dict_list_out_batch)
+            annotations_discarded += len(dict_list_out_batch) - len(dict_list_out_clean)
+            all_dict_list_out.extend(dict_list_out_clean)
+    print(f'Discarded {annotations_discarded} annotations.')
+    return all_dict_list_out
+
+def load_expert_data_batch(exp_path):
+    dir_output = '../data/prolific_output_uuid/'
+    with open(f'{dir_output}/{exp_path}') as infile:
+        dict_list_out = list(csv.DictReader(infile))
+    return dict_list_out
+
+def load_expert_data(run, group, n_q, batch):
+
+    all_dict_list_out = []
+    dir_output = '../data/prolific_output/'
+    all_files = f'{dir_output}run{run}-group_{group}/qu{n_q}-s_qu{n_q}-batch{batch}.csv'
+    annotations_discarded = 0.0
+    for f in glob.glob(all_files):
+        # check if files already have unique ids
+        exp_path = f[len(dir_output):]
+        add_unique_ids(exp_path)
+        dict_list_out_batch = load_expert_data_batch(exp_path)
+        dict_list_sum_batch = []
         add_time_info(dict_list_out_batch, dict_list_sum_batch)
         process_triple_and_answer(dict_list_out_batch)
         dict_list_out_clean = remove_singletons(dict_list_out_batch)

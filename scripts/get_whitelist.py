@@ -16,7 +16,7 @@ def get_whitelist():
         n_contradictions = row['n_contradictions']
         n_fails = row['n_fails']
         n_annotations = row['n_annotations']
-        if n_annotations > 30 and n_fails < 2 and n_contradictions <3:
+        if n_annotations > 30 and n_fails < 2 and n_contradictions < 3:
             whitelist.add(row['workerid'])
 
     print(f'# whitelist workers: {len(whitelist)}')
@@ -25,7 +25,7 @@ def get_whitelist():
 
 def load_existing_whitelist():
     with open('../worker_interaction/whitelist.txt') as infile:
-        existing_whitelist_set = set(infile.read().split(', '))
+        existing_whitelist_set = set(infile.read().strip().split(','))
 
     return existing_whitelist_set
 
@@ -42,7 +42,17 @@ def main():
     print(len(whitelist_set))
     existing_whitelist_set = load_existing_whitelist()
     print(len(existing_whitelist_set))
-    updated_whitelist = existing_whitelist_set.intersection(whitelist_set)
+    if len(existing_whitelist_set) > 2:
+        updated_whitelist = existing_whitelist_set.intersection(whitelist_set)
+    else:
+        updated_whitelist = whitelist_set
+    print(len(updated_whitelist))
+
+    #print(whitelist_set)
+    print('---')
+    #print(existing_whitelist_set)
+    print('---')
+    #print(updated_whitelist)
     whitelist_to_file(updated_whitelist)
 
 

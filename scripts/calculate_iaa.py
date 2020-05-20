@@ -62,6 +62,7 @@ def get_collapsed_relations(dict_list, mapping = 'levels'):
             for pair, p_dicts in dicts_by_pair.items():
                 new_d['quid'] = f'{pair}-{level}'
                 new_d['workerid'] = w
+                new_d['completionurl'] = p_dicts[0]['completionurl']
                 answers = [d['answer'] for d in p_dicts]
                 if 'true' in answers:
                     new_d['answer'] = 'true'
@@ -139,7 +140,7 @@ def coder_pairs_unit(workers):
 
 def coder_pairs_matrix(matrix):
 
-    workers = [m[0] for m in matrix]
+    workers = set([m[0] for m in matrix])
 
     pairs = set()
     for i in workers:
@@ -153,9 +154,21 @@ def coder_pairs_matrix(matrix):
 
 
 def get_average_kappa(matrix):
+    pair_kappa_dict = get_kappa_pairs(matrix)
+
+    if len(pair_kappa_dict) > 0:
+        sum_kappa = sum(pair_kappa_dict.values())
+        av_kappa = sum_kappa/len(pair_kappa_dict)
+    else:
+        av_kappa = 0
+    return av_kappa
+
+
+def get_kappa_pairs(matrix):
     pairs = coder_pairs_matrix(matrix)
     unit_dict = defaultdict(dict)
     pair_unit_dict = defaultdict(list)
+    pair_kappa_dict = dict()
     for w, u, l in matrix:
         unit_dict[u][w] = l
     all_pair_answers = []
@@ -171,15 +184,9 @@ def get_average_kappa(matrix):
         labels_j = pair_label_dict[wj]
         if len(labels_i) > 0:
             kappa = cohen_kappa_score(labels_i, labels_j)
-            if not np.isnan(kappa):
-                sum_kappas += kappa
-                sum_valid_pairs += 1
-    if sum_valid_pairs != 0:
-        av_kappa = sum_kappas/sum_valid_pairs
-    else:
-        av_kappa = 0
-    return av_kappa
-        #all_pair_answers.append(pair_label_dict)
+            pair_kappa_dict[(wi, wj)] = kappa
+
+    return pair_kappa_dict
 
 
 def get_agreement(dict_list_out, collapse_relations = False, v=True):
@@ -191,14 +198,22 @@ def get_agreement(dict_list_out, collapse_relations = False, v=True):
     alpha = ratingtask.alpha()
     prop = proportional_agreement_pairs(matrix)
     #average_kappa = get_average_kappa(matrix)
+    # Calculate kappa by file (not over entire set)
+    total_kappa = 0.0
+    data_by_file = sort_by_key(dict_list_out, ['completionurl'])
+    for f, d_list in data_by_file.items():
+        matrix = create_matrix(d_list)
+        kappa = get_average_kappa(matrix)
+        total_kappa += kappa
+    average_kappa = total_kappa/len(data_by_file)
     if v == True:
         print(f"Krippendorff's alpha: {alpha}")
-        #print(f"Average Cohen's Kappa (pairwise): {average_kappa}")
+        print(f"Average Cohen's Kappa (pairwise): {average_kappa}")
         print(f"Proportional agreement (pairwise): {prop}")
         print()
     agreement_dict['Krippendorff'] = alpha
     agreement_dict['Proportional'] = prop
-    #agreement_dict['Av_Cohens_kappa'] = average_kappa
+    agreement_dict['Av_Cohens_kappa'] = average_kappa
     return agreement_dict
 
 
