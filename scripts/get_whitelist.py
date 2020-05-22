@@ -16,7 +16,9 @@ def get_whitelist():
         n_contradictions = row['n_contradictions']
         n_fails = row['n_fails']
         n_annotations = row['n_annotations']
-        if n_annotations > 30 and n_fails < 2 and n_contradictions < 3:
+        ratio = row['contradiction_poss_contradiction_ratio']
+        #if n_annotations > 30 and n_fails < 3 and n_contradictions < 3:
+        if ratio < 0.05 and n_annotations > 30 and n_fails < 3:
             whitelist.add(row['workerid'])
 
     print(f'# whitelist workers: {len(whitelist)}')
@@ -54,6 +56,9 @@ def main():
     print('---')
     #print(updated_whitelist)
     whitelist_to_file(updated_whitelist)
+    
+    # reset whitelist:
+    #whitelist_to_file(whitelist_set)
 
 
 
