@@ -1,0 +1,11 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Current Country of Residence,Employment Status,First Language,Nationality,Sex,Student Status
+5eca40f41197051a790252b8,5e87a4fd29d9ca41d4d2a073,AWAITING REVIEW,2020-05-24 09:40:04.864000,2020-05-24 09:48:54.510000,529.646,20,19,1,99,,16321CAD,India,Germany,Other,English,India,Male,Yes
+5eca43097d883d1895a856a2,5e67d9ed33e6a60542f4dfd7,AWAITING REVIEW,2020-05-24 09:48:57.784000,2020-05-24 09:57:35.524000,517.74,31,25,0,100,,16321CAD,Estonia,Estonia,Unemployed (and job seeking),Estonian,Estonia,Female,Yes
+5eca44d03e44f01afc373dda,5e8a03c98707ab000b65f3bb,AWAITING REVIEW,2020-05-24 09:56:39.125000,2020-05-24 10:09:31.311000,772.186,27,14,0,100,,16321CAD,Italy,Italy,Full-Time,Italian,Italy,Female,Yes
+5eca45b3ff90f51a3d0a0ec1,5ca924edb570ed0001d22047,AWAITING REVIEW,2020-05-24 10:00:21.287000,2020-05-24 10:18:05.564000,1064.277,31,180,0,100,,16321CAD,United Kingdom,United Kingdom,Part-Time,English,United Kingdom,Female,No
+5eca46bbbba6451901608355,589cc7bd8bf22a00015b7b30,AWAITING REVIEW,2020-05-24 10:05:14.409000,2020-05-24 10:25:46.608000,1232.199,28,235,1,100,,16321CAD,Mexico,Mexico,Unemployed (and job seeking),Spanish,Mexico,Male,No
+5eca479254cc881b40aeab9c,5c41f300b96aae0001e75848,AWAITING REVIEW,2020-05-24 10:08:20.818000,2020-05-24 10:16:59.280000,518.462,20,83,1,100,,16321CAD,Portugal,Portugal,Other,Portuguese,Portugal,Male,Yes
+5eca4926c1e2c6017d898c28,57ed0f89226dff0001579c05,AWAITING REVIEW,2020-05-24 10:15:05.983000,2020-05-24 10:26:40.296000,694.313,31,349,6,99,,16321CAD,Greece,Netherlands,Full-Time,Greek,Greece,Male,Yes
+5eca493c5a12511aba583ff0,5c7515e980f4f000124d2e36,AWAITING REVIEW,2020-05-24 10:15:58.774000,2020-05-24 10:27:06.815000,668.041,24,109,0,100,,16321CAD,Israel,Israel,Part-Time,Arabic,Palestinian Territory,Female,Yes
+5eca495bf7f5db57fa320e98,5e94fa6625f03e0bd5d1b12c,AWAITING REVIEW,2020-05-24 10:15:57.067000,2020-05-24 10:22:36.784000,399.717,22,22,1,99,,16321CAD,United Kingdom,,Full-Time,English,United Kingdom,Female,No
+5eca49895f9dd859307789d9,5e71e26df2bff10008cc9797,AWAITING REVIEW,2020-05-24 10:16:47.399000,2020-05-24 10:35:06.322000,1098.923,41,14,0,100,,16321CAD,South Africa,South Africa,Other,Afrikaans,South Africa,Male,No

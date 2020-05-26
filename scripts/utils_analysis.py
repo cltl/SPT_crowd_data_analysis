@@ -65,10 +65,12 @@ def get_annotation_ids(dict_list):
     return ids
 
 
-def load_analysis(analysis_type, run, exp_name, batch):
+def load_analysis(analysis_type, run, exp_name, batch, as_dict = False):
     #../analyses/pairs/run-all--group_experiment1-batch-all-.csv
     # run3-group_experiment1-batch53.csv
     path = f'../analyses/{analysis_type}/run{run}-group_{exp_name}-batch{batch}.csv'
     path = path.replace('*', '-all-')
-    df = pd.read_csv(path)
-    return df
+    analysis = pd.read_csv(path)
+    if as_dict == True:
+        analysis = analysis.to_dict('records')
+    return analysis

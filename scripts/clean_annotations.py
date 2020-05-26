@@ -1,162 +1,105 @@
+from calculate_iaa import get_alpha
+from statistics import stdev
 from load_data import load_experiment_data
-from calculate_iaa import get_full_report
 from utils_analysis import sort_by_key
+from utils_analysis import load_analysis
 
-import csv
-
-def load_analysis_data(run, group, batch, category):
-    dir_path = f'../analyses/{category}/'
-    name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
-    path = f'{dir_path}{name}.csv'
-    with open(path) as infile:
-        dict_list = list(csv.DictReader(infile))
-    return dict_list
-
-def get_annotations_to_remove(dict_list, key):
-    annotations_to_remove = []
-    for d in dict_list:
-        uuids = d[key].split(' ')
-        annotations_to_remove.extend(uuids)
-    return annotations_to_remove
-
-
-def remove_annotations(all_annotations, annotations_to_remove, v=False):
-    annotations_removed = [d for d in all_annotations if \
-                         d['uuid'] in annotations_to_remove]
-    annotations_clean = [d for d in all_annotations \
-                           if d['uuid'] not in annotations_to_remove]
-
-    if v == True:
-        print('----Filter report----')
-        print(f'Total number of annotations: {len(all_annotations)}')
-        print(f'Number of clean annotations: {len(annotations_clean)}')
-        print(f'Number of removed annotations: {len(annotations_removed)}')
-        print('---------------------')
-        print()
-    return annotations_clean, annotations_removed
-
-def get_avergage_cont_rate(dict_list_workers):
-    sum_cont_rate = 0.0
-    for d in dict_list_workers:
-        cont_rate = d['contradiction_poss_contradiction_ratio']
-        sum_cont_rate += float(cont_rate)
-    av_cont_rate = sum_cont_rate/len(dict_list_workers)
-    return av_cont_rate
-
-
-def get_worker_outliers(outlier_overview):
-    worker_outliers = dict()
-    for d in outlier_overview:
-        worker = d['workerid']
-        outliers = d['outlier_contradictions']
-        outliers_list = outliers.split(') (')
-        outlier_pairs = []
-        for out in outliers_list:
-            out_tuple = tuple(out.replace("('", '').replace("')", '').replace("'", '').split(', '))
-            outlier_pairs.append(out_tuple)
-        worker_outliers[worker] = outlier_pairs
-    return worker_outliers
-
-def collect_outlier_annotations(worker_outliers, all_annotations):
-    annotations_to_remove = []
-    annotations_clean = []
-    annotations_by_worker = sort_by_key(all_annotations, ['workerid'])
-    for worker, annotations_w in annotations_by_worker.items():
-        outliers = worker_outliers[worker]
-        annotations_by_pair = sort_by_key(annotations_w, ['property', 'concept'])
-        for p, annotations in annotations_by_pair.items():
-            relations_true = [d['relation'] for d in annotations if d['answer'] == 'true']
-            for out_pair in outliers:
-                if all([out in relations_true for out in out_pair]):
-                    uuids = [d['uuid'] for d in annotations]
-                    annotations_to_remove.extend(uuids)
-
-    return annotations_to_remove
-
-
-def remove_workers_cont(run, group, n_q, batch, thresh = 'av_cont_rate'):
-    all_annotations = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-    dict_list_workers = load_analysis_data(run, group, batch, 'workers')
-    if thresh == 'av_cont_rate':
-        av = get_avergage_cont_rate(dict_list_workers)
-        dict_list_workers_to_remove = [d for d in dict_list_workers \
-                               if float(d['contradiction_poss_contradiction_ratio']) > av]
-    else:
-        dict_list_workers_to_remove = [d for d in dict_list_workers \
-                               if float(d['contradiction_poss_contradiction_ratio']) > thresh]
-    annotations_to_remove = get_annotations_to_remove(dict_list_workers_to_remove,\
-                                                      'annotations')
-    annotations_clean, annotations_removed = remove_annotations(all_annotations,\
-                                                                annotations_to_remove)
-    return annotations_clean, annotations_removed
-
-
-def remove_workers_check(run, group, n_q, batch, thresh):
-    all_annotations = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-    dict_list_workers = load_analysis_data(run, group, batch, 'workers')
-    dict_list_workers_to_remove = [d for d in dict_list_workers \
-                               if float(d['n_fails']) > thresh]
-    annotations_to_remove = get_annotations_to_remove(dict_list_workers_to_remove,\
-                                                      'annotations')
-    annotations_clean, annotations_removed = remove_annotations(all_annotations,\
-                                                                annotations_to_remove)
-    return annotations_clean, annotations_removed
+def filter_with_stdv(workers, measure = 'contradiction_poss_contradiction_ratio', n_stds=1):
+    cont_rate = [float(d[measure]) for d in workers]
+    av_cont = sum(cont_rate)/len(cont_rate)
+    std_cont = stdev(cont_rate)
+    thresh = (n_stds * std_cont) + av_cont
+    workers_to_remove = []
+    for d in workers:
+        cont_rate = float(d[measure])
+        if cont_rate > thresh:
+            workers_to_remove.append(d['workerid'])
+    return workers_to_remove
 
 
 
-def remove_outlier_annotations(run, group, n_q, batch):
-    all_annotations = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-    outlier_overview = load_analysis_data(run, group, batch, 'workers-outliers')
-    worker_outliers = get_worker_outliers(outlier_overview)
-    annotations_to_remove = collect_outlier_annotations(\
-                                                worker_outliers, all_annotations)
-    annotations_clean, annotations_removed =remove_annotations(all_annotations,\
-                                                               annotations_to_remove)
-    return annotations_clean, annotations_removed
+def remove_contradicting_workers(all_annotations, dict_list_workers, unit,  n_stds):
 
+    if unit == 'batch':
+        annotations_by_unit = sort_by_key(all_annotations, ['filename','completionurl'])
+        workers_by_unit = sort_by_key(dict_list_workers, ['filename-url'])
+    elif unit == 'pair':
+        annotations_by_unit = sort_by_key(all_annotations, ['property','concept'])
+        workers_by_unit = sort_by_key(dict_list_workers, ['pair'])
+        if 'dangerous-scalpel'in workers_by_unit.keys():
+            print('pair in input')
 
-def filter_annotations(run, group, n_q, batch, annotation_filter, iaa=False, v=False):
-    if v == True:
-        print(f'\nFiltering out {annotation_filter}\n')
+    elif unit == 'total':
+        annotations_by_unit = dict()
+        annotations_by_unit['total'] = all_annotations
+        workers_by_unit = dict()
+        workers_by_unit['total'] = dict_list_workers
+    clean_annotations = []
 
-    if annotation_filter == 'contradiction_outliers':
-        annotations_clean, annotations_removed = remove_outlier_annotations(\
-                                                run, group, n_q, batch)
-    elif annotation_filter == 'worker_contradiction_rate_0':
-        annotations_clean, annotations_removed = remove_workers_cont(run, group, \
-                                                            n_q, batch, \
-                                                            thresh = 0.0)
-    elif annotation_filter == 'worker_contradiction_rate_above_av':
-        annotations_clean, annotations_removed = remove_workers_cont(run, group, \
-                                                            n_q, batch, \
-                                                            thresh = 'av_cont_rate')
-    elif annotation_filter == 'worker_failed_checks_1':
-        annotations_clean, annotations_removed  = remove_workers_check(run, \
-                                                                       group, n_q, batch, 1)
-    elif annotation_filter == 'none':
-        annotations_clean = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-        annotations_removed = []
-
-    return annotations_clean, annotations_removed
-
+    for unit_id, workers in workers_by_unit.items():
+        workers_to_remove = filter_with_stdv(workers,
+                         measure = 'contradiction_poss_contradiction_ratio',
+                         n_stds = n_stds)
+        #print(len(workers), len(workers_to_remove))
+        #if len(workers) == len(workers_to_remove):
+        #    for w in workers:
+        #        print(w)
+        #print(unit_id)
+        if unit_id  == 'dangerous-scalpel':
+            print('found pair\n')
+            #for w in workers:
+            #    print(w)
+            #print('\n----\n')
+        annotations = annotations_by_unit[unit_id]
+        for d in annotations:
+            worker = d['workerid']
+            if worker not in workers_to_remove:
+                clean_annotations.append(d)
+            #if unit_id == 'dangerous-scalpel':
+            #    print('remove:', worker in workers_to_remove, worker)
+    return clean_annotations
 
 
 def main():
-
-    run = '4'
-    group = 'experiment2'
-    batch = '*'
+    run = '*'
+    group = 'experiment*'
     n_q = '*'
+    batch = '*'
 
-    annotation_filter = 'none'
-    annotations_clean, annotations_removed = filter_annotations(run, group, n_q, batch, annotation_filter, iaa=True)
-    full_ag_dict = get_full_report(annotations_clean)
+    #load_analysis(analysis_type, run, exp_name, batch)
 
-    annotation_filter = 'contradiction_outliers'
-    annotations_clean, annotations_removed = filter_annotations(run, group, n_q, batch, annotation_filter, iaa=True)
+    #n_stds = 3
+    all_annotations = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+    print('IAA raw')
+    iaa = get_alpha(all_annotations)
+    iaa_levels = get_alpha(all_annotations, collapse_relations = 'levels')
+    print()
 
-    annotation_filter = 'worker_contradiction_rate_0'
-    annotations_clean, annotations_removed = filter_annotations(run, group, n_q, batch, annotation_filter, iaa=True)
+    #units = ['total', 'batch', 'pair']
+    units = ['pair']
+    #stds = [0.5, 1, 1.5, 2, 2.5, 3]
+    stds = [1]
+
+
+    for unit in units:
+        for n_stds in stds:
+            if unit == 'total':
+                analysis_type = 'workers'
+            else:
+                analysis_type = f'workers_by_{unit}'
+            dict_list_workers = load_analysis(analysis_type, run, group, batch, as_dict = True)
+            clean_annotations = remove_contradicting_workers(all_annotations, dict_list_workers, unit,  n_stds)
+            n_total = len(all_annotations)
+            n_clean = len(clean_annotations)
+            percent_clean = n_clean / n_total
+            iaa_alpha = get_alpha(clean_annotations)
+            iaa_alpha_levels = get_alpha(clean_annotations, collapse_relations = 'levels')
+            print(unit, n_stds)
+            print(n_total, n_clean, percent_clean)
+            print(iaa_alpha, iaa_alpha_levels)
+            print()
+
+
 
 if __name__ == '__main__':
     main()

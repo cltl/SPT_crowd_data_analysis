@@ -14,8 +14,8 @@ from collections import defaultdict
 def load_rel_level_mapping(mapping = 'levels'):
     # load mapping
     rel_level_dict = dict()
-    with open('../scheme/relation_overview_run3.csv') as infile:
-            mapping_dicts = list(csv.DictReader(infile))
+    with open(f'../scheme/relation_overview_run4.csv') as infile:
+            mapping_dicts = list(csv.DictReader(infile, delimiter = '\t'))
 
     if mapping == 'levels':
         for d in mapping_dicts:
@@ -189,6 +189,14 @@ def get_kappa_pairs(matrix):
     return pair_kappa_dict
 
 
+def get_alpha(dict_list_out, collapse_relations = False):
+    if collapse_relations != False:
+        dict_list_out = get_collapsed_relations(dict_list_out, collapse_relations)
+    matrix = create_matrix(dict_list_out)
+    ratingtask = agreement.AnnotationTask(data=matrix)
+    alpha = ratingtask.alpha()
+    return alpha
+
 def get_agreement(dict_list_out, collapse_relations = False, v=True):
     agreement_dict = dict()
     if collapse_relations != False:
@@ -205,7 +213,10 @@ def get_agreement(dict_list_out, collapse_relations = False, v=True):
         matrix = create_matrix(d_list)
         kappa = get_average_kappa(matrix)
         total_kappa += kappa
-    average_kappa = total_kappa/len(data_by_file)
+    if total_kappa != 0.0:
+        average_kappa = total_kappa/len(data_by_file)
+    else:
+        average_kappa = 0
     if v == True:
         print(f"Krippendorff's alpha: {alpha}")
         print(f"Average Cohen's Kappa (pairwise): {average_kappa}")
