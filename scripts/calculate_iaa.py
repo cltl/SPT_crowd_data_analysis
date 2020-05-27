@@ -8,7 +8,7 @@ from sklearn.metrics import cohen_kappa_score
 import numpy as np
 import csv
 from collections import defaultdict
-
+import numpy as np
 
 
 def load_rel_level_mapping(mapping = 'levels'):
@@ -197,7 +197,7 @@ def get_alpha(dict_list_out, collapse_relations = False):
     alpha = ratingtask.alpha()
     return alpha
 
-def get_agreement(dict_list_out, collapse_relations = False, v=True):
+def get_agreement(dict_list_out, collapse_relations = False, v=True, disable_kappa=False):
     agreement_dict = dict()
     if collapse_relations != False:
         dict_list_out = get_collapsed_relations(dict_list_out, collapse_relations)
@@ -211,12 +211,18 @@ def get_agreement(dict_list_out, collapse_relations = False, v=True):
     data_by_file = sort_by_key(dict_list_out, ['completionurl'])
     for f, d_list in data_by_file.items():
         matrix = create_matrix(d_list)
-        kappa = get_average_kappa(matrix)
-        total_kappa += kappa
-    if total_kappa != 0.0:
+        if disable_kappa == False:
+            kappa = get_average_kappa(matrix)
+            if np.isnan(kappa):
+                kappa = 0.0
+            total_kappa += kappa
+        else:
+            kappa = '-'
+
+    if total_kappa != 0.0 and len(data_by_file) != 0 and kappa != '-':
         average_kappa = total_kappa/len(data_by_file)
     else:
-        average_kappa = 0
+        average_kappa = '-'
     if v == True:
         print(f"Krippendorff's alpha: {alpha}")
         print(f"Average Cohen's Kappa (pairwise): {average_kappa}")
@@ -249,11 +255,11 @@ def get_full_report(dict_list_out, v=False):
 def main():
     run = "4"
     group = 'experiment2'
-    batch = '*'
+    batch = '129'
     n_q = '*'
 
     dict_list_out = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-    get_full_report(dict_list_out)
+    get_full_report(dict_list_out, v=True)
 
 
 if __name__ == '__main__':

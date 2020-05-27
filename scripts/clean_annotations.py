@@ -26,8 +26,7 @@ def remove_contradicting_workers(all_annotations, dict_list_workers, unit,  n_st
     elif unit == 'pair':
         annotations_by_unit = sort_by_key(all_annotations, ['property','concept'])
         workers_by_unit = sort_by_key(dict_list_workers, ['pair'])
-        if 'dangerous-scalpel'in workers_by_unit.keys():
-            print('pair in input')
+
 
     elif unit == 'total':
         annotations_by_unit = dict()
@@ -40,16 +39,7 @@ def remove_contradicting_workers(all_annotations, dict_list_workers, unit,  n_st
         workers_to_remove = filter_with_stdv(workers,
                          measure = 'contradiction_poss_contradiction_ratio',
                          n_stds = n_stds)
-        #print(len(workers), len(workers_to_remove))
-        #if len(workers) == len(workers_to_remove):
-        #    for w in workers:
-        #        print(w)
-        #print(unit_id)
-        if unit_id  == 'dangerous-scalpel':
-            print('found pair\n')
-            #for w in workers:
-            #    print(w)
-            #print('\n----\n')
+
         annotations = annotations_by_unit[unit_id]
         for d in annotations:
             worker = d['workerid']
@@ -58,6 +48,15 @@ def remove_contradicting_workers(all_annotations, dict_list_workers, unit,  n_st
             #if unit_id == 'dangerous-scalpel':
             #    print('remove:', worker in workers_to_remove, worker)
     return clean_annotations
+
+def clean_worker_cont_rate(data_dict_list, run,  group,  batch, unit, n_stds):
+    if unit == 'total':
+        analysis_type = 'workers'
+    else:
+        analysis_type = f'workers_by_{unit}'
+    dict_list_workers = load_analysis(analysis_type, run, group, batch, as_dict = True)
+    data_dict_list_clean= remove_contradicting_workers(data_dict_list, dict_list_workers, unit,  n_stds)
+    return data_dict_list_clean
 
 
 def main():
@@ -75,20 +74,17 @@ def main():
     iaa_levels = get_alpha(all_annotations, collapse_relations = 'levels')
     print()
 
-    #units = ['total', 'batch', 'pair']
-    units = ['pair']
-    #stds = [0.5, 1, 1.5, 2, 2.5, 3]
-    stds = [1]
+    units = ['total', 'batch', 'pair']
+    #units = ['pair']
+    stds = [0.5, 1, 1.5, 2, 2.5, 3]
+    #stds = [1]
 
 
     for unit in units:
         for n_stds in stds:
-            if unit == 'total':
-                analysis_type = 'workers'
-            else:
-                analysis_type = f'workers_by_{unit}'
-            dict_list_workers = load_analysis(analysis_type, run, group, batch, as_dict = True)
-            clean_annotations = remove_contradicting_workers(all_annotations, dict_list_workers, unit,  n_stds)
+            clean_annotations = clean_worker_cont_rate(all_annotations,\
+                                    run,  group,  batch, unit, n_stds)
+
             n_total = len(all_annotations)
             n_clean = len(clean_annotations)
             percent_clean = n_clean / n_total
