@@ -1,6 +1,17 @@
+
 from load_data import load_experiment_data
 from utils_analysis import sort_by_key
-from utils_analysis import load_analysis
+from utils_analysis import load_analysis, load_ct
+from calculate_iaa import load_rel_level_mapping
+from clean_annotations import remove_contradicting_workers
+from collections import defaultdict, Counter
+import pandas as pd
+import os
+
+# aggretation dev
+from load_data import load_experiment_data
+from utils_analysis import sort_by_key
+from utils_analysis import load_analysis, load_ct
 from calculate_iaa import load_rel_level_mapping
 from clean_annotations import remove_contradicting_workers
 from collections import defaultdict, Counter
@@ -8,11 +19,39 @@ import pandas as pd
 import os
 
 
+def split_score(ua_score):
+
+    scores = ua_score.replace('Counter({', '').replace('})', '').split(', ')
+    score_dict = dict()
+    for s in scores:
+        l, s = s.split(': ')
+        l = l.strip("'")
+        score_dict[l.strip()] = float(s)
+
+    return score_dict
+
+def get_ua_score(triple, units_by_triple, thresh=0.5):
+    if triple in units_by_triple:
+        ct_unit_d = units_by_triple[triple]
+        ua_score = ct_unit_d[0]['unit_annotation_score']
+        score_dict = split_score(ua_score)
+    else:
+        score_dict = dict()
+        score_dict['true'] = 0.0
+        score_dict['false'] = 0.0
+    if 'true' in score_dict and score_dict['true'] > thresh:
+        ct_vote = True
+    else:
+        ct_vote = False
+    return ct_vote
+
 
 def aggregate_binary_labels(data_dict_list):
-
-    contradiction = set(['all', 'few'])
+    ct_units = load_ct('4', 'experiment2', '*', 'units', as_dict=True)
+    rel_level_mapping = load_rel_level_mapping(mapping = 'levels')
     data_by_pair = sort_by_key(data_dict_list, ['property', 'concept'])
+    units_by_triple = sort_by_key(ct_units, ['input.relation', 'input.property', 'input.concept'])
+    ct_thresholds = [0.5, 0.6, 0.7, 0.8, 0.9, 1]
     aggregated_binary_labels = []
     for pair, data_dicts in data_by_pair.items():
         if not pair.startswith('_'):
@@ -20,6 +59,7 @@ def aggregate_binary_labels(data_dict_list):
             prop_rels = defaultdict(list)
             triple_dicts = []
             for rel, data in data_by_rel.items():
+
                 answers = [d['answer'] for d in data]
                 true_cnt = answers.count('true')
                 prop = true_cnt/len(answers)
@@ -28,9 +68,15 @@ def aggregate_binary_labels(data_dict_list):
                 if prop > 0.5:
                     majority_vote = True
                 triple_dict = dict()
-                triple_dict['relation'] = rel
+                triple_dict['relation'] = rel.strip()
+                triple_dict['level'] = rel_level_mapping[rel]
                 triple_dict['pair'] = pair
                 triple_dict['majority_vote'] = majority_vote
+                # Get crowd truth scores
+                triple = f'{rel}-{pair}'
+                for ct_thresh in ct_thresholds:
+                    ct_vote = get_ua_score(triple, units_by_triple, thresh=ct_thresh)
+                    triple_dict[f'ct_vote_{ct_thresh}'] = ct_vote
                 triple_dicts.append(triple_dict)
             # add top label
             top_prop = max(prop_rels.keys())
@@ -72,7 +118,6 @@ def aggregate_labels(data_dict_list):
             pair_d['majority_labels'] = '-'.join(sorted(majority_labels))
             pair_d['top_levels'] = '-'.join(sorted(top_levels))
             pair_d['majority_levels'] = '-'.join(sorted(majority_levels))
-            pair_d
             pair_d['label_proportion'] = top_prop
             if 'all' in top_levels and 'few' in top_levels:
                 pair_d['contradiction'] = True

@@ -74,3 +74,13 @@ def load_analysis(analysis_type, run, exp_name, batch, as_dict = False):
     if as_dict == True:
         analysis = analysis.to_dict('records')
     return analysis
+
+
+def load_ct(run, exp_name, batch, analysis_type, as_dict=False):
+    dir = '../analyses/crowdtruth/results/'
+    path = f'{dir}run{run}-group_{exp_name}-batch{batch}-{analysis_type}.csv'
+    path = path.replace('*', '-all-')
+    analysis = pd.read_csv(path)
+    if as_dict == True:
+        analysis = analysis.to_dict('records')
+    return analysis
