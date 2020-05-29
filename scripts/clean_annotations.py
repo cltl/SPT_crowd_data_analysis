@@ -2,7 +2,7 @@ from calculate_iaa import get_alpha
 from statistics import stdev
 from load_data import load_experiment_data
 from utils_analysis import sort_by_key
-from utils_analysis import load_analysis
+from utils_analysis import load_analysis, load_ct
 
 def filter_with_stdv(workers, measure = 'contradiction_poss_contradiction_ratio', n_stds=1):
     cont_rate = [float(d[measure]) for d in workers]
@@ -49,13 +49,51 @@ def remove_contradicting_workers(all_annotations, dict_list_workers, unit,  n_st
             #    print('remove:', worker in workers_to_remove, worker)
     return clean_annotations
 
-def clean_worker_cont_rate(data_dict_list, run,  group,  batch, unit, n_stds):
-    if unit == 'total':
-        analysis_type = 'workers'
-    else:
-        analysis_type = f'workers_by_{unit}'
-    dict_list_workers = load_analysis(analysis_type, run, group, batch, as_dict = True)
-    data_dict_list_clean= remove_contradicting_workers(data_dict_list, dict_list_workers, unit,  n_stds)
+
+def remove_low_quality_workers_ct(all_annotations, unit,  n_stds):
+    ct_workers = load_ct('*', 'experiment*', '*', 'workers', as_dict=True)
+    ct_by_workers = sort_by_key(ct_workers, ['worker'])
+
+    if unit == 'batch':
+        annotations_by_unit = sort_by_key(all_annotations, ['filename','completionurl'])
+    elif unit == 'pair':
+        annotations_by_unit = sort_by_key(all_annotations, ['property','concept'])
+    elif unit == 'total':
+        annotations_by_unit = dict()
+        annotations_by_unit['total'] = all_annotations
+
+    clean_annotations = []
+    for unit_id, annotations in annotations_by_unit.items():
+        worker_dicts = []
+        workers = set([d['workerid'] for d in annotations])
+        for w in workers:
+            w_dict = dict()
+            w_dict['workerid'] = w
+            w_dict['wqs'] = ct_by_workers[w][0]['wqs']
+            worker_dicts.append(w_dict)
+        workers_to_remove = filter_with_stdv(worker_dicts,
+                         measure = 'wqs',
+                         n_stds = n_stds)
+        for d in annotations:
+            worker = d['workerid']
+            if worker not in workers_to_remove:
+                clean_annotations.append(d)
+
+    return clean_annotations
+
+def clean_workers(data_dict_list, run,  group,  batch, metric, unit, n_stds):
+    if metric == 'contradictions':
+        if unit == 'total':
+            analysis_type = 'workers'
+        else:
+            analysis_type = f'workers_by_{unit}'
+        dict_list_workers = load_analysis(analysis_type, run, group, batch,
+                                            as_dict = True)
+        data_dict_list_clean= remove_contradicting_workers(data_dict_list,
+                                dict_list_workers, unit,  n_stds)
+    elif metric == 'crowdtruth':
+        data_dict_list_clean = remove_low_quality_workers_ct(data_dict_list, unit,  n_stds)
+
     return data_dict_list_clean
 
 

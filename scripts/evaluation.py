@@ -46,8 +46,8 @@ def evaluate(expert_bin_labels, crowd_bin_labels, vote, label = 'relation'):
                 exp_answer = True
             else:
                 exp_answer = False
-            if vote.startswith('ct_vote'):
-                print(exp_answer, crowd_answer)
+            #if vote.startswith('ct_vote'):
+            #    print(exp_answer, crowd_answer)
         labels_exp.append(exp_answer)
         labels_crowd.append(crowd_answer)
 

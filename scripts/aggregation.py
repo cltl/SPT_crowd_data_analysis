@@ -30,36 +30,33 @@ def split_score(ua_score):
 
     return score_dict
 
-def get_ua_score(triple, units_by_triple, thresh=0.5):
-    if triple in units_by_triple:
-        ct_unit_d = units_by_triple[triple]
+def get_ua_score(quid, units_by_quid):
+    if quid in units_by_quid:
+        ct_unit_d = units_by_quid[quid]
         ua_score = ct_unit_d[0]['unit_annotation_score']
         score_dict = split_score(ua_score)
     else:
         score_dict = dict()
         score_dict['true'] = 0.0
         score_dict['false'] = 0.0
-    if 'true' in score_dict and score_dict['true'] > thresh:
-        ct_vote = True
-    else:
-        ct_vote = False
-    return ct_vote
+    return score_dict['true']
 
 
 def aggregate_binary_labels(data_dict_list):
-    ct_units = load_ct('4', 'experiment2', '*', 'units', as_dict=True)
+    ct_units = load_ct('*', 'experiment*', '*', 'units', as_dict=True)
     rel_level_mapping = load_rel_level_mapping(mapping = 'levels')
     data_by_pair = sort_by_key(data_dict_list, ['property', 'concept'])
-    units_by_triple = sort_by_key(ct_units, ['input.relation', 'input.property', 'input.concept'])
+    #units_by_triple = sort_by_key(ct_units, ['input.relation', 'input.property', 'input.concept'])
+    units_by_quid = sort_by_key(ct_units, ['unit'])
     ct_thresholds = [0.5, 0.6, 0.7, 0.8, 0.9, 1]
     aggregated_binary_labels = []
     for pair, data_dicts in data_by_pair.items():
         if not pair.startswith('_'):
             data_by_rel = sort_by_key(data_dicts, ['relation'])
             prop_rels = defaultdict(list)
+            ct_rels = defaultdict(dict)
             triple_dicts = []
             for rel, data in data_by_rel.items():
-
                 answers = [d['answer'] for d in data]
                 true_cnt = answers.count('true')
                 prop = true_cnt/len(answers)
@@ -74,19 +71,37 @@ def aggregate_binary_labels(data_dict_list):
                 triple_dict['majority_vote'] = majority_vote
                 # Get crowd truth scores
                 triple = f'{rel}-{pair}'
+                quid = data[0]['quid']
                 for ct_thresh in ct_thresholds:
-                    ct_vote = get_ua_score(triple, units_by_triple, thresh=ct_thresh)
+                    ct_score = get_ua_score(quid, units_by_quid)
+                    if ct_score in ct_rels[ct_thresh].keys():
+                        ct_rels[ct_thresh][ct_score].append(rel)
+                    else:
+                        ct_rels[ct_thresh][ct_score] = [rel]
+                    if ct_score > ct_thresh:
+                        ct_vote = True
+                    else:
+                        ct_vote = False
                     triple_dict[f'ct_vote_{ct_thresh}'] = ct_vote
                 triple_dicts.append(triple_dict)
             # add top label
             top_prop = max(prop_rels.keys())
-
             for d in triple_dicts:
                 rel = d['relation']
                 if rel in prop_rels[top_prop]:
                     d['top_vote'] = True
                 else:
                     d['top_vote'] = False
+
+            for ct_thresh in ct_thresholds:
+                top_ct = max(ct_rels[ct_thresh].keys())
+                for d in triple_dicts:
+                    rel = d['relation']
+                    if rel in ct_rels[ct_thresh][top_ct]:
+                        d[f'top_vote_ct_{ct_thresh}'] = True
+                    else:
+                        d[f'top_vote_ct_{ct_thresh}'] = False
+
             aggregated_binary_labels.extend(triple_dicts)
     return aggregated_binary_labels
 
