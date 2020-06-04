@@ -17,7 +17,7 @@ from load_data import load_expert_data
 from load_data import load_experiment_data
 from utils_analysis import load_analysis
 from utils_analysis import sort_by_key
-from aggregation import aggregate_binary_labels
+from aggregation import aggregate_binary_labels, get_expert_labels
 from clean_annotations import remove_contradicting_workers
 
 
@@ -32,11 +32,11 @@ def evaluate(expert_bin_labels, crowd_bin_labels, vote, label = 'relation'):
     for t, exp_data in expert_by_triple.items():
         crowd_data = crowd_by_triple[t]
         if len(crowd_data) == 1 and label == 'relation':
-            exp_answer = exp_data[0]['majority_vote']
+            exp_answer = exp_data[0]['label']
             crowd_answer = crowd_data[0][vote]
         else:
             answers_crowd = [d[vote]  for d in crowd_data]
-            answers_exp = [d['majority_vote']  for d in exp_data]
+            answers_exp = [d['label']  for d in exp_data]
             if True in answers_crowd:
                 crowd_answer = True
             else:
@@ -51,7 +51,7 @@ def evaluate(expert_bin_labels, crowd_bin_labels, vote, label = 'relation'):
         labels_exp.append(exp_answer)
         labels_crowd.append(crowd_answer)
 
-    #acc = n_corr/len(total)
+
     p, r, f1, support = p_r_f1(labels_exp, labels_crowd, average = 'weighted')
     results_dict = dict()
     results_dict['f1'] = f1

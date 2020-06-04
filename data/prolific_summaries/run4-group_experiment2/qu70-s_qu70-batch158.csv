@@ -1,0 +1,11 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Current Country of Residence,Employment Status,First Language,Nationality,Sex,Student Status
+5ed7692ab1cd3b01184f347e,5de638b5555aef5b117f2429,AWAITING REVIEW,2020-06-03 09:11:11.689000,2020-06-03 09:22:41.942000,690.253,24,13,0,100,,5EC7B24B,Belgium,,Other,Dutch,Belgium,Male,Yes
+5ed76c07d8560f01ee942d8b,5e9cfd9cee0aed225ed1c501,AWAITING REVIEW,2020-06-03 09:23:21.888000,2020-06-03 09:28:42.034000,320.146,19,28,0,100,,5EC7B24B,Poland,Poland,Part-Time,Polish,Poland,Female,Yes
+5ed76c11460b761f1d6231c5,5e80b4893b435a0009ea44e6,AWAITING REVIEW,2020-06-03 09:24:15.706000,2020-06-03 09:29:16.684000,300.978,21,31,0,100,,5EC7B24B,Italy,Italy,Full-Time,Italian,Italy,Male,Yes
+5ed76cfc34fa800298779b5e,5e3b3b935da22c09084bbc02,AWAITING REVIEW,2020-06-03 09:27:26.196000,2020-06-03 09:43:08.292000,942.096,30,53,0,100,,5EC7B24B,Portugal,Portugal,Full-Time,Portuguese,Portugal,Male,No
+5ed76d5e804efd01e8a1123c,5d1463c5d40c1b00167822a8,AWAITING REVIEW,2020-06-03 09:29:14.692000,2020-06-03 09:39:43.041000,628.349,19,64,1,100,,5EC7B24B,Mexico,Mexico,"Not in paid work (e.g. homemaker', 'retired or disabled)",Spanish,Mexico,Male,Yes
+5ed76dd865ba9f01d2666535,5be385ba24f70e00018b0024,AWAITING REVIEW,2020-06-03 09:31:08.667000,2020-06-03 09:39:14.270000,485.603,23,206,0,100,,5EC7B24B,Portugal,Portugal,Unemployed (and job seeking),Portuguese,Portugal,Female,No
+5ed76e1ab7d13e1f702119b4,5eb2ef561f70080aa5d588fa,AWAITING REVIEW,2020-06-03 09:32:12.509000,2020-06-03 09:36:45.548000,273.039,32,24,0,100,,5EC7B24B,United Kingdom,,Part-Time,English,United Kingdom,Female,No
+5ed76e48f5dc711f2e9d105e,5e849fb26f8edc0320c1c30e,AWAITING REVIEW,2020-06-03 09:33:00.655000,2020-06-03 09:40:10.569000,429.914,37,43,0,100,,5EC7B24B,United Kingdom,,Full-Time,English,United Kingdom,Male,No
+5ed76e600b57a10130b33753,5bb2db13f05e410001fa0c8a,AWAITING REVIEW,2020-06-03 09:33:31.571000,2020-06-03 10:02:09.291000,1717.72,36,135,0,100,,5EC7B24B,Poland,Poland,Full-Time,Polish,Poland,Male,No
+5ed76e787ffbe21f96a97d47,55a15444fdf99b04310c8c85,AWAITING REVIEW,2020-06-03 09:33:47.280000,2020-06-03 09:43:12.370000,565.09,32,489,0,100,,5EC7B24B,United Kingdom,United Kingdom,Full-Time,English,United Kingdom,Female,No

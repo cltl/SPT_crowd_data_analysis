@@ -209,29 +209,21 @@ def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
     return all_dict_list_out
 
 def load_expert_data_batch(exp_path):
-    dir_output = '../data/prolific_output_uuid/'
+    dir_output = '../gold_labels/gold_files'
     with open(f'{dir_output}/{exp_path}') as infile:
-        dict_list_out = list(csv.DictReader(infile))
+        dict_list_out = list(csv.DictReader(infile, delimiter = '\t'))
     return dict_list_out
 
 def load_expert_data(run, group, n_q, batch):
-
     all_dict_list_out = []
-    dir_output = '../data/prolific_output/'
-    all_files = f'{dir_output}run{run}-group_{group}/qu{n_q}-s_qu{n_q}-batch{batch}.csv'
-    annotations_discarded = 0.0
+    dir_output = '../gold_labels/gold_files'
+    name = f'run{run}-group_{group}-batch{batch}'
+    all_files = f'{dir_output}/{name}.csv'
     for f in glob.glob(all_files):
         # check if files already have unique ids
         exp_path = f[len(dir_output):]
-        add_unique_ids(exp_path)
         dict_list_out_batch = load_expert_data_batch(exp_path)
-        dict_list_sum_batch = []
-        add_time_info(dict_list_out_batch, dict_list_sum_batch)
-        process_triple_and_answer(dict_list_out_batch)
-        dict_list_out_clean = remove_singletons(dict_list_out_batch)
-        annotations_discarded += len(dict_list_out_batch) - len(dict_list_out_clean)
-        all_dict_list_out.extend(dict_list_out_clean)
-    print(f'Discarded {annotations_discarded} annotations.')
+        all_dict_list_out.extend(dict_list_out_batch)
     return all_dict_list_out
 
 

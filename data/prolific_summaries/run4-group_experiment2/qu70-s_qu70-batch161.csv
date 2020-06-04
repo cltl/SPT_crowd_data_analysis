@@ -1,0 +1,11 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Current Country of Residence,Employment Status,First Language,Nationality,Sex,Student Status
+5ed7844e9a8d50205e39a84d,5d51bb808dace500197a54c7,AWAITING REVIEW,2020-06-03 11:06:57.896000,2020-06-03 11:12:15.631000,317.735,21,58,1,100,,40B00EBE,United Kingdom,United Kingdom,Unemployed (and job seeking),English,United Kingdom,Female,Yes
+5ed7870903753020c6fb3cf1,5e6b636dc8f7651146cab720,AWAITING REVIEW,2020-06-03 11:18:41.293000,2020-06-03 11:26:45.911000,484.618,23,8,1,87,,40B00EBE,Italy,Italy,Other,Italian,Italy,Female,Yes
+5ed7875254fe0520da8c1067,5d46cc091a2c130001ebc8cc,AWAITING REVIEW,2020-06-03 11:19:49.169000,2020-06-03 11:26:28.655000,399.486,29,59,0,100,,40B00EBE,Belgium,Belgium,Full-Time,Dutch,Belgium,Female,No
+5ed78a8b8074e920f2bd728c,59825565a18e3c0001bac3c7,AWAITING REVIEW,2020-06-03 11:33:35.530000,2020-06-03 11:46:11.662000,756.132,66,113,0,100,,40B00EBE,United Kingdom,United Kingdom,"Not in paid work (e.g. homemaker', 'retired or disabled)",English,United Kingdom,Female,No
+5ed78ae093b81621ad72fe25,5a0feb37df3fa800015c432a,AWAITING REVIEW,2020-06-03 11:35:06.601000,2020-06-03 11:46:43.787000,697.186,61,354,2,100,,40B00EBE,Greece,Greece,Full-Time,Greek,United States,Female,No
+5ed78b0c6e439f2103d6e5de,5d99be023fdbbd00181f6548,AWAITING REVIEW,2020-06-03 11:35:40.440000,2020-06-03 11:40:52.204000,311.764,20,122,0,100,,40B00EBE,Italy,Italy,Other,Italian,Italy,Male,Yes
+5ed78b37ac241e216957d617,56e0246fa3b147000ac579f3,AWAITING REVIEW,2020-06-03 11:36:23.712000,2020-06-03 11:40:21.831000,238.119,20,44,0,100,,40B00EBE,Germany,Finland,Other,Swedish,Sweden,Male,Yes
+5ed78ca07de86304d0b452b6,5d67fe2073cd1d001a611229,AWAITING REVIEW,2020-06-03 11:42:24.339000,2020-06-03 11:49:37.577000,433.238,32,90,1,100,,40B00EBE,Chile,Chile,Full-Time,Spanish,Chile,Male,Yes
+5ed790366cb9612182b5cb09,5cf62cccc39158001940031f,AWAITING REVIEW,2020-06-03 11:57:53.629000,2020-06-03 12:08:14.733000,621.104,32,39,1,99,,40B00EBE,Spain,Spain,Full-Time,Spanish,Spain,Male,Yes
+5ed79050ca520521e8ac3d24,5e80b4893b435a0009ea44e6,AWAITING REVIEW,2020-06-03 11:58:12.995000,2020-06-03 12:17:13.526000,1140.531,21,34,0,100,,40B00EBE,Italy,Italy,Full-Time,Italian,Italy,Male,Yes

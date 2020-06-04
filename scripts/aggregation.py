@@ -42,6 +42,25 @@ def get_ua_score(quid, units_by_quid):
     return score_dict['true']
 
 
+def get_expert_labels(data_dict_list):
+    rel_level_mapping = load_rel_level_mapping(mapping = 'levels')
+    expert_dicts = []
+    for d in data_dict_list:
+        triple_dict = dict()
+        rel = d['relation']
+        triple_dict['relation'] = rel
+        triple_dict['level'] = rel_level_mapping[rel]
+        triple_dict['pair'] = f"{d['property']}-{d['concept']}"
+        label = d['answer']
+        if label == 'true':
+            label = True
+        elif label == 'false':
+            label = False
+        triple_dict['label'] = label
+        expert_dicts.append(triple_dict)
+    return expert_dicts
+
+
 def aggregate_binary_labels(data_dict_list):
     ct_units = load_ct('*', 'experiment*', '*', 'units', as_dict=True)
     rel_level_mapping = load_rel_level_mapping(mapping = 'levels')

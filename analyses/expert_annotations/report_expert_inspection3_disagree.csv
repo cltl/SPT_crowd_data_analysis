@@ -1,0 +1,81 @@
+triple,worker,answer
+implied_category-square-recliner I know that (a/an) recliner is square as most or all other things similar to (a/an) recliner are square. ,antske,false
+implied_category-square-recliner I know that (a/an) recliner is square as most or all other things similar to (a/an) recliner are square. ,pia_run1,true
+implied_category-square-recliner I know that (a/an) recliner is square as most or all other things similar to (a/an) recliner are square. ,pia_run2,false
+implied_category-square-recliner I know that (a/an) recliner is square as most or all other things similar to (a/an) recliner are square. ,piek,false
+typical_of_concept-square-recliner ``Square'' is one for the first things which come to mind when I hear ``recliner' because square is one of the typical shapes of (a/an) recliner'.,antske,false
+typical_of_concept-square-recliner ``Square'' is one for the first things which come to mind when I hear ``recliner' because square is one of the typical shapes of (a/an) recliner'.,pia_run1,false
+typical_of_concept-square-recliner ``Square'' is one for the first things which come to mind when I hear ``recliner' because square is one of the typical shapes of (a/an) recliner'.,pia_run2,false
+typical_of_concept-square-recliner ``Square'' is one for the first things which come to mind when I hear ``recliner' because square is one of the typical shapes of (a/an) recliner'.,piek,true
+variability_limited-square-recliner You can find (a/an) recliner which is square. Square is one of a few possible shapes (a/an) recliner usually has. There is only a limited range of possible shapes.,antske,false
+variability_limited-square-recliner You can find (a/an) recliner which is square. Square is one of a few possible shapes (a/an) recliner usually has. There is only a limited range of possible shapes.,pia_run1,false
+variability_limited-square-recliner You can find (a/an) recliner which is square. Square is one of a few possible shapes (a/an) recliner usually has. There is only a limited range of possible shapes.,pia_run2,true
+variability_limited-square-recliner You can find (a/an) recliner which is square. Square is one of a few possible shapes (a/an) recliner usually has. There is only a limited range of possible shapes.,piek,false
+variability_open-square-recliner You can find (a/an) recliner which is square. Square is one of many possible shapes (a/an) recliner usually has. The range of shapes is almost unlimited. ,antske,false
+variability_open-square-recliner You can find (a/an) recliner which is square. Square is one of many possible shapes (a/an) recliner usually has. The range of shapes is almost unlimited. ,pia_run1,false
+variability_open-square-recliner You can find (a/an) recliner which is square. Square is one of many possible shapes (a/an) recliner usually has. The range of shapes is almost unlimited. ,pia_run2,true
+variability_open-square-recliner You can find (a/an) recliner which is square. Square is one of many possible shapes (a/an) recliner usually has. The range of shapes is almost unlimited. ,piek,false
+"creative-square-recliner I could say (a/an) recliner is square, but I would most certainly not mean it literally.",antske,true
+"creative-square-recliner I could say (a/an) recliner is square, but I would most certainly not mean it literally.",pia_run1,false
+"creative-square-recliner I could say (a/an) recliner is square, but I would most certainly not mean it literally.",pia_run2,false
+"creative-square-recliner I could say (a/an) recliner is square, but I would most certainly not mean it literally.",piek,false
+"rare-square-recliner I think (a/an) recliner can be square, but this is rare or uncommon.",antske,true
+"rare-square-recliner I think (a/an) recliner can be square, but this is rare or uncommon.",pia_run1,false
+"rare-square-recliner I think (a/an) recliner can be square, but this is rare or uncommon.",pia_run2,false
+"rare-square-recliner I think (a/an) recliner can be square, but this is rare or uncommon.",piek,false
+"unusual-square-recliner Usually, (a/an) recliner is not square, but there could be a highly unusual situation in which (a/an) recliner is square.",antske,true
+"unusual-square-recliner Usually, (a/an) recliner is not square, but there could be a highly unusual situation in which (a/an) recliner is square.",pia_run1,false
+"unusual-square-recliner Usually, (a/an) recliner is not square, but there could be a highly unusual situation in which (a/an) recliner is square.",pia_run2,false
+"unusual-square-recliner Usually, (a/an) recliner is not square, but there could be a highly unusual situation in which (a/an) recliner is square.",piek,false
+"unusual-yellow-leopard Usually, (a/an) leopard is not yellow, but there could be a highly unusual situation in which (a/an) leopard is yellow.",antske,false
+"unusual-yellow-leopard Usually, (a/an) leopard is not yellow, but there could be a highly unusual situation in which (a/an) leopard is yellow.",pia_run1,false
+"unusual-yellow-leopard Usually, (a/an) leopard is not yellow, but there could be a highly unusual situation in which (a/an) leopard is yellow.",pia_run2,false
+"unusual-yellow-leopard Usually, (a/an) leopard is not yellow, but there could be a highly unusual situation in which (a/an) leopard is yellow.",piek,true
+impossible-yellow-leopard I think it is impossible for (a/an) leopard to be yellow.,antske,false
+impossible-yellow-leopard I think it is impossible for (a/an) leopard to be yellow.,pia_run1,false
+impossible-yellow-leopard I think it is impossible for (a/an) leopard to be yellow.,pia_run2,false
+impossible-yellow-leopard I think it is impossible for (a/an) leopard to be yellow.,piek,true
+implied_category-round-pen I know that (a/an) pen is round as most or all other things similar to (a/an) pen are round. ,antske,true
+implied_category-round-pen I know that (a/an) pen is round as most or all other things similar to (a/an) pen are round. ,pia_run1,true
+implied_category-round-pen I know that (a/an) pen is round as most or all other things similar to (a/an) pen are round. ,pia_run2,true
+implied_category-round-pen I know that (a/an) pen is round as most or all other things similar to (a/an) pen are round. ,piek,false
+typical_of_concept-round-pen ``Round'' is one for the first things which come to mind when I hear ``pen' because round is one of the typical shapes of (a/an) pen'.,antske,true
+typical_of_concept-round-pen ``Round'' is one for the first things which come to mind when I hear ``pen' because round is one of the typical shapes of (a/an) pen'.,pia_run1,true
+typical_of_concept-round-pen ``Round'' is one for the first things which come to mind when I hear ``pen' because round is one of the typical shapes of (a/an) pen'.,pia_run2,true
+typical_of_concept-round-pen ``Round'' is one for the first things which come to mind when I hear ``pen' because round is one of the typical shapes of (a/an) pen'.,piek,false
+affording_activity-round-pen I know that being round is necessary for many things (a/an) pen does or is used for. ,antske,false
+affording_activity-round-pen I know that being round is necessary for many things (a/an) pen does or is used for. ,pia_run1,false
+affording_activity-round-pen I know that being round is necessary for many things (a/an) pen does or is used for. ,pia_run2,true
+affording_activity-round-pen I know that being round is necessary for many things (a/an) pen does or is used for. ,piek,false
+variability_limited-round-pen You can find (a/an) pen which is round. Round is one of a few possible shapes (a/an) pen usually has. There is only a limited range of possible shapes.,antske,true
+variability_limited-round-pen You can find (a/an) pen which is round. Round is one of a few possible shapes (a/an) pen usually has. There is only a limited range of possible shapes.,pia_run1,true
+variability_limited-round-pen You can find (a/an) pen which is round. Round is one of a few possible shapes (a/an) pen usually has. There is only a limited range of possible shapes.,pia_run2,true
+variability_limited-round-pen You can find (a/an) pen which is round. Round is one of a few possible shapes (a/an) pen usually has. There is only a limited range of possible shapes.,piek,false
+"creative-roll-washer I could say (a/an) washer rolls/is used for rolling, but I would most certainly not mean it literally.",antske,true
+"creative-roll-washer I could say (a/an) washer rolls/is used for rolling, but I would most certainly not mean it literally.",pia_run1,false
+"creative-roll-washer I could say (a/an) washer rolls/is used for rolling, but I would most certainly not mean it literally.",pia_run2,false
+"creative-roll-washer I could say (a/an) washer rolls/is used for rolling, but I would most certainly not mean it literally.",piek,false
+"rare-roll-washer I think there is a washer  which can roll/be used for rolling, but this is rare or uncommon.",antske,false
+"rare-roll-washer I think there is a washer  which can roll/be used for rolling, but this is rare or uncommon.",pia_run1,true
+"rare-roll-washer I think there is a washer  which can roll/be used for rolling, but this is rare or uncommon.",pia_run2,false
+"rare-roll-washer I think there is a washer  which can roll/be used for rolling, but this is rare or uncommon.",piek,false
+"unusual-roll-washer Usually, (a/an) washer cannot roll/be used for rolling, but there could be a highly unusual situation in which (a/an) washer can roll.",antske,false
+"unusual-roll-washer Usually, (a/an) washer cannot roll/be used for rolling, but there could be a highly unusual situation in which (a/an) washer can roll.",pia_run1,false
+"unusual-roll-washer Usually, (a/an) washer cannot roll/be used for rolling, but there could be a highly unusual situation in which (a/an) washer can roll.",pia_run2,true
+"unusual-roll-washer Usually, (a/an) washer cannot roll/be used for rolling, but there could be a highly unusual situation in which (a/an) washer can roll.",piek,true
+impossible-roll-washer I think it is impossible for (a/an) washer to roll/be used for rolling.,antske,true
+impossible-roll-washer I think it is impossible for (a/an) washer to roll/be used for rolling.,pia_run1,false
+impossible-roll-washer I think it is impossible for (a/an) washer to roll/be used for rolling.,pia_run2,false
+impossible-roll-washer I think it is impossible for (a/an) washer to roll/be used for rolling.,piek,true
+typical_of_concept-lay_eggs-plaice ``Lay_eggs'' is one for the first things which come to mind when I hear ``plaice' because laying eggs is one of the typical activities of (a/an) plaice'.,antske,true
+typical_of_concept-lay_eggs-plaice ``Lay_eggs'' is one for the first things which come to mind when I hear ``plaice' because laying eggs is one of the typical activities of (a/an) plaice'.,pia_run1,false
+typical_of_concept-lay_eggs-plaice ``Lay_eggs'' is one for the first things which come to mind when I hear ``plaice' because laying eggs is one of the typical activities of (a/an) plaice'.,pia_run2,false
+typical_of_concept-lay_eggs-plaice ``Lay_eggs'' is one for the first things which come to mind when I hear ``plaice' because laying eggs is one of the typical activities of (a/an) plaice'.,piek,false
+afforded_unusual-lay_eggs-plaice All or most  plaice(s) can lay_eggs/be used for laying eggs. This is not what they normally do or are used for. ,antske,false
+afforded_unusual-lay_eggs-plaice All or most  plaice(s) can lay_eggs/be used for laying eggs. This is not what they normally do or are used for. ,pia_run1,false
+afforded_unusual-lay_eggs-plaice All or most  plaice(s) can lay_eggs/be used for laying eggs. This is not what they normally do or are used for. ,pia_run2,false
+afforded_unusual-lay_eggs-plaice All or most  plaice(s) can lay_eggs/be used for laying eggs. This is not what they normally do or are used for. ,piek,true
+variability_limited-lay_eggs-plaice You can find (a/an) plaice which can lay_eggs/be used for laying eggs. This distinguishes a certain type of plaice from others. ,antske,true
+variability_limited-lay_eggs-plaice You can find (a/an) plaice which can lay_eggs/be used for laying eggs. This distinguishes a certain type of plaice from others. ,pia_run1,true
+variability_limited-lay_eggs-plaice You can find (a/an) plaice which can lay_eggs/be used for laying eggs. This distinguishes a certain type of plaice from others. ,pia_run2,false
+variability_limited-lay_eggs-plaice You can find (a/an) plaice which can lay_eggs/be used for laying eggs. This distinguishes a certain type of plaice from others. ,piek,false
