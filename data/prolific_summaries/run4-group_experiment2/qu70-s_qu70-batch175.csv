@@ -1,0 +1,11 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Current Country of Residence,Employment Status,First Language,Nationality,Sex,Student Status
+5eda43bb408d8607e26759fd,5e7156645b050e07277c6682,AWAITING REVIEW,2020-06-05 13:08:11.928000,2020-06-05 13:27:50.482000,1178.554,22,28,0,100,,5050FA01,,,,,,,
+5eda467c651fbb077731cb79,5e7237d88c6372160332999c,AWAITING REVIEW,2020-06-05 13:19:56.355000,2020-06-05 13:35:44.097000,947.742,20,29,1,98,,5050FA01,Portugal,Portugal,Other,Portuguese,Portugal,Male,Yes
+5eda4833718a4f05c2363206,5b9e10d4f074140001051011,AWAITING REVIEW,2020-06-05 13:27:19.982000,2020-06-05 13:35:42.293000,502.311,23,255,0,100,,5050FA01,Poland,Poland,Full-Time,Polish,Poland,Female,Yes
+5eda48e0dad78906da0f3bb3,5cf91e3f1756e60017a30568,AWAITING REVIEW,2020-06-05 13:30:12.826000,2020-06-05 13:51:15.470000,1262.644,43,216,1,100,,5050FA01,Ireland,Ireland,Part-Time,English,Ireland,Female,No
+5eda497940591e6302cac620,5b898d8abca3400001fa7c7b,AWAITING REVIEW,2020-06-05 13:32:44.936000,2020-06-05 13:39:28.224000,403.288,45,115,1,100,,5050FA01,United Kingdom,United Kingdom,Full-Time,English,United Kingdom,Female,No
+5eda49d40adb8b620adb90ec,5b17aaeabdf4e100016320ac,AWAITING REVIEW,2020-06-05 13:34:19.399000,2020-06-05 13:50:51.314000,991.915,47,179,1,100,,5050FA01,Cuba,Spain,Other,Spanish,Cuba,Female,No
+5eda49d7679bc0068d2cdd7d,5e5d0e5cde7bcc01152b64ce,AWAITING REVIEW,2020-06-05 13:34:23.470000,2020-06-05 13:43:19.558000,536.088,18,32,0,100,,5050FA01,United Kingdom,United Kingdom,Unemployed (and job seeking),English,United Kingdom,Male,Yes
+5eda4b210e4140619e0b4065,5a1c5d30df3fa800015c4f66,AWAITING REVIEW,2020-06-05 13:39:48.339000,2020-06-05 13:53:29.659000,821.32,32,26,0,100,,5050FA01,Greece,Greece,Unemployed (and job seeking),Greek,Greece,Female,No
+5eda4b2747f105086d2b7394,5e673e6c0645c24bf9d4c418,AWAITING REVIEW,2020-06-05 13:39:52.776000,2020-06-05 13:43:57.702000,244.926,19,47,1,99,,NOCODE,Poland,Poland,"Not in paid work (e.g. homemaker', 'retired or disabled)",Polish,Poland,Male,Yes
+5eda4b4dce80f308441d8231,5d67fe2073cd1d001a611229,AWAITING REVIEW,2020-06-05 13:40:34.950000,2020-06-05 13:46:53.617000,378.667,32,95,1,100,,5050FA01,Chile,Chile,Full-Time,Spanish,Chile,Male,Yes

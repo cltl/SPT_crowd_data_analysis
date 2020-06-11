@@ -7,39 +7,61 @@ from utils_analysis import sort_by_key
 
 
 def parse_answer(answer):
-    # "{\\"7\\":{\\"answer\\":false}}"
-    clean_answer = answer.split(':')[-1].rstrip('}}"')
-    return clean_answer
+    # "{\"14\":{\"answer\":false
+    # false
+    #\"crowd\":true}}"
+    #true
+    answer_dict = dict()
+    answers = answer.split(',\\')
+    for answer in answers:
+        answer = answer.split('\\":')
+        if len(answer) == 3:
+            cat, answer = answer[1:]
+        elif len(answer) == 2:
+            cat, answer = answer
+        else:
+            print('invalid answer:', answer)
+            cat = 'invalid'
+            answer = 'invalid'
+        cat = cat.strip('{\"').strip('\\"')
+        answer  = answer.strip('\\"').strip('\"}}"').strip('\\')
+        answer_dict[cat] = answer
+    return answer_dict
+
+
 
 def match_ids(dict_list_out_batch, dict_list_sum_batch, remove_not_val = True, v=False):
 
-    worker_ids_sum = set([d['participant_id'] for d in dict_list_sum_batch])
-    worker_ids_out = set([d['workerid'] for d in dict_list_out_batch])
+    if len(dict_list_sum_batch) != 0:
+        worker_ids_sum = set([d['participant_id'] for d in dict_list_sum_batch])
+        worker_ids_out = set([d['workerid'] for d in dict_list_out_batch])
 
-    w_in_summary_only = worker_ids_sum.difference(worker_ids_out)
-    w_in_out_only = worker_ids_out.difference(worker_ids_sum)
-    matching_ids = worker_ids_sum.intersection(worker_ids_out)
+        w_in_summary_only = worker_ids_sum.difference(worker_ids_out)
+        w_in_out_only = worker_ids_out.difference(worker_ids_sum)
+        matching_ids = worker_ids_sum.intersection(worker_ids_out)
 
-    if v == True:
-        print(f'{len(matching_ids)} out of {len(worker_ids_out)} match.')
-
-    if len(w_in_summary_only) == 1 and len(w_in_out_only) == 1:
-        mapping_dict = dict()
-        mapping_dict['out'] = list(w_in_out_only)[0]
-        mapping_dict['summary'] = list(w_in_summary_only)[0]
-        replace_id(dict_list_out_batch, mapping_dict, v=False)
-    elif len(w_in_out_only) == 1 and len(w_in_summary_only) == 0:
         if v == True:
-            print('invalid submission in output')
-        mapping_dict = dict()
-        mapping_dict['out'] = list(w_in_out_only)[0]
-        mapping_dict['summary'] = 'NS'
-        replace_id(dict_list_out_batch, mapping_dict, v=False)
+            print(f'{len(matching_ids)} out of {len(worker_ids_out)} match.')
+
+        if len(w_in_summary_only) == 1 and len(w_in_out_only) == 1:
+            mapping_dict = dict()
+            mapping_dict['out'] = list(w_in_out_only)[0]
+            mapping_dict['summary'] = list(w_in_summary_only)[0]
+            replace_id(dict_list_out_batch, mapping_dict, v=False)
+        elif len(w_in_out_only) == 1 and len(w_in_summary_only) == 0:
+            if v == True:
+                print('invalid submission in output')
+            mapping_dict = dict()
+            mapping_dict['out'] = list(w_in_out_only)[0]
+            mapping_dict['summary'] = 'NS'
+            replace_id(dict_list_out_batch, mapping_dict, v=False)
+        else:
+            if v == True:
+                print(f'mapping not possible or necessary because:')
+                print(f'n ids in summary only: {len(w_in_summary_only)}')
+                print(f'n ids in output only: {len(w_in_out_only)}')
     else:
-        if v == True:
-            print(f'mapping not possible or necessary because:')
-            print(f'n ids in summary only: {len(w_in_summary_only)}')
-            print(f'n ids in output only: {len(w_in_out_only)}')
+        print('no summary data')
 
 
 
@@ -115,7 +137,9 @@ def process_triple_and_answer(dict_list_out):
 
     for d in dict_list_out:
         answer = d['answer']
-        d['answer'] = parse_answer(answer)
+        answer_dict = parse_answer(answer)
+        d.pop('answer')
+        d.update(answer_dict)
         rel, prop, concept = d.pop('triple').split('-')
         d['relation'] = rel
         d['property'] = prop
@@ -208,13 +232,13 @@ def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
     print(f'Discarded {annotations_discarded} annotations.')
     return all_dict_list_out
 
-def load_expert_data_batch(exp_path):
+def load_gold_data_batch(exp_path):
     dir_output = '../gold_labels/gold_files'
     with open(f'{dir_output}/{exp_path}') as infile:
         dict_list_out = list(csv.DictReader(infile, delimiter = '\t'))
     return dict_list_out
 
-def load_expert_data(run, group, n_q, batch):
+def load_gold_data(run, group, n_q, batch):
     all_dict_list_out = []
     dir_output = '../gold_labels/gold_files'
     name = f'run{run}-group_{group}-batch{batch}'
@@ -222,10 +246,33 @@ def load_expert_data(run, group, n_q, batch):
     for f in glob.glob(all_files):
         # check if files already have unique ids
         exp_path = f[len(dir_output):]
-        dict_list_out_batch = load_expert_data_batch(exp_path)
+        dict_list_out_batch =  load_gold_data_batch(exp_path)
         all_dict_list_out.extend(dict_list_out_batch)
     return all_dict_list_out
 
+
+def load_expert_data_batch(exp_path):
+    dir_output = '../data/prolific_output_uuid/'
+    with open(f'{dir_output}{exp_path}') as infile:
+        dict_list_out = list(csv.DictReader(infile, delimiter = ','))
+    return dict_list_out
+
+def load_expert_data(run, group, n_q, batch):
+    all_dict_list_out = []
+    dir_output = '../data/prolific_output/'
+    name = f'run{run}-group_{group}/qu{n_q}-s_qu{n_q}-batch{batch}'
+    all_files = f'{dir_output}{name}.csv'
+    for f in glob.glob(all_files):
+        exp_path = f[len(dir_output):]
+        print(exp_path)
+        add_unique_ids(exp_path)
+        dict_list_out_batch = load_expert_data_batch(exp_path)
+        dict_list_sum_batch = []
+        match_ids(dict_list_out_batch, dict_list_sum_batch, remove_not_val = True, v=False)
+        add_time_info(dict_list_out_batch, dict_list_sum_batch)
+        process_triple_and_answer(dict_list_out_batch)
+        all_dict_list_out.extend(dict_list_out_batch)
+    return all_dict_list_out
 
 def main():
     run = 3

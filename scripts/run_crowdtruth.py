@@ -3,89 +3,65 @@ import crowdtruth
 from crowdtruth.configuration import DefaultConfig
 import os
 
-
 from load_data import load_experiment_data
-
 
 import pandas as pd
 import os
 from collections import defaultdict
-import datetime
-import pytz
-import json
 
-def create_time_series(question_dicts, day):
-    """
-    Create a time series from all the questions answered by a single worker.
-
-    :param list question_dicts: List of dicts with question info
-    :param str day: date information
-    :return: tuples (containing time and position in original list)
-    """
-    # create_time_serious of question_dicts
-    time_tuples = []
-    #print('number of questions:', len(question_dicts))
-    for n, qu in enumerate(question_dicts):
-        time = qu['timestamp']
-        d, time = time.split(' ')
-        time = datetime.time.fromisoformat(time)
-        dt = datetime.datetime.combine(day, time)
-        time_tuple = (dt, n)
-        time_tuples.append(time_tuple)
-    return time_tuples
+from datetime import datetime, time, timedelta
+from utils_analysis import sort_by_key
 
 
-def add_start_end_times(time_tuples, question_dicts, start_dt_a):
-    """
-    Add start and end times to time series.
+def add_time_info_worker_batch(data_dict_list):
 
-    :param list time tuples: List of tuples with submission time
-    and original position in question_dicts (list)
-    :param list question_dicts: list of all questions answered by one participant
-    :param datetime.datetime: starting time (Amsterdam timezone)
-    :return: list of all question dicts including time stat and end time
-    """
-    all_questions = []
-    times = sorted(time_tuples)
-    for n, time_i in enumerate(times):
-        dt, i = time_i
-        qu = question_dicts[i]
-        if n == 0:
-            time_start = start_dt_a
+    times = []
+    timestamp_data_dict = dict()
+    for d in data_dict_list:
+        timestamp = d['timestamp']
+        f = '%d-%b-%Y %H:%M:%S'
+        datetime_obj = datetime.strptime(timestamp, f)
+        times.append(datetime_obj)
+        timestamp_data_dict[str(datetime_obj)] = d
+    times_sequence = sorted(times)
+    durations = []
+    for n, t in enumerate(times_sequence):
+        if n != 0:
+            previous_t = times_sequence[n-1]
+            diff = t - previous_t
+            durations.append(diff)
+
+    if len(durations) > 1:
+        mean_diff = sum(durations, timedelta(0))/len(durations)
+    else:
+        mean_diff = timedelta(
+                 days=0,
+                 seconds=7,
+                 microseconds=0,
+                 milliseconds=0,
+                 minutes=0,
+                 hours=0,
+                 weeks=0)
+
+    beginning = times_sequence[0] - mean_diff
+
+    for n, t in enumerate(times_sequence):
+        d = timestamp_data_dict[str(t)]
+        if n != 0:
+            start = times_sequence[n-1]
+            end = t
         else:
-            time_start = time_tuples[n-1][0]
-        time_finish = dt
-        qu['_started_at'] = str(time_start)
-        qu['_created_at'] = str(time_finish)
-        all_questions.append(qu)
-    return all_questions
+            start = beginning
+            end = t
+        d['_started_at'] = str(start)
+        d['_created_at'] = str(end)
 
-def add_time_info(question_dicts, start_dicts=None):
-    """
-    Add start and end times to time series.
-
-    :param list time tuples: List of tuples with submission time
-    and original position in question_dicts (list)
-    :param list question_dicts: list of all questions answered by one participant
-    :return: list of all question dicts including time stat and end time
-    """
-    # level of a single participant within a batch
-    # We have start and end time of the participant working on a batch
-    if start_dicts != None:
-        start = start_dicts[0]['started_datetime']
-    else:
-        start = '2010-01-01 00:00:00.000000'
-    if type(start) == str:
-        start_dt = datetime.datetime.fromisoformat(start).replace(tzinfo=pytz.timezone('Europe/London'))
-        day = start_dt.date()
-        start_dt_a = start_dt.astimezone(pytz.timezone('Europe/Amsterdam')).replace(tzinfo=None).replace(microsecond=0)
-        time_tuples = create_time_series(question_dicts, day)
-        all_questions = add_start_end_times(time_tuples, question_dicts, start_dt_a)
-    else:
-        # not encountered so far
-        print('start not string')
-        all_questions = []
-    return all_questions
+def add_time_info(data_dict_list):
+    data_by_batch = sort_by_key(data_dict_list, ['completionurl'])
+    for batch, b_data in data_by_batch.items():
+        data_by_worker = sort_by_key(b_data, ['workerid'])
+        for w, w_data in data_by_worker.items():
+            add_time_info_worker_batch(w_data)
 
 
 
@@ -149,10 +125,7 @@ def check_data(data_dict_list):
             print('concept not found:')
             print(d)
 
-
-
-if __name__ == '__main__':
-
+def main():
     run = '*'
     batch = '*'
     n_q = '*'
@@ -163,9 +136,9 @@ if __name__ == '__main__':
     data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
     print('checking if concepts are there:')
     check_data(data_dict_list)
-    data_dicts_time = add_time_info(data_dict_list)
+    add_time_info(data_dict_list)
     print('creating input')
-    input_df = create_input_df(data_dicts_time)
+    input_df = create_input_df(data_dict_list)
     input_dir = '../analyses/crowdtruth/input/'
     input_path = f'{input_dir}{name}.csv'
     os.makedirs(input_dir, exist_ok=True)
@@ -182,7 +155,7 @@ if __name__ == '__main__':
         config = TestConfig()
     )
     results = crowdtruth.run(data, config)
-
+    print('crowdtruth done')
     unit_scores = results['units']
     split_unit_annotation_score(unit_scores)
     unit_scores.to_csv(f'{res_path}-units.csv')
@@ -192,3 +165,10 @@ if __name__ == '__main__':
 
     annotation_scores = results["annotations"]
     annotation_scores.to_csv(f'{res_path}-annotations.csv')
+    print(f'results stored: {res_path}')
+
+
+
+
+if __name__ == '__main__':
+    main()
