@@ -4,7 +4,8 @@ import uuid
 import os
 from utils_analysis import sort_by_key
 
-
+import json
+from io import StringIO
 
 def parse_answer(answer):
     # "{\"14\":{\"answer\":false
@@ -27,6 +28,35 @@ def parse_answer(answer):
         answer  = answer.strip('\\"').strip('\"}}"').strip('\\')
         answer_dict[cat] = answer
     return answer_dict
+
+
+def load_answer(answer):
+    #print('----input string----')
+
+    #print('----stripping string----')
+    #answer = answer.replace('"', "'")
+    answer = answer[1:-1].replace('\\', '')
+    #print(answer)
+    #print()
+    #answer = answer.replace('"Time flies like an arrow"', 'Time flies like an arrow')
+    # clean quotes from free text
+    if 'comment' in answer:
+        clean_answer, comment = answer.split('"comment":')
+        comment = comment.replace('"', "").replace('}}', '').replace(':', '-')
+        comment = f'"{comment}"{"}}"}'
+        answer = '"comment":'.join([clean_answer, comment])
+    #print(answer)
+
+    #print(answer)
+    #print('----transformed string----')
+    a = StringIO(answer)
+
+    #print('---- dict ---')
+    d = json.load(a)
+    answer_dict = list(d.values())[0]
+    return answer_dict
+
+
 
 
 
@@ -136,8 +166,10 @@ def add_time_info(dict_list_out_batch, dict_list_sum_batch):
 def process_triple_and_answer(dict_list_out):
 
     for d in dict_list_out:
-        answer = d['answer']
-        answer_dict = parse_answer(answer)
+        answer = d['answer'].strip()
+
+        #answer_dict = parse_answer(answer)
+        answer_dict = load_answer(answer)
         d.pop('answer')
         d.update(answer_dict)
         rel, prop, concept = d.pop('triple').split('-')
