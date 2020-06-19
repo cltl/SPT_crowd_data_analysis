@@ -31,6 +31,15 @@ def load_rel_level_mapping(mapping = 'levels'):
                 rel_level_dict[rel] = 'pos'
             else:
                 rel_level_dict[rel] = 'neg'
+
+    elif mapping == 'negative_relations':
+        for d in mapping_dicts:
+            rel = d['relation']
+            #l = d['level']
+            if rel in ['rare', 'unusual', 'impossible']:
+                rel_level_dict[rel] = 'few-none'
+            else:
+                rel_level_dict[rel] = rel
     elif mapping == 'similar_relations':
         for d in mapping_dicts:
             rel = d['relation']
@@ -44,30 +53,37 @@ def load_rel_level_mapping(mapping = 'levels'):
 
     return rel_level_dict
 
-def get_collapsed_relations(dict_list, mapping = 'levels'):
+def get_collapsed_relations(dict_list, mapping = 'levels', answer_name='answer'):
 
     collapsed_dicts = []
     level_rel_dict = load_rel_level_mapping(mapping = mapping)
     dict_list_by_worker = sort_by_key(dict_list, ['workerid'])
     for w, dicts in dict_list_by_worker.items():
-        dicts_by_level = defaultdict(list)
-        for d in dicts:
-            rel = d['relation']
-            if rel in level_rel_dict:
-                level = level_rel_dict[rel]
-                dicts_by_level[level].append(d)
-        for level, dicts in dicts_by_level.items():
-            new_d = dict()
-            dicts_by_pair = sort_by_key(dicts, ['property', 'concept'])
-            for pair, p_dicts in dicts_by_pair.items():
-                new_d['quid'] = f'{pair}-{level}'
-                new_d['workerid'] = w
-                new_d['completionurl'] = p_dicts[0]['completionurl']
-                answers = [d['answer'] for d in p_dicts]
-                if 'true' in answers:
-                    new_d['answer'] = 'true'
+        dicts_by_pair = sort_by_key(dicts, ['property', 'concept'])
+        for p, dicts in dicts_by_pair.items():
+            dicts_by_level = defaultdict(list)
+            for d in dicts:
+                rel = d['relation']
+                if rel in level_rel_dict:
+                    level = level_rel_dict[rel]
                 else:
-                    new_d['answer'] = 'false'
+                    level = rel
+                dicts_by_level[level].append(d)
+            for level, dicts in dicts_by_level.items():
+                answers = [d[answer_name] for d in dicts]
+                answers = [str(a).lower() for a in answers]
+                if 'true' in answers:
+                    answer = True
+                else:
+                    answer = False
+                new_d = dict()
+                new_d['quid'] = f'{p}-{level}'
+                new_d['workerid'] = w
+                new_d['completionurl'] = dicts[0]['completionurl']
+                new_d['property'] = d['property']
+                new_d['concept'] = d['concept']
+                new_d['relation'] = level
+                new_d[answer_name] = answer
                 collapsed_dicts.append(new_d)
     return collapsed_dicts
 
@@ -84,7 +100,7 @@ def create_matrix(dict_list):
     for quid, ds in quid_dict.items():
         for n, d in enumerate(ds):
             worker = d['workerid']
-            answer = d['answer']
+            answer = str(d['answer']).lower()
             row = [worker, quid, answer]
             all_rows.append(row)
     return all_rows
@@ -237,7 +253,7 @@ def get_agreement(dict_list_out, collapse_relations = False, v=True, disable_kap
 def get_full_report(dict_list_out, v=False):
 
     full_ag_dict = dict()
-    versions = ['pos_neg', 'levels', 'similar_relations']
+    versions = ['pos_neg', 'levels', 'similar_relations', 'negative_relations']
     if v == True:
         print(f'--- Full IAA report --- ')
         print('Full set:')
@@ -254,11 +270,12 @@ def get_full_report(dict_list_out, v=False):
 
 def main():
     run = "4"
-    group = 'experiment2'
-    batch = '129'
+    group = 'experiment*'
+    batch = '*'
     n_q = '*'
 
     dict_list_out = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+    print(len(dict_list_out))
     get_full_report(dict_list_out, v=True)
 
 

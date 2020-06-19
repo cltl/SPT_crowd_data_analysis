@@ -1,0 +1,21 @@
+,answer-antske,answer-pia_run2,comment-pia_run2,expected_behavior-antske,expected_behavior-pia_run2,reason-antske,reason-pia_run2,triple
+0,False,False,,disagreement_agreement,disagreement_agreement,,,typical_of_property-recliner-square
+1,False,False,Possible reasoning- The square-ish shape of the surface is necessary for people to sit on it.,disagreement_agreement,disagreement_agreement,,,affording_activity-recliner-square
+2,False,False,,disagreement_agreement-disagreement_odd_pair-disagreement_odd_triple,disagreement_imagination-disagreement_odd_pair-disagreement_vague,,,impossible-recliner-square
+3,False,False,,disagreement_agreement-disagreement_imagination-disagreement_vague,disagreement_imagination-disagreement_vague,,,creative-leopard-yellow
+4,False,False,,disagreement_agreement,disagreement_vague,,,rare-leopard-yellow
+5,False,False,,disagreement_agreement,disagreement_agreement,,,typical_of_property-pen-round
+6,False,False,"Either you disagree with 'round' or you disagree with 'many', but in both cases, you disagree.",disagreement_agreement,disagreement_agreement-disagreement_vague,,,variability_open-pen-round
+7,False,False,,disagreement_agreement,disagreement_agreement,,,implied_category-washer-roll
+8,False,False,,disagreement_agreement,disagreement_agreement,,,typical_of_property-washer-roll
+9,False,False,,disagreement_agreement,disagreement_agreement,,,typical_of_concept-washer-roll
+10,False,False,,disagreement_agreement,disagreement_agreement,,,afforded_unusual-washer-roll
+11,False,False,,disagreement_agreement,disagreement_agreement,,,afforded_usual-washer-roll
+12,False,False,,disagreement_agreement,disagreement_agreement,,,variability_limited-washer-roll
+13,True,True,,disagreement_agreement,disagreement_agreement,,,implied_category-plaice-lay_eggs
+14,False,False,,disagreement_agreement,disagreement_agreement,,,typical_of_property-plaice-lay_eggs
+15,True,True,"Male/female distinction might be a reason for people to answer with 'disagree', as only female fish lay eggs.",disagreement_odd_triple,,regulary and most: only females and how often do they do this.,Kind vs male/female distinction,afforded_usual-plaice-lay_eggs
+16,False,False,,disagreement_agreement,disagreement_agreement,,,creative-plaice-lay_eggs
+17,False,False,,disagreement_agreement,disagreement_agreement,,,rare-plaice-lay_eggs
+18,False,False,,disagreement_agreement,disagreement_agreement,someone may think that animals that lay eggs only do this some times.,,unusual-plaice-lay_eggs
+19,False,False,,disagreement_agreement,disagreement_agreement,,,impossible-plaice-lay_eggs

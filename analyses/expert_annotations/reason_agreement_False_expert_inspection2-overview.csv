@@ -1,0 +1,8 @@
+,answer-antske,answer-pia,expected_behavior-antske,expected_behavior-pia,reason-antske,triple
+0,True,False,disagreement_imagination,disagreement_imagination,,rare-shovel-roll
+1,False,False,disagreement_agreement-disagreement_imagination,disagreement_imagination,,impossible-shovel-roll
+2,True,True,disagreement_ambiguous_concept-disagreement_conceptualization,disagreement_conceptualization,,implied_category-freebooter-dangerous
+3,False,True,disagreement_agreement,disagreement_agreement,"This should be true for both meanings: standard meaning is always dangerous, for the other the scalar thing is odd.",variability_open-freebooter-dangerous
+4,True,False,disagreement_vague,disagreement_vague,"are they all yellow, or sometimes also brownish and/or green",variability_limited-pineapple-yellow
+5,True,True,disagreement_specialized_knowledge-disagreement_vague,disagreement_imagination-disagreement_specialized_knowledge,,rare-carrot-red
+6,True,False,disagreement_imagination-disagreement_vague,disagreement_imagination-disagreement_specialized_knowledge,unusual or highly unusual,unusual-carrot-red

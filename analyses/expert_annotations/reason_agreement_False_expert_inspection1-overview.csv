@@ -1,0 +1,7 @@
+,answer-antske,answer-pia,expected_behavior-antske,expected_behavior-pia,reason-antske,reason-pia,triple
+0,True,True,disagreement_agreement-disagreement_conceptualization,disagreement_conceptualization,,,implied_category-arrow-fly
+1,False,False,disagreement_agreement,disagreement_agreement,some may say that arrows are usually just stored and only occasionally actually used.,,afforded_unusual-arrow-fly
+2,False,False,,disagreement_agreement,"I don't think it is rare, but it is also not very common","Possibly confused with: All/most pins can roll, but this is not what they usually do/are used for.",rare-pin-roll
+3,False,False,disagreement_agreement-disagreement_odd_triple,disagreement_odd_triple,,,affording_activity-buttercup-yellow
+4,True,True,disagreement_conceptualization-disagreement_odd_triple,disagreement_conceptualization,,,implied_category-tire-roll
+5,False,False,disagreement_agreement,disagreement_agreement,,Possibly disagreement because of differences in how many typical things people think of. It is not among my top 3.,typical_of_property-tire-roll
