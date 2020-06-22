@@ -60,6 +60,8 @@ def get_pair_analysis(data_dict_list, name):
     contradictions = load_contradiction_pairs()
 
     for pair, dl_pair in data_by_pair.items():
+        print('pair', pair)
+        print()
         d = dict()
         n_annotations = len(dl_pair)
         data_by_worker = sort_by_key(dl_pair, ['workerid'])
@@ -75,6 +77,7 @@ def get_pair_analysis(data_dict_list, name):
         for worker, dl_worker in data_by_worker.items():
             av_time_all_workers.append(get_average_time_worker(dl_worker))
             pair_worker_cont = collect_contradictions(dl_worker, contradictions, threshold = 0)
+            print(pair_worker_cont)
             relations = [d['relation'] for d in dl_worker]
             for r1, r2 in contradictions:
                 if r1 in relations and r2 in relations:
@@ -193,41 +196,41 @@ def main():
     df, filepath = get_pair_analysis(data_dict_list, name)
     print(f'analysis can be found at: {filepath}')
 
-    run = '1'
+    run = '*'
     batch = '*'
     n_q = '*'
-    group = 'experiment1'
+    group = 'experiment*'
 
     data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
     name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
     df1, filepath = get_pair_analysis(data_dict_list, name)
     print(f'analysis can be found at: {filepath}')
 
-    run = '3'
-    batch = '*'
-    n_q = '*'
-    group = 'experiment1'
+    #run = '3'
+    #batch = '*'
+    #n_q = '*'
+    #group = 'experiment1'
 
-    data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-    name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
-    df2, filepath = get_pair_analysis(data_dict_list, name)
-    print(f'analysis can be found at: {filepath}')
+    #data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+    #name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
+    #df2, filepath = get_pair_analysis(data_dict_list, name)
+    #print(f'analysis can be found at: {filepath}')
 
-    run = '*'
-    batch = '*'
-    n_q = '*'
-    group = 'experiment1'
+    #run = '*'
+    #batch = '*'
+    #n_q = '*'
+    #group = 'experiment1'
 
-    data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-    name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
-    df2, filepath = get_pair_analysis(data_dict_list, name)
-    print(f'analysis can be found at: {filepath}')
+    #data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+    #name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
+    #df2, filepath = get_pair_analysis(data_dict_list, name)
+    #print(f'analysis can be found at: {filepath}')
 
-    name1 = '1'
-    name2 = '3'
-    compare_runs(name1, name2, df1, df2, comp = 'all')
-    print()
-    compare_runs(name1, name2, df1, df2, comp = 'pairs')
+    #name1 = '1'
+    #name2 = '3'
+    #compare_runs(name1, name2, df1, df2, comp = 'all')
+    #print()
+    #compare_runs(name1, name2, df1, df2, comp = 'pairs')
 
 if __name__ == '__main__':
     main()

@@ -23,7 +23,8 @@ def sort_by_key(data_dict_list, keys):
 def get_relation_cnt(pair_dicts):
     relation_cnt = Counter()
     for d in pair_dicts:
-        if d['answer'] == 'true':
+        answer = str(d['answer']).lower()
+        if answer == 'true':
             val = 1
         else:
             val = 0
@@ -32,7 +33,9 @@ def get_relation_cnt(pair_dicts):
     return relation_cnt
 
 def get_relation_pairs(pair_dicts, threshold = 0):
+    #print(pair_dicts)
     relation_cnt = get_relation_cnt(pair_dicts)
+    #print('relation count', relation_cnt)
     relations_true = [rel for rel, cnt in relation_cnt.items() if cnt > threshold]
 
     relation_pairs = []
@@ -46,6 +49,7 @@ def get_relation_pairs(pair_dicts, threshold = 0):
 
 def collect_contradictions(pair_dicts, contradictions, threshold = 0):
     relation_pairs = get_relation_pairs(pair_dicts, threshold = threshold)
+    #print('relation pairs', relation_pairs)
     contradiction_pairs = [tuple(sorted(p)) for p in relation_pairs if p in contradictions]
     return contradiction_pairs
 

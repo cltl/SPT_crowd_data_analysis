@@ -13,9 +13,11 @@ import pandas as pd
 def get_evaluation_instances(crowd, gold):
     triples_gold = sort_by_key(gold, ['relation', 'property', 'concept'])
     triples_crowd = sort_by_key(crowd, ['relation', 'property', 'concept'])
+
     evaluation_instances_crowd = []
     for t, gold_data in triples_gold.items():
         evaluation_instances_crowd.extend(triples_crowd[t])
+    print(len(triples_gold), len(triples_crowd), len(evaluation_instances_crowd))
     return evaluation_instances_crowd
 
 
@@ -28,9 +30,11 @@ def evaluate(gold, crowd, vote):
     for t, gold_data in gold_by_triple.items():
         crowd_data = crowd_by_triple[t]
         if len(crowd_data) == 1:
-
-            gold_answer = gold_data[0]['answer']
-            crowd_answer = crowd_data[0][vote]
+            gold_answer = str(gold_data[0]['answer']).lower().strip()
+            crowd_answer = str(crowd_data[0][vote]).lower().strip()
+            #print(t, gold_answer, crowd_answer)
+            #if gold_answer != crowd_answer:
+            #    print(gold_answer, crowd_answer, t, vote)
             gold_answer = str(gold_answer).lower()
             crowd_answer = str(crowd_answer).lower()
             labels_gold.append(gold_answer)
@@ -128,6 +132,6 @@ def main():
     df =  pd.DataFrame(overview_dicts)
     print(df.sort_values(by=['relations-f1'], ascending=False)[['config',
                                                           'relations-f1',
-                                                          'levels-f1', 'negative_relations-f1']])   
+                                                          'levels-f1', 'negative_relations-f1']])
 if __name__ == '__main__':
     main()

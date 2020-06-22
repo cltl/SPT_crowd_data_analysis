@@ -1,34 +1,34 @@
-,answer-antske,answer-pia_run1,comment-pia_run1,expected_behavior-antske,expected_behavior-pia_run1,reason-antske,reason-pia_run1,triple
-0,False,False,,disagreement_agreement,disagreement_agreement,,,implied_category-shovel-roll
-1,False,False,,disagreement_agreement,disagreement_agreement,,,typical_of_property-shovel-roll
-2,False,False,,disagreement_agreement,disagreement_agreement,,,typical_of_concept-shovel-roll
-3,False,False,,disagreement_agreement,disagreement_agreement,,,afforded_unusual-shovel-roll
-4,False,False,,disagreement_agreement,disagreement_agreement,,,afforded_usual-shovel-roll
-5,False,False,,disagreement_agreement,disagreement_agreement,,,variability_limited-shovel-roll
-6,False,False,,disagreement_agreement,disagreement_odd_triple,,,creative-shovel-roll
-7,True,True,,disagreement_agreement-disagreement_imagination,disagreement_imagination,,,unusual-shovel-roll
-8,False,False,,disagreement_agreement,disagreement_agreement,,,typical_of_property-freebooter-dangerous
-9,True,True,"I think this is more a conceptualization issue than ambiguity. Possibly influenced by first language.,disagreement_ambiguous_concept-true",disagreement_agreement-disagreement_ambiguous_concept,disagreement_conceptualization,,,typical_of_concept-freebooter-dangerous
-10,False,True,Meaning of freebooter - interpretations can differ,disagreement_ambiguous_concept-disagreement_odd_triple,disagreement_conceptualization,,,affording_activity-freebooter-dangerous
-11,False,False,,disagreement_agreement-disagreement_odd_triple,disagreement_agreement,,,variability_limited-freebooter-dangerous
-12,False,False,,disagreement_agreement,disagreement_agreement,,,creative-freebooter-dangerous
-13,False,False,,disagreement_agreement-disagreement_ambiguous_concept,disagreement_agreement,,,rare-freebooter-dangerous
-14,False,False,,disagreement_agreement-disagreement_ambiguous_concept,disagreement_agreement,main meaning is dangerous,,unusual-freebooter-dangerous
-15,False,False,,disagreement_agreement,disagreement_agreement,,,impossible-freebooter-dangerous
-16,False,False,"Yellow(ish) tropical fruits (mango, banana, papaya)...",disagreement_agreement,disagreement_agreement-disagreement_conceptualization,,,implied_category-pineapple-yellow
-17,False,False,,disagreement_agreement,disagreement_agreement,,,typical_of_property-pineapple-yellow
-18,True,True,,disagreement_agreement,disagreement_vague,,,typical_of_concept-pineapple-yellow
-19,False,False,,disagreement_agreement-disagreement_odd_triple,disagreement_agreement,,,affording_activity-pineapple-yellow
-20,False,False,,disagreement_agreement,disagreement_agreement,,,variability_open-pineapple-yellow
-21,False,False,,disagreement_agreement,disagreement_agreement,,,creative-carrot-red
-22,False,False,"People who don't know of red carrots and are not very creative thinkers could say impossible.,disagreement_specialized_knowledge-true",disagreement_agreement-disagreement_specialized_knowledge,disagreement_imagination,,,impossible-carrot-red
-23,False,False,,disagreement_agreement,disagreement_agreement,,,implied_category-wine-red
-24,False,False,,disagreement_agreement,disagreement_agreement,,,typical_of_property-wine-red
-25,True,True,,disagreement_agreement,,,,typical_of_concept-wine-red
-26,False,False,Some people might reason that the red color is associated with the taste of red wine.,disagreement_agreement,disagreement_odd_triple,,,affording_activity-wine-red
-27,True,True,,disagreement_agreement,disagreement_agreement,,,variability_limited-wine-red
-28,False,False,,disagreement_agreement,disagreement_agreement,,,variability_open-wine-red
-29,False,False,,disagreement_agreement,disagreement_agreement,,,creative-wine-red
-30,False,False,,disagreement_agreement,disagreement_agreement,,,rare-wine-red
-31,False,False,,disagreement_agreement,disagreement_agreement,,,unusual-wine-red
-32,False,False,,disagreement_agreement,disagreement_agreement,,,impossible-wine-red
+,answer-antske,answer-pia_run1,answer-piek,comment-pia_run1,comment-piek,expected_behavior-antske,expected_behavior-pia_run1,expected_behavior-piek,reason-antske,reason-pia_run1,reason-piek,triple
+0,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,implied_category-shovel-roll
+1,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,typical_of_property-shovel-roll
+2,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,typical_of_concept-shovel-roll
+3,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,afforded_unusual-shovel-roll
+4,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,afforded_usual-shovel-roll
+5,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,variability_limited-shovel-roll
+6,false,false,false,,,disagreement_agreement,disagreement_odd_triple,disagreement_agreement,,,"""Roll like a shovel for somebody that rolls in a funny way",creative-shovel-roll
+7,true,true,true,,,disagreement_agreement-disagreement_imagination,disagreement_imagination,disagreement_imagination,,,"""Roll along the long axis but with difficulty and some force",unusual-shovel-roll
+8,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,"""Other things than freebooter come to mind, freebooter is too uncommon",typical_of_property-freebooter-dangerous
+9,true,true,true,"""I think this is more a conceptualization issue than ambiguity. Possibly influenced by first language.",,disagreement_agreement-disagreement_ambiguous_concept,disagreement_ambiguous_concept-disagreement_conceptualization,disagreement_agreement,,,,typical_of_concept-freebooter-dangerous
+10,false,true,true,"""Meaning of freebooter - interpretations can differ",,disagreement_ambiguous_concept-disagreement_odd_triple,disagreement_conceptualization,disagreement_agreement,,,,affording_activity-freebooter-dangerous
+11,false,false,false,,,disagreement_agreement-disagreement_odd_triple,disagreement_agreement,disagreement_conceptualization-disagreement_imagination,,,"""Usually they are dangerous but the choice between dangerous and not-dangerous is strange as being dangerous is always scalar.",variability_limited-freebooter-dangerous
+12,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,creative-freebooter-dangerous
+13,false,false,false,,,disagreement_agreement-disagreement_ambiguous_concept,disagreement_agreement,disagreement_agreement,,,,rare-freebooter-dangerous
+14,false,false,false,,,disagreement_agreement-disagreement_ambiguous_concept,disagreement_agreement,disagreement_agreement,"""main meaning is dangerous",,,unusual-freebooter-dangerous
+15,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,impossible-freebooter-dangerous
+16,false,false,false,"""Yellow(ish) tropical fruits (mango, banana, papaya)...","""There is not category of yellow fruit but some fruits are also yellow",disagreement_agreement,disagreement_agreement-disagreement_conceptualization,disagreement_odd_triple,,,,implied_category-pineapple-yellow
+17,false,false,false,,"""Pineapple is certainly not the first thing that comes to mind",disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,typical_of_property-pineapple-yellow
+18,true,true,true,,"""inside yellow outside green, brown",disagreement_agreement,disagreement_vague,disagreement_ambiguous_property,,,,typical_of_concept-pineapple-yellow
+19,false,false,false,,"""yellow is not necessary for pineapples, colours are often not necessary.",disagreement_agreement-disagreement_odd_triple,disagreement_agreement,disagreement_odd_triple,,,,affording_activity-pineapple-yellow
+20,false,false,false,,"""no variation",disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,variability_open-pineapple-yellow
+21,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement-disagreement_vague,,,"""carrots are usually orange and some are red but people may not know this",creative-carrot-red
+22,false,false,false,"""People who don't know of red carrots and are not very creative thinkers could say impossible.",,disagreement_agreement-disagreement_specialized_knowledge,disagreement_imagination-disagreement_specialized_knowledge,disagreement_specialized_knowledge,,,"""carrots are usually orange and some are red but people may not know this",impossible-carrot-red
+23,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_odd_triple,,,"""Wines can be red, rose, white but there is no category of red things or drinks that wine belongs to",implied_category-wine-red
+24,false,false,true,,,disagreement_agreement,disagreement_agreement,,,,"""People may also say roses, lips, but this depends on how common the concepts are",typical_of_property-wine-red
+25,true,true,true,,,disagreement_agreement,,disagreement_agreement,,,,typical_of_concept-wine-red
+26,false,false,true,"""Some people might reason that the red color is associated with the taste of red wine.","""Again colours are not necessary but a by-product. Also see yellow pineapple",disagreement_agreement,disagreement_odd_triple,disagreement_agreement,,,,affording_activity-wine-red
+27,true,true,true,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,variability_limited-wine-red
+28,false,false,false,,"""Not unlimited: red, white, rose",disagreement_agreement,disagreement_agreement,,,,,variability_open-wine-red
+29,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,creative-wine-red
+30,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,rare-wine-red
+31,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,unusual-wine-red
+32,false,false,false,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,,,,impossible-wine-red

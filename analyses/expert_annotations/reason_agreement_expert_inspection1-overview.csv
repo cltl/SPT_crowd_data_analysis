@@ -1,25 +1,25 @@
-,answer-antske,answer-pia run1,answer-piek,comment-antske,comment-pia run1,expected_behavior-antske,expected_behavior-pia run1,expected_behavior-piek,reason-antske,reason-pia run1,triple
-0,False,False,,,Princeton Wordnet uses the following phrase as an example of the verb fly- Time flies like an arrow,disagreement_agreement,disagreement_agreement,,,Differences in what is typical.,typical_of_property-arrow-fly
-1,True,True,,,,disagreement_agreement,disagreement_agreement,,Whether something is considered typical or not also partially depends on the person.,,typical_of_concept-arrow-fly
-2,True,True,True,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,"if anything, people thinking that no one uses arrows regularly.",broad-vs narrow interpretation of flying,afforded_usual-arrow-fly
-3,False,False,,,Possible category- arrows used for decoration,disagreement_agreement,disagreement_agreement-disagreement_conceptualization,,,,variability_limited-arrow-fly
-4,False,False,,,,disagreement_agreement,disagreement_agreement,,,,creative-arrow-fly
-5,False,False,,,"Some people might say that something which cannot fly by itself does not actually fly. The Merriam-Webster entry explicitly includes this type of flying and gives the example of flying projectiles-  to move through the air or before the wind or through outer space - nbullets flying in all directions,reason-Broad vs narrow understanding of a property.",disagreement_agreement,disagreement_agreement,,,,rare-arrow-fly
-6,False,False,,,,disagreement_agreement,disagreement_agreement,,,,unusual-arrow-fly
-7,False,False,,"Especially with the `can', I can imagine some people may see that fact that an arrow needs to be shot as it not being able to fly itself, though I think most or almost all people would annotate this as disagree.",,disagreement_agreement-disagreement_ambiguous_property,disagreement_agreement,,,,impossible-arrow-fly
-8,False,False,,,,disagreement_agreement,disagreement_agreement,,,The creativity question probably has the biggest subjective element. I would not expect perfect agreement here.,creative-pin-roll
-9,False,False,,,,disagreement_agreement,disagreement_agreement,,,,unusual-pin-roll
-10,False,False,,,,disagreement_agreement,disagreement_agreement,,,,impossible-pin-roll
-11,False,False,,,category of yellow wildflowers,disagreement_agreement,disagreement_conceptualization,,"I can imagine for these strong pairs, you get some annotators saying `agree on everything'",,implied_category-buttercup-yellow
-12,False,False,,,,disagreement_agreement,disagreement_agreement,,typicality is personal,,typical_of_property-buttercup-yellow
-13,True,True,,,,disagreement_agreement,disagreement_agreement,,People taking `one of' too literally,,typical_of_concept-buttercup-yellow
-14,False,False,,,,disagreement_agreement,disagreement_agreement,,I can imagine people saying true to the few options question when there is only one option (like there is here).,,variability_limited-buttercup-yellow
-15,False,False,,,,disagreement_agreement,disagreement_agreement,,,,variability_open-buttercup-yellow
-16,True,True,,,,,disagreement_agreement,,Tire/wheel: I actually am not sure about my own annotation here.,,typical_of_concept-tire-roll
-17,False,False,,,,disagreement_agreement,disagreement_agreement,,,,afforded_unusual-tire-roll
-18,True,True,,,,disagreement_agreement,disagreement_agreement,,Tire/wheel: but I think most would say that the tire rolls when it is around the wheel.,,afforded_usual-tire-roll
-19,False,True,,,,disagreement_agreement,disagreement_agreement,,,,variability_limited-tire-roll
-20,False,False,,,,disagreement_agreement,disagreement_agreement,,,,creative-tire-roll
-21,False,False,,,,disagreement_agreement,disagreement_agreement,,,,rare-tire-roll
-22,False,False,,,,disagreement_agreement,disagreement_agreement,,,,unusual-tire-roll
-23,False,False,,,,disagreement_agreement,disagreement_agreement,,,,impossible-tire-roll
+,answer-antske,answer-lea,answer-pia run1,answer-piek,comment-antske,comment-lea,comment-pia run1,expected_behavior-antske,expected_behavior-lea,expected_behavior-pia run1,expected_behavior-piek,reason-antske,reason-pia run1,reason-piek,triple
+0,false,,false,false,,,"""Princeton Wordnet uses the following phrase as an example of the verb fly: ""Time flies like an arrow",disagreement_agreement,,disagreement_agreement,disagreement_imagination,,"""Differences in what is typical.","""Bird or airplane would come first, arrows maybe third",typical_of_property-arrow-fly
+1,true,true,true,true,,,,disagreement_agreement,disagreement_agreement,disagreement_agreement,disagreement_conceptualization,"""Whether something is considered typical or not also partially depends on the person.",,,typical_of_concept-arrow-fly
+2,true,,true,true,,,,disagreement_agreement,,disagreement_agreement,disagreement_conceptualization,"""if anything, people thinking that no one uses arrows regularly.","""broad-vs narrow interpretation of flying","""Anything projected will fly but arrows are made to fly long and fast. They may also be seen as weapons.",afforded_usual-arrow-fly
+3,false,,false,false,,,"""Possible category: arrows used for decoration",disagreement_agreement,,disagreement_agreement-disagreement_conceptualization,disagreement_conceptualization,,,,variability_limited-arrow-fly
+4,false,,false,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,,,,creative-arrow-fly
+5,false,,false,false,,,"""Some people might say that something which cannot fly by itself does not actually fly. The Merriam-Webster entry explicitly includes this type of flying and gives the example of flying projectiles:  ""to move through the air or before the wind or through outer space - nbullets flying in all directions",disagreement_agreement,,disagreement_agreement,disagreement_agreement,,"""Broad vs narrow understanding of a property.",,rare-arrow-fly
+6,false,,false,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,,,,unusual-arrow-fly
+7,false,,false,false,"""Especially with the `can', I can imagine some people may see that fact that an arrow needs to be shot as it not being able to fly itself, though I think most or almost all people would annotate this as disagree.",,,disagreement_agreement-disagreement_ambiguous_property,,disagreement_agreement,disagreement_agreement,,,,impossible-arrow-fly
+8,false,,false,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_odd_triple,,"""The creativity question probably has the biggest subjective element. I would not expect perfect agreement here.","""Pins are used for sticking things to surfaces but can also roll because of their shape but this is not what they were made for.",creative-pin-roll
+9,false,,false,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,,,,unusual-pin-roll
+10,false,,false,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,,,,impossible-pin-roll
+11,false,,false,false,,,"""category of yellow wildflowers",disagreement_agreement,,disagreement_conceptualization,disagreement_conceptualization,"""I can imagine for these strong pairs, you get some annotators saying `agree on everything'",,"""Not clear what the category will be. ""Yellow flowers?",implied_category-buttercup-yellow
+12,false,,false,true,,,,disagreement_agreement,,disagreement_agreement,,"""typicality is personal",,"""People may not think of buttercup first but of other things that are more common and yellow. But they will confirm if presented with this association.",typical_of_property-buttercup-yellow
+13,true,,true,true,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,"""People taking `one of' too literally",,,typical_of_concept-buttercup-yellow
+14,false,true,false,false,,"""I would generally expect the annotators to agree, except if some think buttercups can only be yellow and therefore think that it doesn't have a range of colours.",,disagreement_agreement,disagreement_agreement-disagreement_specialized_knowledge,disagreement_agreement,disagreement_agreement,"""I can imagine people saying true to the few options question when there is only one option (like there is here).",,"""All yellow",variability_limited-buttercup-yellow
+15,false,,false,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,,,,variability_open-buttercup-yellow
+16,true,,true,true,,,,,,disagreement_agreement,disagreement_agreement,"""Tire/wheel: I actually am not sure about my own annotation here.",,,typical_of_concept-tire-roll
+17,false,,false,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,,,,afforded_unusual-tire-roll
+18,true,,true,true,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,"""Tire/wheel: but I think most would say that the tire rolls when it is around the wheel.",,,afforded_usual-tire-roll
+19,false,,true,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_conceptualization,,,"""all tires can roll",variability_limited-tire-roll
+20,false,,false,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,,,,creative-tire-roll
+21,false,,false,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,,,,rare-tire-roll
+22,false,,false,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,,,,unusual-tire-roll
+23,false,,false,false,,,,disagreement_agreement,,disagreement_agreement,disagreement_agreement,,,,impossible-tire-roll

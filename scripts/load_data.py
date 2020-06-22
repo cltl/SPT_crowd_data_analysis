@@ -40,20 +40,15 @@ def load_answer(answer):
     #print()
     #answer = answer.replace('"Time flies like an arrow"', 'Time flies like an arrow')
     # clean quotes from free text
-    if 'comment' in answer:
-        clean_answer, comment = answer.split('"comment":')
-        comment = comment.replace('"', "").replace('}}', '').replace(':', '-')
-        comment = f'"{comment}"{"}}"}'
-        answer = '"comment":'.join([clean_answer, comment])
     #print(answer)
 
-    #print(answer)
-    #print('----transformed string----')
-    a = StringIO(answer)
+    answer = answer.split(':{')[1].split('}}')[0]
+    pairs = answer.split(',"')
+    pair_tuples = [tuple(p.strip('"').split('":')) for p in pairs]
+    pair_tuples = [(k.strip(), v.strip()) for k, v in pair_tuples]
+    #print(pair_tuples)
 
-    #print('---- dict ---')
-    d = json.load(a)
-    answer_dict = list(d.values())[0]
+    answer_dict = dict(pair_tuples)
     return answer_dict
 
 
@@ -170,6 +165,7 @@ def process_triple_and_answer(dict_list_out):
 
         #answer_dict = parse_answer(answer)
         answer_dict = load_answer(answer)
+        #print(answer_dict)
         d.pop('answer')
         d.update(answer_dict)
         rel, prop, concept = d.pop('triple').split('-')

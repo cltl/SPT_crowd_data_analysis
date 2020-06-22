@@ -31,6 +31,7 @@ def get_ua_score(quid, units_by_quid):
         score_dict = dict()
         score_dict['true'] = 0.0
         score_dict['false'] = 0.0
+
     return score_dict['true']
 
 
@@ -48,16 +49,18 @@ def aggregate_binary_labels(data_dict_list, ct_units):
             triple_dicts = []
             for rel, data in data_by_rel.items():
                 answers = [d['answer'] for d in data]
-                true_cnt = answers.count(True)
+                true_cnt = answers.count('true')
                 prop = true_cnt/len(answers)
                 prop_rels[prop].append(rel)
                 majority_vote = False
                 if prop > 0.5:
                     majority_vote = True
+                #print(rel, pair, majority_vote)
                 triple_dict = dict()
                 triple_dict['relation'] = rel.strip()
                 triple_dict['workerid'] = 'aggregated'
                 #triple_dict['level'] = rel_level_mapping[rel]
+                triple_dict['quid'] = data[0]['quid']
                 triple_dict['property'] = pair.split('-')[0]
                 triple_dict['concept'] = pair.split('-')[1]
                 triple_dict['majority_vote'] = majority_vote
