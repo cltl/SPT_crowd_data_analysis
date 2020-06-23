@@ -110,6 +110,23 @@ def evaluate_configs(gold, crowd):
                     config = (unit, n_stdv, metric, vote)
                     results_dict['config'] = config
                     overview_dicts.append(results_dict)
+
+    print('clean all contradictory annotations')
+    unit = None
+    n_stdv = None
+    metric = 'exclude_contradictory_annotations'
+    votes = ['majority_vote', 'top_vote']
+    run = '*'
+    group = 'experiment*'
+    n_q = '*'
+    batch = '*'
+    for vote in votes:
+        crowd_eval_clean = clean_workers(crowd_eval, run, group, batch, metric, unit, n_stdv)
+        results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote)
+        config = (unit, n_stdv, metric, vote)
+        results_dict['config'] = config
+        overview_dicts.append(results_dict)
+
     return overview_dicts
 
 

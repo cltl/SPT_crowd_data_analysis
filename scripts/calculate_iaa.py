@@ -72,6 +72,7 @@ def get_collapsed_relations(dict_list, mapping = 'levels', answer_name='answer')
             for level, dicts in dicts_by_level.items():
                 answers = [d[answer_name] for d in dicts]
                 answers = [str(a).lower() for a in answers]
+    
                 if 'true' in answers:
                     answer = True
                 else:
@@ -253,7 +254,8 @@ def get_agreement(dict_list_out, collapse_relations = False, v=True, disable_kap
 def get_full_report(dict_list_out, v=False):
 
     full_ag_dict = dict()
-    versions = ['pos_neg', 'levels', 'similar_relations', 'negative_relations']
+    #versions = ['pos_neg', 'levels', 'similar_relations', 'negative_relations']
+    versions = ['negative_relations']
     if v == True:
         print(f'--- Full IAA report --- ')
         print('Full set:')
@@ -277,6 +279,10 @@ def main():
     dict_list_out = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
     print(len(dict_list_out))
     get_full_report(dict_list_out, v=True)
+
+    # collapse labels
+
+
 
 
 if __name__ == '__main__':

@@ -3,6 +3,7 @@ from statistics import stdev
 from load_data import load_experiment_data
 from utils_analysis import sort_by_key
 from utils_analysis import load_analysis, load_ct
+from utils_analysis import collect_contradictions, load_contradiction_pairs
 
 def filter_with_stdv(workers, measure = 'contradiction_poss_contradiction_ratio', n_stds=1):
     cont_rate = [float(d[measure]) for d in workers]
@@ -50,6 +51,23 @@ def remove_contradicting_workers(all_annotations, dict_list_workers, unit,  n_st
     return clean_annotations
 
 
+
+def remove_contradictory_annotations(all_annotations):
+    clean_annotations = []
+    contradictions = load_contradiction_pairs()
+    annotations_by_unit = sort_by_key(all_annotations, ['property','concept'])
+    for pair, annotations in annotations_by_unit.items():
+        annotations_per_worker = sort_by_key(all_annotations, ['workerid'])
+        for w, annotations in annotations_per_worker.items():
+            pair_contradictions = collect_contradictions(annotations, contradictions, threshold = 0)
+            if len(pair_contradictions) == 0:
+                clean_annotations.extend(annotations)
+
+    return clean_annotations
+    #workers_by_unit = sort_by_key(dict_list_workers, ['pair'])
+
+
+
 def remove_low_quality_workers_ct(all_annotations, unit,  n_stds):
     ct_workers = load_ct('*', 'experiment*', '*', 'workers', as_dict=True)
     ct_by_workers = sort_by_key(ct_workers, ['worker'])
@@ -93,6 +111,9 @@ def clean_workers(data_dict_list, run,  group,  batch, metric, unit, n_stds):
                                 dict_list_workers, unit,  n_stds)
     elif metric == 'crowdtruth':
         data_dict_list_clean = remove_low_quality_workers_ct(data_dict_list, unit,  n_stds)
+
+    elif metric == 'exclude_contradictory_annotations':
+        data_dict_list_clean = remove_contradictory_annotations(data_dict_list)
 
     return data_dict_list_clean
 
