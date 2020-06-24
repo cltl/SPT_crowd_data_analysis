@@ -39,7 +39,7 @@ def get_ua_score(quid, units_by_quid):
 def aggregate_binary_labels(data_dict_list, ct_units):
     data_by_pair = sort_by_key(data_dict_list, ['property', 'concept'])
     units_by_quid = sort_by_key(ct_units, ['unit'])
-    ct_thresholds = [0.5, 0.6, 0.7, 0.8, 0.9, 1]
+    ct_thresholds = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 1]
     aggregated_binary_labels = []
     for pair, data_dicts in data_by_pair.items():
         if not pair.startswith('_'):

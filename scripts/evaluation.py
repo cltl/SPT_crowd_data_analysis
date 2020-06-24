@@ -1,9 +1,10 @@
 from clean_annotations import clean_workers
 from load_data import load_experiment_data, load_expert_data, load_gold_data
 from aggregation import aggregate_binary_labels
-from calculate_iaa import  get_collapsed_relations
+from calculate_iaa import  get_collapsed_relations, get_agreement
 from utils_analysis import sort_by_key
 from utils_analysis import load_analysis, load_ct
+
 
 from sklearn.metrics import precision_recall_fscore_support as p_r_f1
 import pandas as pd
@@ -73,21 +74,38 @@ def evaluate_all_versions(gold, crowd_eval_agg, vote):
 def evaluate_configs(gold, crowd):
     overview_dicts = []
 
+    gold_labels = [str(d['answer']).lower() for d in gold]
+    print('----Label distribution----')
+    print('True:', gold_labels.count('true'))
+    print('False', gold_labels.count('false'))
+    print('----------------------------')
+
     ct_units = load_ct('*', 'experiment*', '*', 'units', as_dict=True)
     crowd_eval = get_evaluation_instances(crowd, gold)
     crowd_eval_agg = aggregate_binary_labels(crowd_eval, ct_units)
+    iaa = get_agreement(crowd_eval, collapse_relations = False, v=False, disable_kappa=True)
 
     print('aggretation')
-
-    votes = ['majority_vote', 'top_vote', 'ct_vote_0.5', 'ct_vote_0.6',
-                 'ct_vote_0.7', 'ct_vote_0.8', 'ct_vote_0.9',
-                 'top_vote_ct_0.5', 'top_vote_ct_0.6','top_vote_ct_0.7',
-                 'top_vote_ct_0.8', 'top_vote_ct_0.9']
+    print('no filtering - different aggretation methods')
+    votes = ['majority_vote', 'top_vote', 'ct_vote','top_vote_ct']
+    ct_thresholds = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 1]
     for vote in votes:
-        results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote)
-        config = (vote)
-        results_dict['config'] = config
-        overview_dicts.append(results_dict)
+        if vote in ['ct_vote', 'top_vote_ct']:
+            for thresh in ct_thresholds:
+                vote_thresh = f'{vote}_{thresh}'
+                results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote_thresh)
+                config = (vote_thresh)
+                #print(config)
+                results_dict['config'] = config
+                results_dict['alpha'] = iaa['Krippendorff']
+                overview_dicts.append(results_dict)
+        else:
+            results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote)
+            config = (vote)
+            #print(config)
+            results_dict['config'] = config
+            results_dict['alpha'] = iaa['Krippendorff']
+            overview_dicts.append(results_dict)
 
     print('cleaning and aggregation')
     units = ['pair', 'batch', 'total']
@@ -104,11 +122,16 @@ def evaluate_configs(gold, crowd):
             for metric in metrics:
                 crowd_eval_clean = clean_workers(crowd_eval, run, group,
                                                batch, metric, unit, n_stdv)
+                iaa = get_agreement(crowd_eval_clean,
+                collapse_relations = False, v=False,
+                disable_kappa=True)
                 crowd_eval_agg = aggregate_binary_labels(crowd_eval_clean, ct_units)
                 for vote in votes:
                     results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote)
                     config = (unit, n_stdv, metric, vote)
+                    #print(config)
                     results_dict['config'] = config
+                    results_dict['alpha'] = iaa['Krippendorff']
                     overview_dicts.append(results_dict)
 
     print('clean all contradictory annotations')
@@ -120,11 +143,13 @@ def evaluate_configs(gold, crowd):
     group = 'experiment*'
     n_q = '*'
     batch = '*'
+    crowd_eval_clean = clean_workers(crowd_eval, run, group, batch, metric, unit, n_stdv)
+    iaa = get_agreement(crowd_eval_clean, collapse_relations = False, v=False, disable_kappa=True)
     for vote in votes:
-        crowd_eval_clean = clean_workers(crowd_eval, run, group, batch, metric, unit, n_stdv)
         results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote)
         config = (unit, n_stdv, metric, vote)
         results_dict['config'] = config
+        results_dict['alpha'] = iaa['Krippendorff']
         overview_dicts.append(results_dict)
 
     return overview_dicts

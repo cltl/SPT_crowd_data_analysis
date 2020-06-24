@@ -44,7 +44,7 @@ def load_answer(answer):
 
     answer = answer.split(':{')[1].split('}}')[0]
     pairs = answer.split(',"')
-    pair_tuples = [tuple(p.strip('"').split('":')) for p in pairs]
+    pair_tuples = [tuple(p.strip('"').split('":')) for p in pairs if '":' in p]
     pair_tuples = [(k.strip(), v.strip()) for k, v in pair_tuples]
     #print(pair_tuples)
 

@@ -1,21 +1,21 @@
-,answer-antske,answer-antske_1,answer-pia,comment-pia,expected_behavior-antske,expected_behavior-antske_1,expected_behavior-pia,reason-antske_1,reason-pia,triple
-0,,False,False,,,disagreement_agreement-disagreement_odd_pair-disagreement_vague,disagreement_odd_pair,,,implied_category-recliner-square
-1,,False,False,,,disagreement_agreement-disagreement_odd_pair-disagreement_vague,disagreement_odd_pair,,,typical_of_concept-recliner-square
-2,False,False,False,,disagreement_odd_pair-disagreement_odd_triple,disagreement_agreement-disagreement_odd_pair-disagreement_odd_triple-disagreement_vague,disagreement_odd_pair-disagreement_vague,,,variability_limited-recliner-square
-3,False,False,True,,disagreement_agreement-disagreement_odd_pair,disagreement_agreement-disagreement_odd_pair-disagreement_vague,disagreement_vague,,,variability_open-recliner-square
-4,False,False,True,"square in the sense of conservative, old-fashioned, small-minded",disagreement_agreement-disagreement_odd_pair,disagreement_agreement-disagreement_odd_pair-disagreement_vague,disagreement_ambiguous_property,,,creative-recliner-square
-5,,False,False,,,disagreement_odd_pair-disagreement_odd_triple-disagreement_vague,disagreement_odd_pair-disagreement_vague,,,rare-recliner-square
-6,,True,False,,,disagreement_odd_pair-disagreement_odd_triple-disagreement_vague,disagreement_odd_pair-disagreement_vague,,,unusual-recliner-square
-7,,False,False,,,disagreement_agreement-disagreement_vague,disagreement_imagination-disagreement_vague,,,unusual-leopard-yellow
-8,,False,False,,,disagreement_vague,disagreement_imagination-disagreement_vague,,,impossible-leopard-yellow
-9,,True,True,,,disagreement_conceptualization-disagreement_vague,disagreement_conceptualization-disagreement_vague,,,implied_category-pen-round
-10,True,True,False,,disagreement_vague,disagreement_vague,disagreement_vague,,,typical_of_concept-pen-round
-11,,False,True,I think the cylindric (i.e. round-ish) shape is nice for holding a pen in your hand.,,disagreement_agreement,disagreement_vague,,,affording_activity-pen-round
-12,,True,True,,,disagreement_odd_triple-disagreement_vague,disagreement_vague,,,variability_limited-pen-round
-13,,False,True,rolling as a somewhat odd word for spinning,,disagreement_imagination,,,,creative-washer-roll
-14,,False,False,,,disagreement_agreement-disagreement_imagination,disagreement_imagination,,,rare-washer-roll
-15,,True,True,,,disagreement_agreement-disagreement_imagination,disagreement_imagination,,,unusual-washer-roll
-16,,False,False,,,disagreement_imagination,disagreement_imagination,,,impossible-washer-roll
-17,,False,False,,,disagreement_agreement,,,"It is one of the activities I think of, but certainly not one of the first ones. This might differ among annotators.",typical_of_concept-plaice-lay_eggs
-18,,False,False,,,disagreement_agreement,,workers can think they only lay eggs sometimes,,afforded_unusual-plaice-lay_eggs
-19,,False,True,male vs female fish,,disagreement_conceptualization,disagreement_conceptualization,"female/male makes this true, otherwise it is not (using false here, because I annotated species elsewhere as well)",,variability_limited-plaice-lay_eggs
+,answer-antske,answer-antske_1,answer-pia,answer-piek,comment-pia,comment-piek,expected_behavior-antske,expected_behavior-antske_1,expected_behavior-pia,expected_behavior-piek,reason-antske_1,reason-pia,triple
+0,,false,false,false,,"""There is no category of square things and they have complex shapes",,disagreement_agreement-disagreement_odd_pair-disagreement_vague,disagreement_odd_pair,disagreement_conceptualization-disagreement_odd_pair,,,implied_category-recliner-square
+1,,false,false,false,,"""the have a complex shape so strictly not square",,disagreement_agreement-disagreement_odd_pair-disagreement_vague,disagreement_odd_pair,disagreement_imagination,,,typical_of_concept-recliner-square
+2,false,false,false,true,,"""squarish is better",disagreement_odd_pair-disagreement_odd_triple,disagreement_agreement-disagreement_odd_pair-disagreement_odd_triple-disagreement_vague,disagreement_odd_pair-disagreement_vague,disagreement_vague,,,variability_limited-recliner-square
+3,false,false,true,false,,"""Square can be global shape but in fact they have complex shapes",disagreement_agreement-disagreement_odd_pair,disagreement_agreement-disagreement_odd_pair-disagreement_vague,disagreement_vague,disagreement_imagination-disagreement_vague,,,variability_open-recliner-square
+4,false,false,true,false,"""square in the sense of conservative, old-fashioned, small-minded","""There is no figurative meaning but I would call them square",disagreement_agreement-disagreement_odd_pair,disagreement_agreement-disagreement_odd_pair-disagreement_vague,disagreement_ambiguous_property,disagreement_odd_triple-disagreement_vague,,,creative-recliner-square
+5,,false,false,false,,"""I expect agreement but square can be vague",,disagreement_odd_pair-disagreement_odd_triple-disagreement_vague,disagreement_odd_pair-disagreement_vague,disagreement_agreement-disagreement_vague,,,rare-recliner-square
+6,,true,false,false,,"""They are squarish but have complex shapes",,disagreement_odd_pair-disagreement_odd_triple-disagreement_vague,disagreement_odd_pair-disagreement_vague,disagreement_vague,,,unusual-recliner-square
+7,,false,false,true,,"""Overall yellowish but debatable what yellow is but also they have mixed colours",,disagreement_agreement-disagreement_vague,disagreement_imagination-disagreement_vague,disagreement_vague,,,unusual-leopard-yellow
+8,,false,false,false,,"""Yellow is debatable and perhaps they could have deviant furs",,disagreement_vague,disagreement_imagination-disagreement_vague,disagreement_specialized_knowledge-disagreement_vague,,,impossible-leopard-yellow
+9,,true,true,false,,"""There is no category of round things and pens would not belong to it if there would be such a category",,disagreement_conceptualization-disagreement_vague,disagreement_conceptualization-disagreement_vague,disagreement_conceptualization,,,implied_category-pen-round
+10,true,true,false,true,,"""One dimension is never round but the other is usually round",disagreement_vague,disagreement_vague,disagreement_vague,disagreement_ambiguous_property-disagreement_imagination,,,typical_of_concept-pen-round
+11,,false,true,false,"""I think the cylindric (i.e. round-ish) shape is nice for holding a pen in your hand.","""roundness is not essential, you could have square pens in the same dimension. Note that pen can also stand for an area to keep animals",,disagreement_agreement,disagreement_vague,disagreement_agreement-disagreement_ambiguous_property,,,affording_activity-pen-round
+12,,true,true,true,,"""true for one dimension typically considered longish",,disagreement_odd_triple-disagreement_vague,disagreement_vague,disagreement_imagination,,,variability_limited-pen-round
+13,,false,true,false,"""rolling as a somewhat odd word for spinning",,,disagreement_imagination,,disagreement_agreement,,,creative-washer-roll
+14,,false,false,false,,"""Normally they cannot roll. Need extreme force and resist rolling",,disagreement_agreement-disagreement_imagination,disagreement_imagination,disagreement_agreement-disagreement_imagination,,,rare-washer-roll
+15,,true,true,true,,,,disagreement_agreement-disagreement_imagination,disagreement_imagination,disagreement_agreement,,,unusual-washer-roll
+16,,false,false,true,,"""With extreme force from a hill",,disagreement_imagination,disagreement_imagination,disagreement_imagination,,,impossible-washer-roll
+17,,false,false,false,,"""Other egg laying animals come first",,disagreement_agreement,,disagreement_agreement-disagreement_specialized_knowledge,,"""It is one of the activities I think of, but certainly not one of the first ones. This might differ among annotators.",typical_of_concept-plaice-lay_eggs
+18,,false,false,false,,,,disagreement_agreement,,disagreement_specialized_knowledge,"""workers can think they only lay eggs sometimes",,afforded_unusual-plaice-lay_eggs
+19,,false,true,false,"""male vs female fish","""all fish lay eggs",,disagreement_conceptualization,disagreement_conceptualization,disagreement_conceptualization-disagreement_specialized_knowledge,"""female/male makes this true, otherwise it is not (using false here, because I annotated species elsewhere as well)",,variability_limited-plaice-lay_eggs
