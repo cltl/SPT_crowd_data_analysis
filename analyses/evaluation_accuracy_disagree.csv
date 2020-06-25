@@ -1,0 +1,73 @@
+,config,relations-f1,levels-f1,negative_relations-f1,alpha
+38,"('batch', 0.5, 'contradictions', 'majority_vote')",0.78,0.78,0.78,-0.08
+54,"('total', 0.5, 'contradictions', 'majority_vote')",0.6,0.6,0.6,-0.06
+6,ct_vote_0.7,0.57,0.57,0.57,-0.09
+71,"(None, None, 'exclude_contradictory_annotations', 'top_vote')",0.45,0.45,0.45,0.0
+39,"('batch', 0.5, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.08
+29,"('pair', 1, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.09
+59,"('total', 1, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.06
+31,"('pair', 1.5, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.09
+33,"('pair', 1.5, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.08
+57,"('total', 0.5, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.14
+35,"('pair', 2, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.08
+1,top_vote,0.45,0.45,0.45,-0.09
+37,"('pair', 2, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.08
+41,"('batch', 0.5, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.11
+55,"('total', 0.5, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.06
+25,"('pair', 0.5, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.11
+42,"('batch', 1, 'contradictions', 'majority_vote')",0.45,0.45,0.45,-0.07
+43,"('batch', 1, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.07
+45,"('batch', 1, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.08
+46,"('batch', 1.5, 'contradictions', 'majority_vote')",0.45,0.45,0.45,-0.09
+47,"('batch', 1.5, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.09
+53,"('batch', 2, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.09
+49,"('batch', 1.5, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.09
+50,"('batch', 2, 'contradictions', 'majority_vote')",0.45,0.45,0.45,-0.1
+27,"('pair', 1, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.09
+61,"('total', 1, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.08
+14,top_vote_ct_0.6,0.45,0.45,0.45,-0.09
+17,top_vote_ct_0.75,0.45,0.45,0.45,-0.09
+2,ct_vote_0.5,0.45,0.45,0.45,-0.09
+69,"('total', 2, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.09
+67,"('total', 2, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.08
+65,"('total', 1.5, 'crowdtruth', 'top_vote')",0.45,0.45,0.45,-0.09
+12,top_vote_ct_0.5,0.45,0.45,0.45,-0.09
+13,top_vote_ct_0.55,0.45,0.45,0.45,-0.09
+15,top_vote_ct_0.65,0.45,0.45,0.45,-0.09
+16,top_vote_ct_0.7,0.45,0.45,0.45,-0.09
+51,"('batch', 2, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.1
+18,top_vote_ct_0.8,0.45,0.45,0.45,-0.09
+19,top_vote_ct_0.85,0.45,0.45,0.45,-0.09
+20,top_vote_ct_0.9,0.45,0.45,0.45,-0.09
+21,top_vote_ct_1,0.45,0.45,0.45,-0.09
+63,"('total', 1.5, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.09
+23,"('pair', 0.5, 'contradictions', 'top_vote')",0.45,0.45,0.45,-0.1
+5,ct_vote_0.65,0.4,0.4,0.4,-0.09
+62,"('total', 1.5, 'contradictions', 'majority_vote')",0.34,0.34,0.34,-0.09
+58,"('total', 1, 'contradictions', 'majority_vote')",0.34,0.34,0.34,-0.06
+64,"('total', 1.5, 'crowdtruth', 'majority_vote')",0.34,0.34,0.34,-0.09
+66,"('total', 2, 'contradictions', 'majority_vote')",0.34,0.34,0.34,-0.08
+68,"('total', 2, 'crowdtruth', 'majority_vote')",0.34,0.34,0.34,-0.09
+70,"(None, None, 'exclude_contradictory_annotations', 'majority_vote')",0.34,0.34,0.34,0.0
+60,"('total', 1, 'crowdtruth', 'majority_vote')",0.34,0.34,0.34,-0.08
+52,"('batch', 2, 'crowdtruth', 'majority_vote')",0.34,0.34,0.34,-0.09
+0,majority_vote,0.34,0.34,0.34,-0.09
+48,"('batch', 1.5, 'crowdtruth', 'majority_vote')",0.34,0.34,0.34,-0.09
+30,"('pair', 1.5, 'contradictions', 'majority_vote')",0.34,0.34,0.34,-0.09
+3,ct_vote_0.55,0.34,0.34,0.34,-0.09
+4,ct_vote_0.6,0.34,0.34,0.34,-0.09
+44,"('batch', 1, 'crowdtruth', 'majority_vote')",0.34,0.34,0.34,-0.08
+28,"('pair', 1, 'crowdtruth', 'majority_vote')",0.34,0.34,0.34,-0.09
+36,"('pair', 2, 'crowdtruth', 'majority_vote')",0.34,0.34,0.34,-0.08
+32,"('pair', 1.5, 'crowdtruth', 'majority_vote')",0.34,0.34,0.34,-0.08
+34,"('pair', 2, 'contradictions', 'majority_vote')",0.34,0.34,0.34,-0.08
+11,ct_vote_1,0.23,0.23,0.23,-0.09
+10,ct_vote_0.9,0.23,0.23,0.23,-0.09
+9,ct_vote_0.85,0.23,0.23,0.23,-0.09
+8,ct_vote_0.8,0.23,0.23,0.23,-0.09
+7,ct_vote_0.75,0.23,0.23,0.23,-0.09
+26,"('pair', 1, 'contradictions', 'majority_vote')",0.2,0.2,0.2,-0.09
+22,"('pair', 0.5, 'contradictions', 'majority_vote')",0.2,0.2,0.2,-0.1
+56,"('total', 0.5, 'crowdtruth', 'majority_vote')",0.2,0.2,0.2,-0.14
+40,"('batch', 0.5, 'crowdtruth', 'majority_vote')",0.0,0.0,0.0,-0.11
+24,"('pair', 0.5, 'crowdtruth', 'majority_vote')",0.0,0.0,0.0,-0.11
