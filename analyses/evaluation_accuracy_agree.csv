@@ -1,73 +1,73 @@
 ,config,relations-f1,levels-f1,negative_relations-f1,alpha
-22,"('pair', 0.5, 'contradictions', 'majority_vote')",0.93,0.96,0.92,0.35
-54,"('total', 0.5, 'contradictions', 'majority_vote')",0.93,0.92,0.92,0.37
-58,"('total', 1, 'contradictions', 'majority_vote')",0.93,0.92,0.92,0.33
-6,ct_vote_0.7,0.93,0.92,0.92,0.27
-8,ct_vote_0.8,0.92,0.91,0.91,0.27
-7,ct_vote_0.75,0.92,0.91,0.91,0.27
-62,"('total', 1.5, 'contradictions', 'majority_vote')",0.91,0.88,0.89,0.32
-5,ct_vote_0.65,0.9,0.92,0.89,0.27
-28,"('pair', 1, 'crowdtruth', 'majority_vote')",0.89,0.88,0.87,0.27
-60,"('total', 1, 'crowdtruth', 'majority_vote')",0.89,0.88,0.87,0.26
-3,ct_vote_0.55,0.89,0.88,0.87,0.27
-2,ct_vote_0.5,0.89,0.88,0.87,0.27
-46,"('batch', 1.5, 'contradictions', 'majority_vote')",0.89,0.88,0.87,0.29
-4,ct_vote_0.6,0.88,0.88,0.87,0.27
-9,ct_vote_0.85,0.88,0.85,0.87,0.27
-10,ct_vote_0.9,0.88,0.85,0.87,0.27
-48,"('batch', 1.5, 'crowdtruth', 'majority_vote')",0.86,0.85,0.84,0.26
-34,"('pair', 2, 'contradictions', 'majority_vote')",0.86,0.85,0.84,0.29
-38,"('batch', 0.5, 'contradictions', 'majority_vote')",0.86,0.81,0.84,0.33
-42,"('batch', 1, 'contradictions', 'majority_vote')",0.86,0.85,0.84,0.3
-44,"('batch', 1, 'crowdtruth', 'majority_vote')",0.86,0.85,0.84,0.26
-0,majority_vote,0.86,0.85,0.84,0.27
-50,"('batch', 2, 'contradictions', 'majority_vote')",0.86,0.85,0.84,0.28
-52,"('batch', 2, 'crowdtruth', 'majority_vote')",0.86,0.85,0.84,0.26
-30,"('pair', 1.5, 'contradictions', 'majority_vote')",0.86,0.85,0.84,0.3
-64,"('total', 1.5, 'crowdtruth', 'majority_vote')",0.86,0.85,0.84,0.27
-66,"('total', 2, 'contradictions', 'majority_vote')",0.86,0.85,0.84,0.3
-68,"('total', 2, 'crowdtruth', 'majority_vote')",0.86,0.85,0.84,0.27
-70,"(None, None, 'exclude_contradictory_annotations', 'majority_vote')",0.86,0.85,0.84,0.35
-32,"('pair', 1.5, 'crowdtruth', 'majority_vote')",0.86,0.85,0.84,0.26
-36,"('pair', 2, 'crowdtruth', 'majority_vote')",0.86,0.85,0.84,0.27
-26,"('pair', 1, 'contradictions', 'majority_vote')",0.86,0.85,0.84,0.31
-56,"('total', 0.5, 'crowdtruth', 'majority_vote')",0.82,0.85,0.79,0.21
-18,top_vote_ct_0.8,0.8,0.7,0.76,0.27
-12,top_vote_ct_0.5,0.8,0.7,0.76,0.27
-16,top_vote_ct_0.7,0.8,0.7,0.76,0.27
-19,top_vote_ct_0.85,0.8,0.7,0.76,0.27
-13,top_vote_ct_0.55,0.8,0.7,0.76,0.27
-20,top_vote_ct_0.9,0.8,0.7,0.76,0.27
-15,top_vote_ct_0.65,0.8,0.7,0.76,0.27
-17,top_vote_ct_0.75,0.8,0.7,0.76,0.27
-14,top_vote_ct_0.6,0.8,0.7,0.76,0.27
-21,top_vote_ct_1,0.8,0.7,0.76,0.27
-40,"('batch', 0.5, 'crowdtruth', 'majority_vote')",0.78,0.77,0.74,0.26
-24,"('pair', 0.5, 'crowdtruth', 'majority_vote')",0.76,0.74,0.72,0.26
-47,"('batch', 1.5, 'contradictions', 'top_vote')",0.75,0.7,0.71,0.29
-55,"('total', 0.5, 'contradictions', 'top_vote')",0.75,0.7,0.74,0.37
-59,"('total', 1, 'contradictions', 'top_vote')",0.75,0.7,0.74,0.33
-63,"('total', 1.5, 'contradictions', 'top_vote')",0.75,0.7,0.74,0.32
-43,"('batch', 1, 'contradictions', 'top_vote')",0.75,0.66,0.71,0.3
-39,"('batch', 0.5, 'contradictions', 'top_vote')",0.75,0.66,0.71,0.33
-27,"('pair', 1, 'contradictions', 'top_vote')",0.75,0.7,0.71,0.31
-11,ct_vote_1,0.75,0.7,0.71,0.27
-61,"('total', 1, 'crowdtruth', 'top_vote')",0.73,0.66,0.72,0.26
-65,"('total', 1.5, 'crowdtruth', 'top_vote')",0.73,0.66,0.69,0.27
-67,"('total', 2, 'contradictions', 'top_vote')",0.73,0.66,0.71,0.3
-69,"('total', 2, 'crowdtruth', 'top_vote')",0.73,0.66,0.69,0.27
-31,"('pair', 1.5, 'contradictions', 'top_vote')",0.73,0.66,0.69,0.3
-71,"(None, None, 'exclude_contradictory_annotations', 'top_vote')",0.73,0.66,0.69,0.35
-53,"('batch', 2, 'crowdtruth', 'top_vote')",0.73,0.66,0.69,0.26
-45,"('batch', 1, 'crowdtruth', 'top_vote')",0.73,0.66,0.69,0.26
-37,"('pair', 2, 'crowdtruth', 'top_vote')",0.73,0.66,0.69,0.27
-1,top_vote,0.73,0.66,0.69,0.27
-35,"('pair', 2, 'contradictions', 'top_vote')",0.73,0.66,0.69,0.29
-33,"('pair', 1.5, 'crowdtruth', 'top_vote')",0.73,0.66,0.69,0.26
-23,"('pair', 0.5, 'contradictions', 'top_vote')",0.71,0.62,0.67,0.35
-57,"('total', 0.5, 'crowdtruth', 'top_vote')",0.71,0.62,0.66,0.21
-29,"('pair', 1, 'crowdtruth', 'top_vote')",0.71,0.66,0.69,0.27
-49,"('batch', 1.5, 'crowdtruth', 'top_vote')",0.71,0.66,0.69,0.26
-25,"('pair', 0.5, 'crowdtruth', 'top_vote')",0.71,0.66,0.66,0.26
-41,"('batch', 0.5, 'crowdtruth', 'top_vote')",0.71,0.66,0.66,0.26
-51,"('batch', 2, 'contradictions', 'top_vote')",0.71,0.66,0.69,0.28
+5,ct_vote_0.65,0.91,0.95,0.89,0.25
+6,ct_vote_0.7,0.9,0.92,0.89,0.25
+8,ct_vote_0.8,0.9,0.91,0.88,0.25
+7,ct_vote_0.75,0.9,0.91,0.88,0.25
+22,"('pair', 0.5, 'contradictions', 'majority_vote')",0.9,0.89,0.88,0.32
+54,"('total', 0.5, 'contradictions', 'majority_vote')",0.9,0.89,0.88,0.34
+58,"('total', 1, 'contradictions', 'majority_vote')",0.9,0.89,0.88,0.3
+4,ct_vote_0.6,0.88,0.92,0.86,0.25
+62,"('total', 1.5, 'contradictions', 'majority_vote')",0.88,0.87,0.86,0.29
+38,"('batch', 0.5, 'contradictions', 'majority_vote')",0.87,0.82,0.85,0.3
+9,ct_vote_0.85,0.87,0.87,0.85,0.25
+10,ct_vote_0.9,0.87,0.87,0.85,0.25
+26,"('pair', 1, 'contradictions', 'majority_vote')",0.86,0.82,0.83,0.29
+46,"('batch', 1.5, 'contradictions', 'majority_vote')",0.86,0.85,0.83,0.27
+28,"('pair', 1, 'crowdtruth', 'majority_vote')",0.84,0.85,0.82,0.25
+34,"('pair', 2, 'contradictions', 'majority_vote')",0.84,0.82,0.82,0.27
+60,"('total', 1, 'crowdtruth', 'majority_vote')",0.84,0.85,0.82,0.24
+30,"('pair', 1.5, 'contradictions', 'majority_vote')",0.84,0.82,0.82,0.28
+3,ct_vote_0.55,0.84,0.85,0.82,0.25
+2,ct_vote_0.5,0.84,0.85,0.82,0.25
+42,"('batch', 1, 'contradictions', 'majority_vote')",0.84,0.82,0.81,0.28
+56,"('total', 0.5, 'crowdtruth', 'majority_vote')",0.83,0.87,0.8,0.18
+52,"('batch', 2, 'crowdtruth', 'majority_vote')",0.83,0.82,0.8,0.25
+50,"('batch', 2, 'contradictions', 'majority_vote')",0.83,0.82,0.8,0.27
+48,"('batch', 1.5, 'crowdtruth', 'majority_vote')",0.83,0.82,0.8,0.25
+32,"('pair', 1.5, 'crowdtruth', 'majority_vote')",0.83,0.82,0.8,0.25
+64,"('total', 1.5, 'crowdtruth', 'majority_vote')",0.83,0.82,0.8,0.25
+44,"('batch', 1, 'crowdtruth', 'majority_vote')",0.83,0.82,0.8,0.24
+68,"('total', 2, 'crowdtruth', 'majority_vote')",0.83,0.82,0.8,0.25
+70,"(None, None, 'exclude_contradictory_annotations', 'majority_vote')",0.83,0.82,0.8,0.36
+0,majority_vote,0.83,0.82,0.8,0.25
+36,"('pair', 2, 'crowdtruth', 'majority_vote')",0.83,0.82,0.8,0.25
+66,"('total', 2, 'contradictions', 'majority_vote')",0.83,0.82,0.8,0.28
+11,ct_vote_1,0.83,0.79,0.8,0.25
+19,top_vote_ct_0.85,0.78,0.7,0.75,0.25
+55,"('total', 0.5, 'contradictions', 'top_vote')",0.78,0.7,0.75,0.34
+17,top_vote_ct_0.75,0.78,0.7,0.75,0.25
+16,top_vote_ct_0.7,0.78,0.7,0.75,0.25
+20,top_vote_ct_0.9,0.78,0.7,0.75,0.25
+21,top_vote_ct_1,0.78,0.7,0.75,0.25
+15,top_vote_ct_0.65,0.78,0.7,0.75,0.25
+14,top_vote_ct_0.6,0.78,0.7,0.75,0.25
+18,top_vote_ct_0.8,0.78,0.7,0.75,0.25
+13,top_vote_ct_0.55,0.78,0.7,0.75,0.25
+12,top_vote_ct_0.5,0.78,0.7,0.75,0.25
+63,"('total', 1.5, 'contradictions', 'top_vote')",0.77,0.7,0.73,0.29
+59,"('total', 1, 'contradictions', 'top_vote')",0.77,0.7,0.73,0.3
+67,"('total', 2, 'contradictions', 'top_vote')",0.77,0.7,0.73,0.28
+43,"('batch', 1, 'contradictions', 'top_vote')",0.77,0.7,0.73,0.28
+39,"('batch', 0.5, 'contradictions', 'top_vote')",0.75,0.67,0.71,0.3
+23,"('pair', 0.5, 'contradictions', 'top_vote')",0.75,0.65,0.7,0.32
+61,"('total', 1, 'crowdtruth', 'top_vote')",0.74,0.67,0.7,0.24
+65,"('total', 1.5, 'crowdtruth', 'top_vote')",0.74,0.67,0.7,0.25
+57,"('total', 0.5, 'crowdtruth', 'top_vote')",0.74,0.67,0.7,0.18
+69,"('total', 2, 'crowdtruth', 'top_vote')",0.74,0.67,0.7,0.25
+31,"('pair', 1.5, 'contradictions', 'top_vote')",0.74,0.67,0.7,0.28
+53,"('batch', 2, 'crowdtruth', 'top_vote')",0.74,0.67,0.7,0.25
+33,"('pair', 1.5, 'crowdtruth', 'top_vote')",0.74,0.67,0.7,0.25
+51,"('batch', 2, 'contradictions', 'top_vote')",0.74,0.67,0.7,0.27
+49,"('batch', 1.5, 'crowdtruth', 'top_vote')",0.74,0.67,0.7,0.25
+47,"('batch', 1.5, 'contradictions', 'top_vote')",0.74,0.67,0.7,0.27
+27,"('pair', 1, 'contradictions', 'top_vote')",0.74,0.67,0.7,0.29
+37,"('pair', 2, 'crowdtruth', 'top_vote')",0.74,0.67,0.7,0.25
+1,top_vote,0.74,0.67,0.7,0.25
+35,"('pair', 2, 'contradictions', 'top_vote')",0.74,0.67,0.7,0.27
+29,"('pair', 1, 'crowdtruth', 'top_vote')",0.74,0.67,0.7,0.25
+71,"(None, None, 'exclude_contradictory_annotations', 'top_vote')",0.74,0.67,0.7,0.36
+40,"('batch', 0.5, 'crowdtruth', 'majority_vote')",0.73,0.75,0.7,0.24
+45,"('batch', 1, 'crowdtruth', 'top_vote')",0.73,0.65,0.68,0.24
+24,"('pair', 0.5, 'crowdtruth', 'majority_vote')",0.72,0.72,0.69,0.24
+25,"('pair', 0.5, 'crowdtruth', 'top_vote')",0.68,0.57,0.62,0.24
+41,"('batch', 0.5, 'crowdtruth', 'top_vote')",0.68,0.57,0.62,0.24

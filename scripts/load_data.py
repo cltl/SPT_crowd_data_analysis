@@ -3,6 +3,7 @@ import csv
 import uuid
 import os
 from utils_analysis import sort_by_key
+import pandas as pd
 
 import json
 from io import StringIO
@@ -266,17 +267,14 @@ def load_gold_data_batch(exp_path):
         dict_list_out = list(csv.DictReader(infile, delimiter = '\t'))
     return dict_list_out
 
-def load_gold_data(run, group, n_q, batch):
-    all_dict_list_out = []
-    dir_output = '../gold_labels/gold_files'
-    name = f'run{run}-group_{group}-batch{batch}'
-    all_files = f'{dir_output}/{name}.csv'
-    for f in glob.glob(all_files):
-        # check if files already have unique ids
-        exp_path = f[len(dir_output):]
-        dict_list_out_batch =  load_gold_data_batch(exp_path)
-        all_dict_list_out.extend(dict_list_out_batch)
-    return all_dict_list_out
+def load_gold_data(run, group):
+
+    name = name = f'run{run}-{group}.csv'.replace('*', '-all-')
+    gold_path = f'../gold_labels/gold_files/{name}'
+    df = pd.read_csv(gold_path)
+    dict_list = df.to_dict('records')
+
+    return dict_list
 
 
 def load_expert_data_batch(exp_path):

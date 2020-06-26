@@ -17,6 +17,9 @@ def get_evaluation_instances(crowd, gold):
 
     evaluation_instances_crowd = []
     for t, gold_data in triples_gold.items():
+        #print(repr(t))
+        #t = t.strip()
+        #print(print(t), triples_crowd[t])
         evaluation_instances_crowd.extend(triples_crowd[t])
     print(len(triples_gold), len(triples_crowd), len(evaluation_instances_crowd))
     return evaluation_instances_crowd
@@ -29,6 +32,7 @@ def evaluate(gold, crowd, vote):
     labels_gold = []
     labels_crowd = []
     for t, gold_data in gold_by_triple.items():
+        #print(t, len(gold_data))
         crowd_data = crowd_by_triple[t]
         if len(crowd_data) == 1:
             gold_answer = str(gold_data[0]['answer']).lower().strip()
