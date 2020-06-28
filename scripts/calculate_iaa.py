@@ -72,7 +72,7 @@ def get_collapsed_relations(dict_list, mapping = 'levels', answer_name='answer')
             for level, dicts in dicts_by_level.items():
                 answers = [d[answer_name] for d in dicts]
                 answers = [str(a).lower() for a in answers]
-    
+
                 if 'true' in answers:
                     answer = True
                 else:
@@ -201,6 +201,8 @@ def get_kappa_pairs(matrix):
         labels_j = pair_label_dict[wj]
         if len(labels_i) > 0:
             kappa = cohen_kappa_score(labels_i, labels_j)
+            if np.isnan(kappa):
+                kappa = 0.0
             pair_kappa_dict[(wi, wj)] = kappa
 
     return pair_kappa_dict

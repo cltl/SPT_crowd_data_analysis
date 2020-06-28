@@ -1,73 +1,63 @@
-,config,relations-f1,levels-f1,negative_relations-f1,alpha
-38,"('batch', 0.5, 'contradictions', 'majority_vote')",0.83,0.71,0.8,0.1
-42,"('batch', 1, 'contradictions', 'majority_vote')",0.81,0.69,0.77,0.1
-26,"('pair', 1, 'contradictions', 'majority_vote')",0.8,0.69,0.77,0.12
-62,"('total', 1.5, 'contradictions', 'majority_vote')",0.8,0.69,0.77,0.12
-66,"('total', 2, 'contradictions', 'majority_vote')",0.79,0.67,0.75,0.12
-58,"('total', 1, 'contradictions', 'majority_vote')",0.79,0.67,0.75,0.13
-54,"('total', 0.5, 'contradictions', 'majority_vote')",0.79,0.67,0.75,0.14
-45,"('batch', 1, 'crowdtruth', 'top_vote')",0.79,0.69,0.75,0.13
-61,"('total', 1, 'crowdtruth', 'top_vote')",0.79,0.69,0.76,0.11
-16,top_vote_ct_0.7,0.79,0.65,0.75,0.12
-27,"('pair', 1, 'contradictions', 'top_vote')",0.79,0.65,0.75,0.12
-21,top_vote_ct_1,0.79,0.65,0.75,0.12
-19,top_vote_ct_0.85,0.79,0.65,0.75,0.12
-18,top_vote_ct_0.8,0.79,0.65,0.75,0.12
-17,top_vote_ct_0.75,0.79,0.65,0.75,0.12
-20,top_vote_ct_0.9,0.79,0.65,0.75,0.12
-15,top_vote_ct_0.65,0.79,0.65,0.75,0.12
-14,top_vote_ct_0.6,0.79,0.65,0.75,0.12
-13,top_vote_ct_0.55,0.79,0.65,0.75,0.12
-12,top_vote_ct_0.5,0.79,0.65,0.75,0.12
-59,"('total', 1, 'contradictions', 'top_vote')",0.78,0.67,0.76,0.13
-63,"('total', 1.5, 'contradictions', 'top_vote')",0.78,0.67,0.76,0.12
-55,"('total', 0.5, 'contradictions', 'top_vote')",0.78,0.67,0.76,0.14
-46,"('batch', 1.5, 'contradictions', 'majority_vote')",0.78,0.67,0.74,0.12
-67,"('total', 2, 'contradictions', 'top_vote')",0.78,0.67,0.76,0.12
-29,"('pair', 1, 'crowdtruth', 'top_vote')",0.78,0.67,0.75,0.13
-60,"('total', 1, 'crowdtruth', 'majority_vote')",0.78,0.67,0.74,0.11
-31,"('pair', 1.5, 'contradictions', 'top_vote')",0.78,0.65,0.74,0.11
-35,"('pair', 2, 'contradictions', 'top_vote')",0.78,0.65,0.74,0.12
-3,ct_vote_0.55,0.78,0.66,0.73,0.12
-1,top_vote,0.78,0.67,0.75,0.12
-37,"('pair', 2, 'crowdtruth', 'top_vote')",0.78,0.67,0.75,0.12
-69,"('total', 2, 'crowdtruth', 'top_vote')",0.78,0.67,0.75,0.12
-71,"(None, None, 'exclude_contradictory_annotations', 'top_vote')",0.78,0.67,0.75,0.25
-33,"('pair', 1.5, 'crowdtruth', 'top_vote')",0.78,0.67,0.75,0.11
-49,"('batch', 1.5, 'crowdtruth', 'top_vote')",0.78,0.67,0.75,0.11
-53,"('batch', 2, 'crowdtruth', 'top_vote')",0.78,0.67,0.75,0.12
-65,"('total', 1.5, 'crowdtruth', 'top_vote')",0.78,0.67,0.75,0.12
-48,"('batch', 1.5, 'crowdtruth', 'majority_vote')",0.77,0.67,0.73,0.11
-52,"('batch', 2, 'crowdtruth', 'majority_vote')",0.77,0.67,0.73,0.12
-36,"('pair', 2, 'crowdtruth', 'majority_vote')",0.77,0.67,0.73,0.12
-2,ct_vote_0.5,0.77,0.65,0.73,0.12
-28,"('pair', 1, 'crowdtruth', 'majority_vote')",0.77,0.65,0.73,0.13
-32,"('pair', 1.5, 'crowdtruth', 'majority_vote')",0.77,0.67,0.73,0.11
-30,"('pair', 1.5, 'contradictions', 'majority_vote')",0.77,0.65,0.73,0.11
-51,"('batch', 2, 'contradictions', 'top_vote')",0.77,0.65,0.73,0.12
-23,"('pair', 0.5, 'contradictions', 'top_vote')",0.77,0.62,0.73,0.12
-47,"('batch', 1.5, 'contradictions', 'top_vote')",0.77,0.65,0.73,0.12
-50,"('batch', 2, 'contradictions', 'majority_vote')",0.77,0.65,0.72,0.12
-68,"('total', 2, 'crowdtruth', 'majority_vote')",0.76,0.65,0.72,0.12
-0,majority_vote,0.76,0.65,0.72,0.12
-64,"('total', 1.5, 'crowdtruth', 'majority_vote')",0.76,0.65,0.72,0.12
-34,"('pair', 2, 'contradictions', 'majority_vote')",0.76,0.65,0.72,0.12
-70,"(None, None, 'exclude_contradictory_annotations', 'majority_vote')",0.76,0.65,0.72,0.25
-39,"('batch', 0.5, 'contradictions', 'top_vote')",0.75,0.6,0.73,0.1
-11,ct_vote_1,0.75,0.6,0.71,0.12
-57,"('total', 0.5, 'crowdtruth', 'top_vote')",0.75,0.62,0.71,0.14
-5,ct_vote_0.65,0.74,0.6,0.7,0.12
-44,"('batch', 1, 'crowdtruth', 'majority_vote')",0.74,0.62,0.7,0.13
-22,"('pair', 0.5, 'contradictions', 'majority_vote')",0.74,0.62,0.71,0.12
-56,"('total', 0.5, 'crowdtruth', 'majority_vote')",0.73,0.62,0.69,0.14
-7,ct_vote_0.75,0.73,0.58,0.69,0.12
-43,"('batch', 1, 'contradictions', 'top_vote')",0.73,0.58,0.71,0.1
-9,ct_vote_0.85,0.73,0.57,0.69,0.12
-8,ct_vote_0.8,0.73,0.57,0.69,0.12
-10,ct_vote_0.9,0.73,0.57,0.69,0.12
-4,ct_vote_0.6,0.73,0.58,0.69,0.12
-6,ct_vote_0.7,0.72,0.57,0.68,0.12
-41,"('batch', 0.5, 'crowdtruth', 'top_vote')",0.7,0.58,0.67,0.16
-25,"('pair', 0.5, 'crowdtruth', 'top_vote')",0.68,0.58,0.64,0.14
-40,"('batch', 0.5, 'crowdtruth', 'majority_vote')",0.66,0.6,0.63,0.16
-24,"('pair', 0.5, 'crowdtruth', 'majority_vote')",0.64,0.58,0.61,0.14
+,filtering,aggregation,relations-f1,levels-f1,negative_relations-f1,alpha,coverage
+28,batch-contradictions-0.5,majority_vote,0.81,0.76,0.83,0.13,1.0
+32,batch-contradictions-1,majority_vote,0.8,0.74,0.8,0.13,1.0
+36,batch-contradictions-1.5,majority_vote,0.79,0.72,0.78,0.14,1.0
+52,total-contradictions-1.5,majority_vote,0.78,0.74,0.79,0.14,1.0
+48,total-contradictions-1,majority_vote,0.77,0.72,0.78,0.15,1.0
+56,total-contradictions-2,majority_vote,0.77,0.72,0.78,0.14,1.0
+16,pair-contradictions-1,majority_vote,0.77,0.74,0.77,0.14,1.0
+44,total-contradictions-0.5,majority_vote,0.76,0.72,0.77,0.15,1.0
+40,batch-contradictions-2,majority_vote,0.76,0.7,0.75,0.14,1.0
+2,none,uqs-0.5,0.76,0.74,0.77,0.14,1.0
+20,pair-contradictions-1.5,majority_vote,0.75,0.72,0.75,0.13,1.0
+3,none,uqs-0.55,0.75,0.76,0.76,0.14,1.0
+26,pair-ct_wqs-2,majority_vote,0.75,0.72,0.74,0.14,1.0
+24,pair-contradictions-2,majority_vote,0.75,0.72,0.74,0.13,1.0
+42,batch-ct_wqs-2,majority_vote,0.75,0.72,0.74,0.14,1.0
+38,batch-ct_wqs-1.5,majority_vote,0.75,0.72,0.74,0.14,1.0
+34,batch-ct_wqs-1,majority_vote,0.75,0.72,0.74,0.14,1.0
+60,exclude_contradictory_annotations,majority_vote,0.75,0.72,0.74,0.29,1.0
+30,batch-ct_wqs-0.5,majority_vote,0.75,0.72,0.74,0.14,1.0
+46,total-ct_wqs-0.5,majority_vote,0.75,0.72,0.74,0.14,1.0
+58,total-ct_wqs-2,majority_vote,0.75,0.72,0.74,0.14,1.0
+54,total-ct_wqs-1.5,majority_vote,0.75,0.72,0.74,0.14,1.0
+0,none,majority_vote,0.75,0.72,0.74,0.14,1.0
+14,pair-ct_wqs-0.5,majority_vote,0.75,0.72,0.74,0.14,1.0
+50,total-ct_wqs-1,majority_vote,0.75,0.72,0.74,0.14,1.0
+22,pair-ct_wqs-1.5,majority_vote,0.75,0.72,0.74,0.14,1.0
+18,pair-ct_wqs-1,majority_vote,0.75,0.72,0.74,0.14,1.0
+53,total-contradictions-1.5,top_vote,0.74,0.65,0.74,0.14,1.0
+49,total-contradictions-1,top_vote,0.74,0.65,0.74,0.15,1.0
+17,pair-contradictions-1,top_vote,0.73,0.63,0.73,0.14,1.0
+45,total-contradictions-0.5,top_vote,0.73,0.65,0.74,0.15,1.0
+57,total-contradictions-2,top_vote,0.73,0.65,0.74,0.14,1.0
+41,batch-contradictions-2,top_vote,0.73,0.65,0.72,0.14,1.0
+37,batch-contradictions-1.5,top_vote,0.73,0.65,0.72,0.14,1.0
+21,pair-contradictions-1.5,top_vote,0.72,0.63,0.72,0.13,1.0
+25,pair-contradictions-2,top_vote,0.72,0.63,0.72,0.13,1.0
+47,total-ct_wqs-0.5,top_vote,0.72,0.65,0.73,0.14,1.0
+55,total-ct_wqs-1.5,top_vote,0.72,0.65,0.73,0.14,1.0
+43,batch-ct_wqs-2,top_vote,0.72,0.65,0.73,0.14,1.0
+51,total-ct_wqs-1,top_vote,0.72,0.65,0.73,0.14,1.0
+59,total-ct_wqs-2,top_vote,0.72,0.65,0.73,0.14,1.0
+31,batch-ct_wqs-0.5,top_vote,0.72,0.65,0.73,0.14,1.0
+39,batch-ct_wqs-1.5,top_vote,0.72,0.65,0.73,0.14,1.0
+23,pair-ct_wqs-1.5,top_vote,0.72,0.65,0.73,0.14,1.0
+35,batch-ct_wqs-1,top_vote,0.72,0.65,0.73,0.14,1.0
+15,pair-ct_wqs-0.5,top_vote,0.72,0.65,0.73,0.14,1.0
+19,pair-ct_wqs-1,top_vote,0.72,0.65,0.73,0.14,1.0
+61,exclude_contradictory_annotations,top_vote,0.72,0.65,0.73,0.29,1.0
+27,pair-ct_wqs-2,top_vote,0.72,0.65,0.73,0.14,1.0
+1,none,top_vote,0.72,0.65,0.73,0.14,1.0
+4,none,uqs-0.6,0.72,0.69,0.74,0.14,1.0
+13,pair-contradictions-0.5,top_vote,0.71,0.61,0.71,0.14,1.0
+12,pair-contradictions-0.5,majority_vote,0.71,0.67,0.71,0.14,1.0
+29,batch-contradictions-0.5,top_vote,0.71,0.63,0.74,0.13,1.0
+33,batch-contradictions-1,top_vote,0.71,0.63,0.73,0.13,1.0
+5,none,uqs-0.65,0.7,0.65,0.71,0.14,1.0
+6,none,uqs-0.7,0.67,0.59,0.67,0.14,1.0
+7,none,uqs-0.75,0.66,0.57,0.65,0.14,1.0
+10,none,uqs-0.9,0.66,0.57,0.66,0.14,1.0
+9,none,uqs-0.85,0.66,0.57,0.66,0.14,1.0
+8,none,uqs-0.8,0.66,0.57,0.66,0.14,1.0
+11,none,uqs-1,0.65,0.51,0.62,0.14,1.0

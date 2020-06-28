@@ -9,12 +9,20 @@ def filter_with_stdv(workers, measure = 'contradiction_poss_contradiction_ratio'
     cont_rate = [float(d[measure]) for d in workers]
     av_cont = sum(cont_rate)/len(cont_rate)
     std_cont = stdev(cont_rate)
-    thresh = (n_stds * std_cont) + av_cont
+    if measure == 'contradiction_poss_contradiction_ratio':
+        thresh = (n_stds * std_cont) + av_cont
+    elif measure == 'wqs':
+        thresh = (n_stds * std_cont) - av_cont
     workers_to_remove = []
     for d in workers:
-        cont_rate = float(d[measure])
-        if cont_rate > thresh:
-            workers_to_remove.append(d['workerid'])
+        score = float(d[measure])
+        if measure == 'contradiction_poss_contradiction_ratio':
+            if score > thresh:
+                workers_to_remove.append(d['workerid'])
+        elif measure == 'wqs':
+            if score < thresh:
+                workers_to_remove.append(d['workerid'])
+
     return workers_to_remove
 
 
@@ -109,7 +117,7 @@ def clean_workers(data_dict_list, run,  group,  batch, metric, unit, n_stds):
                                             as_dict = True)
         data_dict_list_clean= remove_contradicting_workers(data_dict_list,
                                 dict_list_workers, unit,  n_stds)
-    elif metric == 'crowdtruth':
+    elif metric == 'ct_wqs':
         data_dict_list_clean = remove_low_quality_workers_ct(data_dict_list, unit,  n_stds)
 
     elif metric == 'exclude_contradictory_annotations':
