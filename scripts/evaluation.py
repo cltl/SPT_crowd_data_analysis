@@ -33,10 +33,12 @@ def evaluate(gold, crowd, vote):
     total = []
     labels_gold = []
     labels_crowd = []
+    cov = 0
     for t, gold_data in gold_by_triple.items():
         #print(t, len(gold_data))
         crowd_data = crowd_by_triple[t]
         if len(crowd_data) == 1:
+            cov +=1
             gold_answer = str(gold_data[0]['answer']).lower().strip()
             crowd_answer = str(crowd_data[0][vote]).lower().strip()
             #print(t, gold_answer, crowd_answer)
@@ -55,6 +57,7 @@ def evaluate(gold, crowd, vote):
     results_dict['f1'] = f1
     results_dict['p'] = p
     results_dict['r'] = r
+    results_dict['coverage'] = cov/len(gold)
     return results_dict
 
 
@@ -79,7 +82,7 @@ def evaluate_all_versions(gold, crowd_eval_agg, vote):
     return results_dict
 
 
-def evaluate_configs(gold, crowd):
+def evaluate_configs(gold, crowd, limit_parameters = []):
     overview_dicts = []
 
     gold_labels = [str(d['answer']).lower() for d in gold]
@@ -98,20 +101,24 @@ def evaluate_configs(gold, crowd):
     votes = ['majority_vote', 'top_vote', 'ct_vote']
     ct_thresholds = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 1]
     for vote in votes:
-        if vote in ['ct_vote', 'top_vote_ct']:
+        if vote in ['ct_vote']:
             for thresh in ct_thresholds:
                 vote_thresh = f'{vote}_{thresh}'
                 results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote_thresh)
                 #print(config)
-                results_dict['filtering'] = 'none'
-                results_dict['aggregation'] = f'uqs-{thresh}'
+                results_dict['filtering'] = '-'
+                results_dict['aggregation'] = f'uas-{thresh}'
                 results_dict['alpha'] = iaa['Krippendorff']
+                results_dict['filtering_unit'] = '-'
+                results_dict['n_stdv'] = '-'
                 results_dict['coverage'] = len(crowd_eval_agg)/len(gold)
                 overview_dicts.append(results_dict)
         else:
             results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote)
-            results_dict['filtering'] = 'none'
+            results_dict['filtering'] = '-'
             results_dict['aggregation'] = vote
+            results_dict['filtering_unit'] ='-'
+            results_dict['n_stdv'] = '-'
             results_dict['alpha'] = iaa['Krippendorff']
             results_dict['coverage'] = len(crowd_eval_agg)/len(gold)
             overview_dicts.append(results_dict)
@@ -139,8 +146,10 @@ def evaluate_configs(gold, crowd):
                 if len(crowd_eval_agg) > 0:
                     for vote in votes:
                         results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote)
-                        results_dict['filtering'] = f'{unit}-{metric}-{n_stdv}'
+                        results_dict['filtering'] = metric
                         results_dict['aggregation'] = vote
+                        results_dict['filtering_unit'] = unit
+                        results_dict['n_stdv'] = n_stdv
                         results_dict['alpha'] = iaa['Krippendorff']
                         results_dict['coverage'] = len(crowd_eval_agg)/len(gold)
                         overview_dicts.append(results_dict)
@@ -149,8 +158,8 @@ def evaluate_configs(gold, crowd):
                     print('not enough remaining data: ', unit, n_stdv, metric, vote)
 
     print('clean all contradictory annotations')
-    unit = None
-    n_stdv = None
+    unit = '-'
+    n_stdv = '-'
     metric = 'exclude_contradictory_annotations'
     votes = ['majority_vote', 'top_vote']
     run = '*'
@@ -159,10 +168,13 @@ def evaluate_configs(gold, crowd):
     batch = '*'
     crowd_eval_clean = clean_workers(crowd_eval, run, group, batch, metric, unit, n_stdv)
     iaa = get_agreement(crowd_eval_clean, collapse_relations = False, v=False, disable_kappa=True)
+    crowd_eval_agg = aggregate_binary_labels(crowd_eval_clean, ct_units)
     for vote in votes:
         results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote)
         results_dict['filtering'] = metric
         results_dict['aggregation'] = vote
+        results_dict['filtering_unit'] = unit
+        results_dict['n_stdv'] = n_stdv
         results_dict['alpha'] = iaa['Krippendorff']
         results_dict['coverage'] = len(crowd_eval_agg)/len(gold)
         overview_dicts.append(results_dict)
