@@ -5,7 +5,9 @@ from load_data import load_experiment_data
 from utils_analysis import sort_by_key
 from utils_analysis import load_analysis, load_ct
 from calculate_iaa import get_collapsed_relations
-from clean_annotations import remove_contradicting_workers
+from clean_annotations import remove_contradicting_workers, clean_workers
+
+
 from collections import defaultdict, Counter
 import pandas as pd
 import os
@@ -102,37 +104,63 @@ def aggregate_binary_labels(data_dict_list, ct_units):
     return aggregated_binary_labels
 
 
+def labels_to_csv(path, aggregated_labels, vote):
+    aggregated_df = pd.DataFrame(aggregated_labels)
+    print(aggregated_df.columns)
+    #print(type(aggregated_labels))
+    cols = ['relation', 'property', 'concept', vote]
+    df = aggregated_df[cols]
+    df.to_csv(path)
+
 
 
 def main():
-    run = '4'
-    batch = '100'
+    run = '*'
+    batch = '*'
     n_q = '*'
-    group = 'experiment2'
+    group = 'experiment*'
 
     # Total without filter
     data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
     print(len(data_dict_list))
     #data_filter = 'None'
-    data_dict_list_clean = data_dict_list
+    #data_dict_list_clean = data_dict_list
+
+    # clean data using best performance on test set
+    metric = 'contradictions'
+    unit = 'batch'
+    n_stdv = 0.5
+    data_dict_list_clean = clean_workers(data_dict_list, run, group, batch, metric, unit, n_stdv)
 
 
-    # collapse:
-    #data_dict_list_coll = get_collapsed_relations(data_dict_list_clean,
-                                                      # mapping = 'negative_relations')
-    print(len(data_dict_list_clean))
-
-
+    # aggregate:
     ct_units = load_ct('*', 'experiment*', '*', 'units', as_dict=True)
-    aggregated_labels = aggregate_binary_labels(data_dict_list_clean)
+    aggregated_labels = aggregate_binary_labels(data_dict_list_clean, ct_units)
+
+    # to csv
+    vote = 'majority_vote'
+
+    name = f'run{run}-group_{group}-batch{batch}-cleaned_{metric}_{unit}_{n_stdv}-vote_{vote}-relations'
+    name = name.replace('*', '-all-')
+    path = f'../aggregated_labels/{name}.csv'
+    labels_to_csv(path, aggregated_labels, vote)
+
+
     print(len(aggregated_labels))
     print(aggregated_labels[0])
 
     aggregated_labels_collapsed = get_collapsed_relations(aggregated_labels,
                                                           mapping='levels',
-                                                         answer_name = 'ct_vote_0.6')
+                                                         answer_name = vote)
 
-    print(aggregated_labels_collapsed[3])
+    name = f'run{run}-group_{group}-batch{batch}-cleaned_{metric}_{unit}_{n_stdv}-vote_{vote}-levels'
+    name = name.replace('*', '-all-')
+    path = f'../aggregated_labels/{name}.csv'
+    labels_to_csv(path, aggregated_labels_collapsed, vote)
+
+
+
+    #print(aggregated_labels_collapsed[3])
 
 
 
