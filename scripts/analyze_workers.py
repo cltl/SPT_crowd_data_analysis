@@ -4,17 +4,19 @@
 # add annotations to worker file
 
 
-from load_data import load_experiment_data
+from utils_data import load_experiment_data, load_config
 from utils_analysis import load_contradiction_pairs
 from utils_analysis import collect_contradictions
 from utils_analysis import sort_by_key
 from utils_analysis import get_annotation_ids
+from utils_analysis import get_average_time_worker, get_tests_and_checks
 
-from analyze_worker_outliers import get_worker_contradiction_outlier_analysis
+#from analyze_worker_outliers import get_worker_contradiction_outlier_analysis
 
 from collections import Counter
 import pandas as pd
 import os
+import argparse
 
 
 
@@ -26,39 +28,6 @@ def get_cont_type_dicts(contradictions, cont_type_cnt):
         cont_str = '-'.join(cont)
         contradiction_dict[cont_str] = cnt
     return contradiction_dict
-
-
-def get_average_time_worker(worker_dict_list):
-
-    data_by_batch = sort_by_key(worker_dict_list, ['filename'])
-    av_time_questions = []
-    for batch, dl in data_by_batch.items():
-        # time info is the same for the entire batch
-        time = float(dl[0]['time_taken_batch'])
-        av_time_question = time / len(dl)
-        av_time_questions.append(av_time_question)
-    av_time = sum(av_time_questions) / len(av_time_questions)
-    return av_time
-
-
-def get_tests_and_checks(worker_dict_list):
-    fails = []
-    for d in worker_dict_list:
-        quid = d['quid']
-        if quid.startswith('check') or quid.startswith('test'):
-            actual_answer = d['answer']
-            if quid in ['check1', 'check2', 'check3']:
-                correct_answer = 'true'
-            elif quid.startswith('test'):
-                correct_answer = d['relation'].split('_')[1]
-            elif quid == 'check4':
-                # if quid == check4 (I am answering questions at random)
-                correct_answer = 'false'
-            #check if correct
-            if correct_answer != actual_answer:
-                worker = d['workerid']
-                fails.append(d['description'])
-    return fails
 
 
 def get_worker_data(data_by_worker, contradictions):
@@ -105,92 +74,90 @@ def get_worker_data(data_by_worker, contradictions):
         worker_data_dicts.append(d)
     return worker_data_dicts
 
-def get_worker_analysis(data_dict_list, name):
 
 
-    data_by_worker = sort_by_key(data_dict_list, ['workerid'])
-    contradictions = load_contradiction_pairs()
-    worker_data_dicts = get_worker_data(data_by_worker, contradictions)
-
-    worker_df = pd.DataFrame(worker_data_dicts)
+def analysis_to_file(analysis_data_dicts, out_dir, name):
+    df = pd.DataFrame(analysis_data_dicts)
     # sort by contradiction to annotation ratio
-    worker_df.sort_values('contradiction_poss_contradiction_ratio', axis=0, ascending=False, inplace=True)
-    out_dir = '../analyses/workers/'
+    df.sort_values('contradiction_poss_contradiction_ratio', axis=0, ascending=False, inplace=True)
     os.makedirs(out_dir, exist_ok=True)
     filepath = f'{out_dir}{name}.csv'
-    worker_df.to_csv(filepath, index=False)
-    return worker_df, filepath
+    df.to_csv(filepath, index=False)
+    return df, filepath
+
+def get_worker_analysis_total(data_dict_list, contradictions):
+    data_by_worker = sort_by_key(data_dict_list, ['workerid'])
+    analysis_data_dicts = get_worker_data(data_by_worker, contradictions)
+    return analysis_data_dicts
 
 
 
-def get_worker_analysis_by_batch(data_dict_list, name):
+def get_worker_analysis_by_batch(data_dict_list, contradictions):
 
-    all_worker_data_dicts = []
+    analysis_data_dicts = []
     data_by_batch = sort_by_key(data_dict_list, ['filename','completionurl'])
-
-    contradictions = load_contradiction_pairs()
-
     for f_url, data in data_by_batch.items():
         data_by_worker = sort_by_key(data, ['workerid'])
         worker_data_dicts = get_worker_data(data_by_worker, contradictions)
         for d in worker_data_dicts:
             d['filename-url'] = f_url
-        all_worker_data_dicts.extend(worker_data_dicts)
+        analysis_data_dicts.extend(worker_data_dicts)
+    return analysis_data_dicts
 
 
-    worker_df = pd.DataFrame(all_worker_data_dicts)
-    # sort by contradiction to annotation ratio
-    worker_df.sort_values('contradiction_poss_contradiction_ratio', axis=0, ascending=False, inplace=True)
-    out_dir = '../analyses/workers_by_batch/'
-    os.makedirs(out_dir, exist_ok=True)
-    filepath = f'{out_dir}{name}.csv'
-    worker_df.to_csv(filepath, index=False)
-    return worker_df, filepath
 
-
-def get_worker_analysis_by_pair(data_dict_list, name):
-
-    all_worker_data_dicts = []
+def get_worker_analysis_by_pair(data_dict_list, contradictions):
+    analysis_data_dicts = []
     data_by_pair = sort_by_key(data_dict_list, ['property','concept'])
-    contradictions = load_contradiction_pairs()
-
     for pair, data in data_by_pair.items():
-
-
         data_by_worker = sort_by_key(data, ['workerid'])
         worker_data_dicts = get_worker_data(data_by_worker, contradictions)
         for d in worker_data_dicts:
             d['pair'] = pair
-        all_worker_data_dicts.extend(worker_data_dicts)
+        analysis_data_dicts.extend(worker_data_dicts)
+    return analysis_data_dicts
 
 
-    worker_df = pd.DataFrame(all_worker_data_dicts)
-    # sort by contradiction to annotation ratio
-    worker_df.sort_values('contradiction_poss_contradiction_ratio', axis=0, ascending=False, inplace=True)
-    out_dir = '../analyses/workers_by_pair/'
-    os.makedirs(out_dir, exist_ok=True)
-    filepath = f'{out_dir}{name}.csv'
-    worker_df.to_csv(filepath, index=False)
+def get_worker_analysis(data_dict_list, name, unit):
+
+    contradictions = load_contradiction_pairs()
+
+    if unit == 'pair':
+        analysis_data_dicts = get_worker_analysis_by_pair(data_dict_list, contradictions)
+        out_dir = '../analyses/workers_by_pair/'
+    elif unit == 'total':
+        analysis_data_dicts = get_worker_analysis_total(data_dict_list, contradictions)
+        out_dir = '../analyses/workers/'
+    elif unit == 'batch':
+        analysis_data_dicts = get_worker_analysis_by_batch(data_dict_list, contradictions)
+        out_dir = '../analyses/workers_by_batch/'
+    worker_df, filepath = analysis_to_file(analysis_data_dicts, out_dir, name)
     return worker_df, filepath
 
 
+
 def main():
-    # analyze all data:
-    run = '*'
-    batch = '*'
-    n_q = '*'
-    group = 'experiment*'
+
+    config_dict = load_config()
+    run = config_dict['run']
+    batch = config_dict['batch']
+    n_q = config_dict['number_questions']
+    group = config_dict['group']
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--units", default=['total', 'pair', 'batch'], type=list, nargs="+")
+    args = parser.parse_args()
+    units  = args.units
 
     data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
     name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
-    df, filepath = get_worker_analysis(data_dict_list, name)
-    print(f'analysis can be found at: {filepath}')
-    df, filepath = get_worker_analysis_by_batch(data_dict_list, name)
-    print(f'analysis can be found at: {filepath}')
-    df, filepath = get_worker_analysis_by_pair(data_dict_list, name)
-    print(f'analysis can be found at: {filepath}')
-    analysis_type = 'workers'
-    get_worker_contradiction_outlier_analysis(analysis_type, run, group, batch)
+
+    for unit in units:
+        print(f'analyzing workers on the level of: {unit}')
+        df, filepath = get_worker_analysis(data_dict_list, name, unit)
+        print(f'analysis can be found at: {filepath}')
+
+
 
 if __name__ == '__main__':
     main()

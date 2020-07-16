@@ -1,7 +1,5 @@
-
-
 # aggretation dev
-from load_data import load_experiment_data
+from utils_data import load_experiment_data, load_config
 from utils_analysis import sort_by_key
 from utils_analysis import load_analysis, load_ct
 from calculate_iaa import get_collapsed_relations
@@ -11,10 +9,10 @@ from clean_annotations import remove_contradicting_workers, clean_workers
 from collections import defaultdict, Counter
 import pandas as pd
 import os
+import argparse
 
 
 def split_score(ua_score):
-
     scores = ua_score.replace('Counter({', '').replace('})', '').split(', ')
     score_dict = dict()
     for s in scores:
@@ -37,131 +35,171 @@ def get_ua_score(quid, units_by_quid):
     return score_dict['true']
 
 
+def get_propertion_true(data):
+    answers = [d['answer'] for d in data]
+    true_cnt = answers.count('true')
+    prop = true_cnt/len(answers)
+    return prop
 
-def aggregate_binary_labels(data_dict_list, ct_units):
+
+
+def get_agg_dict(data, pair, rel):
+    triple_dict = dict()
+    triple_dict['relation'] = rel.strip()
+    triple_dict['workerid'] = 'aggregated'
+    triple_dict['quid'] = data[0]['quid']
+    triple_dict['property'] = pair.split('-')[0]
+    triple_dict['concept'] = pair.split('-')[1]
+    triple_dict['completionurl'] = 'aggregated'
+    return triple_dict
+
+
+def get_props(data_by_rel):
+    rel_prop_dict = dict()
+    for rel, data in data_by_rel.items():
+        prop = get_propertion_true(data)
+        rel_prop_dict[rel] = prop
+    return rel_prop_dict
+
+def get_cts(data_by_rel, units_by_quid):
+    rel_ct_score_dict= dict()
+    for rel, data in data_by_rel.items():
+        quid = data[0]['quid']
+        ct_score = get_ua_score(quid, units_by_quid)
+        rel_ct_score_dict['ct_score'] = ct_score
+    return rel_ct_score_dict
+
+
+def get_majority_vote(rel_prop_dict):
+    rel_vote_dict = dict()
+    for rel, prop in rel_prop_dict.items():
+        if prop > 0.5:
+            rel_vote_dict[rel] = True
+        else:
+            rel_vote_dict[rel] = False
+    return rel_vote_dict
+
+def get_top_vote(rel_prop_dict):
+    rel_vote_dict = dict()
+
+    prop_rels = defaultdict(list)
+    for rel, prop in rel_prop_dict.items():
+        prop_rels[prop].append(rel)
+    top_prop = max(prop_rels.keys())
+    top_rels = prop_rels[top_prop]
+    for rel in rel_prop_dict.keys():
+        if rel in top_rels:
+            vote = True
+        else:
+            vote = False
+        rel_vote_dict[rel] = vote
+    return rel_vote_dict
+
+
+def get_ct_vote(rel_ct_score_dict, thresh):
+    rel_vote_dict = dict()
+    for rel, ct_score in rel_ct_score_dict.items():
+        if ct_score > thresh:
+            rel_vote_dict[rel] = True
+        else:
+            rel_vote_dict[rel] = False
+    return rel_vote_dict
+
+def aggregate_binary_labels(data_dict_list, ct_units, ct_thresholds):
+    aggregated_binary_labels = []
     data_by_pair = sort_by_key(data_dict_list, ['property', 'concept'])
     units_by_quid = sort_by_key(ct_units, ['unit'])
-    ct_thresholds = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 1]
-    aggregated_binary_labels = []
-    for pair, data_dicts in data_by_pair.items():
+    for pair, data_dicts_pair in data_by_pair.items():
         if not pair.startswith('_'):
-            data_by_rel = sort_by_key(data_dicts, ['relation'])
-            prop_rels = defaultdict(list)
-            ct_rels = defaultdict(dict)
-            triple_dicts = []
+            data_by_rel = sort_by_key(data_dicts_pair, ['relation'])
+            # collect scores/propertions:
+            rel_prop_dict = get_props(data_by_rel)
+            rel_ct_score_dict = get_cts(data_by_rel, units_by_quid)
+            rel_quid_dict = get_quid(data_by_rel)
+            # votes:
+            rel_majority_vote = get_majority_vote(rel_prop_dict)
+            rel_top_vote = get_top_vote(rel_prop_dict)
+            ct_thresh_votes = dict()
+            for thres in ct_thresholds:
+                ct_thresh_votes[thresh] = get_ct_vote(rel_ct_score_dict, thresh)
             for rel, data in data_by_rel.items():
-                answers = [d['answer'] for d in data]
-                true_cnt = answers.count('true')
-                prop = true_cnt/len(answers)
-                prop_rels[prop].append(rel)
-                majority_vote = False
-                if prop > 0.5:
-                    majority_vote = True
-                #print(rel, pair, majority_vote)
-                triple_dict = dict()
-                triple_dict['relation'] = rel.strip()
-                triple_dict['workerid'] = 'aggregated'
-                #triple_dict['level'] = rel_level_mapping[rel]
-                triple_dict['quid'] = data[0]['quid']
-                triple_dict['property'] = pair.split('-')[0]
-                triple_dict['concept'] = pair.split('-')[1]
-                triple_dict['majority_vote'] = majority_vote
-                triple_dict['completionurl'] = 'aggregated'
-                # Get crowd truth scores
-                triple = f'{rel}-{pair}'
-                quid = data[0]['quid']
-                for ct_thresh in ct_thresholds:
-                    ct_score = get_ua_score(quid, units_by_quid)
-                    if ct_score in ct_rels[ct_thresh].keys():
-                        ct_rels[ct_thresh][ct_score].append(rel)
-                    else:
-                        ct_rels[ct_thresh][ct_score] = [rel]
-                    if ct_score > ct_thresh:
-                        ct_vote = True
-                    else:
-                        ct_vote = False
-                    triple_dict[f'ct_vote_{ct_thresh}'] = ct_vote
-                triple_dicts.append(triple_dict)
-            # add top label
-            top_prop = max(prop_rels.keys())
-            for d in triple_dicts:
-                rel = d['relation']
-                if rel in prop_rels[top_prop]:
-                    d['top_vote'] = True
-                else:
-                    d['top_vote'] = False
-
-            for ct_thresh in ct_thresholds:
-                top_ct = max(ct_rels[ct_thresh].keys())
-                for d in triple_dicts:
-                    rel = d['relation']
-                    if rel in ct_rels[ct_thresh][top_ct]:
-                        d[f'top_vote_ct_{ct_thresh}'] = True
-                    else:
-                        d[f'top_vote_ct_{ct_thresh}'] = False
-
-            aggregated_binary_labels.extend(triple_dicts)
+                triple_dict = get_agg_dict(data, pair, rel)
+                triple_dict['majority_vote'] = rel_majority_vote[rel]
+                triple_dict['top_vote'] = rel_top_vote[rel]
+                if len(ct_thresh_votes) > 0:
+                    for thresh, ct_votes in ct_thresh_votes.items():
+                        triple_dict[f'ct_vote_{ct_thresh}'] = ct_vote
+                aggregated_binary_labels.append(triple_dict)
     return aggregated_binary_labels
-
 
 def labels_to_csv(path, aggregated_labels, vote):
     aggregated_df = pd.DataFrame(aggregated_labels)
-    print(aggregated_df.columns)
-    #print(type(aggregated_labels))
     cols = ['relation', 'property', 'concept', vote]
     df = aggregated_df[cols]
     df.to_csv(path)
 
 
-
 def main():
-    run = '*'
-    batch = '*'
-    n_q = '*'
-    group = 'experiment*'
+
+    config_dict = load_config()
+    run = config_dict['run']
+    batch = config_dict['batch']
+    n_q = config_dict['number_questions']
+    group = config_dict['group']
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--votes", default=['majority_vote'], type=list, nargs="+")
+
+    parser.add_argument("--ct_thresholds", default= [],\
+                                             type=list, nargs="+")
+
+    parser.add_argument("--metric_clean", default='contradictions',type=str )
+    parser.add_argument("--unit_clean", default='batch',type=str )
+    parser.add_argument("--n_stdv_clean", default=0.5 ,type=float )
+
+    # ct_thresholds = default= [0.5, 0.55, 0.6, 0.65, 0.7,\
+                                    #    0.75, 0.8, 0.85, 0.9, 1]
+    # aggregation parameters:
+    args = parser.parse_args()
+    votes = args.votes
+    ct_thresholds = args.ct_thresholds
+
+    # filtering parameter:
+    metric = args.metric_clean
+    unit = args.unit_clean
+    n_stdv = args.n_stdv_clean
 
     # Total without filter
     data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
     print(len(data_dict_list))
-    #data_filter = 'None'
-    #data_dict_list_clean = data_dict_list
 
-    # clean data using best performance on test set
-    metric = 'contradictions'
-    unit = 'batch'
-    n_stdv = 0.5
-    data_dict_list_clean = clean_workers(data_dict_list, run, group, batch, metric, unit, n_stdv)
 
+    if metric != 'raw':
+        data_dict_list_clean = clean_workers(data_dict_list, run, group, batch, metric, unit, n_stdv)
+    else:
+        data_dict_list_clean = data_dict_list
+    print(len(data_dict_list_clean))
 
     # aggregate:
-    ct_units = load_ct('*', 'experiment*', '*', 'units', as_dict=True)
-    aggregated_labels = aggregate_binary_labels(data_dict_list_clean, ct_units)
+    ct_units = load_ct(run, group, batch, 'units', as_dict=True)
+    aggregated_labels = aggregate_binary_labels(data_dict_list_clean, ct_units, ct_thresholds)
 
     # to csv
-    vote = 'majority_vote'
+    for vote in votes:
+        name = f'run{run}-group_{group}-batch{batch}-cleaned_{metric}_{unit}_{n_stdv}-vote_{vote}-relations'
+        name = name.replace('*', '-all-')
+        path = f'../aggregated_labels/{name}.csv'
+        labels_to_csv(path, aggregated_labels, vote)
+        print('Result written to:', path)
 
-    name = f'run{run}-group_{group}-batch{batch}-cleaned_{metric}_{unit}_{n_stdv}-vote_{vote}-relations'
-    name = name.replace('*', '-all-')
-    path = f'../aggregated_labels/{name}.csv'
-    labels_to_csv(path, aggregated_labels, vote)
-
-
-    print(len(aggregated_labels))
-    print(aggregated_labels[0])
-
-    aggregated_labels_collapsed = get_collapsed_relations(aggregated_labels,
-                                                          mapping='levels',
-                                                         answer_name = vote)
-
-    name = f'run{run}-group_{group}-batch{batch}-cleaned_{metric}_{unit}_{n_stdv}-vote_{vote}-levels'
-    name = name.replace('*', '-all-')
-    path = f'../aggregated_labels/{name}.csv'
-    labels_to_csv(path, aggregated_labels_collapsed, vote)
-
-
-
-    #print(aggregated_labels_collapsed[3])
-
+        aggregated_labels_collapsed = get_collapsed_relations(aggregated_labels,
+                                                              mapping='levels',
+                                                             answer_name = vote)
+        name = f'run{run}-group_{group}-batch{batch}-cleaned_{metric}_{unit}_{n_stdv}-vote_{vote}-levels'
+        name = name.replace('*', '-all-')
+        path = f'../aggregated_labels/{name}.csv'
+        print('Result written to:', path)
+        labels_to_csv(path, aggregated_labels_collapsed, vote)
 
 
 if __name__ == '__main__':

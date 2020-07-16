@@ -20,6 +20,39 @@ def sort_by_key(data_dict_list, keys):
     return sorted_dict
 
 
+def get_average_time_worker(worker_dict_list):
+
+    data_by_batch = sort_by_key(worker_dict_list, ['filename'])
+    av_time_questions = []
+    for batch, dl in data_by_batch.items():
+        # time info is the same for the entire batch
+        time = float(dl[0]['time_taken_batch'])
+        av_time_question = time / len(dl)
+        av_time_questions.append(av_time_question)
+    av_time = sum(av_time_questions) / len(av_time_questions)
+    return av_time
+
+
+def get_tests_and_checks(worker_dict_list):
+    fails = []
+    for d in worker_dict_list:
+        quid = d['quid']
+        if quid.startswith('check') or quid.startswith('test'):
+            actual_answer = d['answer']
+            if quid in ['check1', 'check2', 'check3']:
+                correct_answer = 'true'
+            elif quid.startswith('test'):
+                correct_answer = d['relation'].split('_')[1]
+            elif quid == 'check4':
+                # if quid == check4 (I am answering questions at random)
+                correct_answer = 'false'
+            #check if correct
+            if correct_answer != actual_answer:
+                worker = d['workerid']
+                fails.append(d['description'])
+    return fails
+
+
 def get_relation_cnt(pair_dicts):
     relation_cnt = Counter()
     for d in pair_dicts:

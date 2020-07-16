@@ -1,9 +1,11 @@
-from calculate_iaa import get_alpha
-from statistics import stdev
-from load_data import load_experiment_data
+from utils_data import load_experiment_data, load_config
 from utils_analysis import sort_by_key
 from utils_analysis import load_analysis, load_ct
 from utils_analysis import collect_contradictions, load_contradiction_pairs
+
+
+from statistics import stdev
+import argparse
 
 def filter_with_stdv(workers, measure = 'contradiction_poss_contradiction_ratio', n_stds=1):
     cont_rate = [float(d[measure]) for d in workers]
@@ -22,7 +24,6 @@ def filter_with_stdv(workers, measure = 'contradiction_poss_contradiction_ratio'
         elif measure == 'wqs':
             if score < thresh:
                 workers_to_remove.append(d['workerid'])
-
     return workers_to_remove
 
 
@@ -127,41 +128,40 @@ def clean_workers(data_dict_list, run,  group,  batch, metric, unit, n_stds):
 
 
 def main():
-    run = '*'
-    group = 'experiment*'
-    n_q = '*'
-    batch = '*'
 
-    #load_analysis(analysis_type, run, exp_name, batch)
+    config_dict = load_config()
 
-    #n_stds = 3
-    all_annotations = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-    print('IAA raw')
-    iaa = get_alpha(all_annotations)
-    iaa_levels = get_alpha(all_annotations, collapse_relations = 'levels')
-    print()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--metric", default='contradictions', type=str)
+    parser.add_argument("--units", default=['total', 'batch', 'pair'],\
+                        type=list, nargs='+')
+    parser.add_argument("--stds", default=[0.5, 1, 1.5, 2],\
+                        type=list, nargs='+')
+    args = parser.parse_args()
 
-    units = ['total', 'batch', 'pair']
-    #units = ['pair']
-    stds = [0.5, 1, 1.5, 2, 2.5, 3]
-    #stds = [1]
+    run = config_dict['run']
+    batch = config_dict['batch']
+    n_q = config_dict['number_questions']
+    group = config_dict['group']
+    metric = args.metric
+    units = args.units
+    stds = args.stds
 
+    data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+
+    print('Metric:', metric)
+    print('Units:', units)
+    print('Number of standard deviations away from mean for cut-off:', stds)
 
     for unit in units:
         for n_stds in stds:
-            clean_annotations = clean_worker_cont_rate(all_annotations,\
-                                    run,  group,  batch, unit, n_stds)
-
-            n_total = len(all_annotations)
-            n_clean = len(clean_annotations)
+            data_dict_list_clean = clean_workers(data_dict_list, run,  group,\
+                            batch, metric, unit, n_stds)
+            n_total = len(data_dict_list)
+            n_clean = len(data_dict_list_clean)
             percent_clean = n_clean / n_total
-            iaa_alpha = get_alpha(clean_annotations)
-            iaa_alpha_levels = get_alpha(clean_annotations, collapse_relations = 'levels')
             print(unit, n_stds)
             print(n_total, n_clean, percent_clean)
-            print(iaa_alpha, iaa_alpha_levels)
-            print()
-
 
 
 if __name__ == '__main__':

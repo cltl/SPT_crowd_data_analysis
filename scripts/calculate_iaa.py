@@ -1,8 +1,9 @@
 # check collapsed agreement
 
 
-from load_data import load_experiment_data
+from utils_data import load_experiment_data, load_config
 from utils_analysis import sort_by_key
+
 from nltk import agreement
 from sklearn.metrics import cohen_kappa_score
 import numpy as np
@@ -256,8 +257,7 @@ def get_agreement(dict_list_out, collapse_relations = False, v=True, disable_kap
 def get_full_report(dict_list_out, v=False):
 
     full_ag_dict = dict()
-    #versions = ['pos_neg', 'levels', 'similar_relations', 'negative_relations']
-    versions = ['negative_relations']
+    versions = ['negative_relations', 'levels']
     if v == True:
         print(f'--- Full IAA report --- ')
         print('Full set:')
@@ -273,18 +273,16 @@ def get_full_report(dict_list_out, v=False):
 
 
 def main():
-    run = "4"
-    group = 'experiment*'
-    batch = '*'
-    n_q = '*'
+
+    config_dict = load_config()
+    run = config_dict['run']
+    batch = config_dict['batch']
+    n_q = config_dict['number_questions']
+    group = config_dict['group']
+
 
     dict_list_out = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
-    print(len(dict_list_out))
     get_full_report(dict_list_out, v=True)
-
-    # collapse labels
-
-
 
 
 if __name__ == '__main__':

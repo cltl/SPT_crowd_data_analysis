@@ -1,5 +1,6 @@
 from clean_annotations import clean_workers
-from load_data import load_experiment_data, load_expert_data, load_gold_data
+from utils_data import load_experiment_data, load_expert_data, load_gold_data
+from utils_data import load_config
 from aggregation import aggregate_binary_labels
 from calculate_iaa import  get_collapsed_relations, get_agreement
 from utils_analysis import sort_by_key
@@ -184,12 +185,11 @@ def evaluate_configs(gold, crowd, limit_parameters = []):
 
 def main():
 
-
-    run = 4
-    group = 'expert_inspection1'
-    n_q = '*'
-    batch = '*'
-    gold = load_gold_data(run, group, n_q, batch)
+    config_dict = load_config()
+    run = config_dict['run']
+    batch = config_dict['batch']
+    n_q = config_dict['number_questions']
+    group = config_dict['group']
 
     # load crowd:
     run = '*'
@@ -197,6 +197,15 @@ def main():
     n_q = '*'
     batch = '*'
     crowd = load_experiment_data(run, group, n_q, batch)
+
+    # load gold
+    run = 4
+    group = 'expert_inspection1'
+    n_q = '*'
+    batch = '*'
+    gold = load_gold_data(run, group, n_q, batch)
+
+    
     overview_dicts = evaluate_configs(gold, crowd)
     df =  pd.DataFrame(overview_dicts)
     print(df.sort_values(by=['relations-f1'], ascending=False)[['config',
