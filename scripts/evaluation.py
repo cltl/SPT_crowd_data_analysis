@@ -1,26 +1,23 @@
-from clean_annotations import clean_workers
+
 from utils_data import load_experiment_data, load_expert_data, load_gold_data
 from utils_data import load_config
-from aggregation import aggregate_binary_labels
-from calculate_iaa import  get_collapsed_relations, get_agreement
 from utils_analysis import sort_by_key
 from utils_analysis import load_analysis, load_ct
-
+from clean_annotations import clean_workers
+from aggregation import aggregate_binary_labels
+from calculate_iaa import  get_collapsed_relations, get_agreement
 
 from sklearn.metrics import precision_recall_fscore_support as p_r_f1
 import pandas as pd
+import argparse
 
 
 
 def get_evaluation_instances(crowd, gold):
     triples_gold = sort_by_key(gold, ['relation', 'property', 'concept'])
     triples_crowd = sort_by_key(crowd, ['relation', 'property', 'concept'])
-
     evaluation_instances_crowd = []
     for t, gold_data in triples_gold.items():
-        #print(repr(t))
-        #t = t.strip()
-        #print(print(t), triples_crowd[t])
         evaluation_instances_crowd.extend(triples_crowd[t])
         if len(triples_crowd[t]) == 0:
             print(t, 'no data')
@@ -36,15 +33,11 @@ def evaluate(gold, crowd, vote):
     labels_crowd = []
     cov = 0
     for t, gold_data in gold_by_triple.items():
-        #print(t, len(gold_data))
         crowd_data = crowd_by_triple[t]
         if len(crowd_data) == 1:
             cov +=1
             gold_answer = str(gold_data[0]['answer']).lower().strip()
             crowd_answer = str(crowd_data[0][vote]).lower().strip()
-            #print(t, gold_answer, crowd_answer)
-            #if gold_answer != crowd_answer:
-            #    print(gold_answer, crowd_answer, t, vote)
             gold_answer = str(gold_answer).lower()
             crowd_answer = str(crowd_answer).lower()
             labels_gold.append(gold_answer)
@@ -65,8 +58,8 @@ def evaluate(gold, crowd, vote):
 def evaluate_all_versions(gold, crowd_eval_agg, vote):
     versions = ['relations', 'levels'] #, 'negative_relations']
     results_dict = dict()
-    for v in versions:
 
+    for v in versions:
         if v != 'relations':
             gold_coll = get_collapsed_relations(gold,
                                     mapping=v, answer_name = 'answer')
@@ -83,7 +76,7 @@ def evaluate_all_versions(gold, crowd_eval_agg, vote):
     return results_dict
 
 
-def evaluate_configs(gold, crowd, limit_parameters = []):
+def evaluate_configs(gold, crowd, ct_thresholds, stds):
     overview_dicts = []
 
     gold_labels = [str(d['answer']).lower() for d in gold]
@@ -94,19 +87,17 @@ def evaluate_configs(gold, crowd, limit_parameters = []):
 
     ct_units = load_ct('*', 'experiment*', '*', 'units', as_dict=True)
     crowd_eval = get_evaluation_instances(crowd, gold)
-    crowd_eval_agg = aggregate_binary_labels(crowd_eval, ct_units)
+    crowd_eval_agg = aggregate_binary_labels(crowd_eval, ct_units, ct_thresholds)
     iaa = get_agreement(crowd_eval, collapse_relations = False, v=False, disable_kappa=True)
 
     print('aggretation')
     print('no filtering - different aggretation methods')
-    votes = ['majority_vote', 'top_vote', 'ct_vote']
-    ct_thresholds = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 1]
+    votes = ['majority_vote', 'top_vote', 'uas']
     for vote in votes:
-        if vote in ['ct_vote']:
+        if vote in ['uas']:
             for thresh in ct_thresholds:
-                vote_thresh = f'{vote}_{thresh}'
+                vote_thresh = f'{vote}-{thresh}'
                 results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote_thresh)
-                #print(config)
                 results_dict['filtering'] = '-'
                 results_dict['aggregation'] = f'uas-{thresh}'
                 results_dict['alpha'] = iaa['Krippendorff']
@@ -126,7 +117,6 @@ def evaluate_configs(gold, crowd, limit_parameters = []):
 
     print('cleaning and aggregation')
     units = ['pair', 'batch', 'total']
-    stds = [ 0.5, 1, 1.5, 2]
     metrics = ['contradictions', 'ct_wqs']
     votes = ['majority_vote', 'top_vote']
     run = '*'
@@ -143,7 +133,8 @@ def evaluate_configs(gold, crowd, limit_parameters = []):
                 iaa = get_agreement(crowd_eval_clean,
                 collapse_relations = False, v=False,
                 disable_kappa=True)
-                crowd_eval_agg = aggregate_binary_labels(crowd_eval_clean, ct_units)
+                crowd_eval_agg = aggregate_binary_labels(crowd_eval_clean,\
+                                                        ct_units, ct_thresholds)
                 if len(crowd_eval_agg) > 0:
                     for vote in votes:
                         results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote)
@@ -169,7 +160,7 @@ def evaluate_configs(gold, crowd, limit_parameters = []):
     batch = '*'
     crowd_eval_clean = clean_workers(crowd_eval, run, group, batch, metric, unit, n_stdv)
     iaa = get_agreement(crowd_eval_clean, collapse_relations = False, v=False, disable_kappa=True)
-    crowd_eval_agg = aggregate_binary_labels(crowd_eval_clean, ct_units)
+    crowd_eval_agg = aggregate_binary_labels(crowd_eval_clean, ct_units, ct_thresholds)
     for vote in votes:
         results_dict = evaluate_all_versions(gold, crowd_eval_agg, vote)
         results_dict['filtering'] = metric
@@ -191,25 +182,72 @@ def main():
     n_q = config_dict['number_questions']
     group = config_dict['group']
 
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--ct_thresholds", \
+                default=[0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 1],\
+                type=list, nargs='+')
+    parser.add_argument("--stds", \
+                default=[ 0.5, 1, 1.5, 2],\
+                type=list, nargs='+')
+
+    # aggregation parameters:
+    args = parser.parse_args()
+    ct_thresholds = args.ct_thresholds
+    stds = args.stds
+
     # load crowd:
-    run = '*'
-    group = 'experiment*'
-    n_q = '*'
-    batch = '*'
     crowd = load_experiment_data(run, group, n_q, batch)
 
-    # load gold
-    run = 4
-    group = 'expert_inspection1'
-    n_q = '*'
-    batch = '*'
-    gold = load_gold_data(run, group, n_q, batch)
+    # load full gold set
+    gold = load_gold_data()
+    gold = [d for d in gold if d['answer'] != 'NOGOLD']
 
-    
-    overview_dicts = evaluate_configs(gold, crowd)
+    # evaluate agree category:
+    gold_by_agreement = sort_by_key(gold, ['expected_agreement'])
+    gold_agree = gold_by_agreement['agreement']
+    gold_poss_disagree = gold_by_agreement['possible_disagreement']
+    gold_disagree = gold_by_agreement['disagreement']
+    # merge possible with certain disagreement
+    gold_disagree_all = []
+    gold_disagree_all.extend(gold_poss_disagree)
+    gold_disagree_all.extend(gold_disagree)
+
+    # evaluate total
+    overview_dicts = evaluate_configs(gold, crowd, ct_thresholds, stds)
     df =  pd.DataFrame(overview_dicts)
-    print(df.sort_values(by=['relations-f1'], ascending=False)[['config',
-                                                          'relations-f1',
-                                                          'levels-f1', 'negative_relations-f1']])
+    df_total = df.sort_values(by=['relations-f1'], ascending=False)[['filtering',
+                                                           'filtering_unit',
+                                                           'n_stdv',
+                                                           'aggregation',
+                                                            'relations-f1',
+                                                            'relations-p',
+                                                           'relations-r',
+                                                           'alpha', 'relations-coverage']]
+    df_total.round(2).to_csv('../evaluation/evaluation_accuracy_full.csv')
+
+    # evaluate disagreement and agreement
+    overview_dicts_agree = evaluate_configs(gold_agree, crowd, ct_thresholds, stds)
+    overview_dicts_disagree = evaluate_configs(gold_disagree_all, crowd,ct_thresholds, stds)
+    for d in overview_dicts_agree:
+        d['behav.'] = 'agree'
+    for d in overview_dicts_disagree:
+        d['behav.'] = 'disagree'
+    overview_dicts_total = []
+    overview_dicts_total.extend(overview_dicts_agree)
+    overview_dicts_total.extend(overview_dicts_disagree)
+
+    df =  pd.DataFrame(overview_dicts_total)
+    df = df.sort_values(by=['relations-f1'], ascending=False)[['behav.', 'filtering',
+                                                               'filtering_unit',
+                                                               'n_stdv',
+                                                               'aggregation',
+                                                                'relations-f1',
+                                                                'relations-p',
+                                                               'relations-r',
+                                                               'alpha']]
+    df.round(2).to_csv('../evaluation/evaluation_accuracy_agree_disagree.csv')
+    df
+
 if __name__ == '__main__':
     main()

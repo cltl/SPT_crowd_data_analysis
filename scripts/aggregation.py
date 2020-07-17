@@ -28,10 +28,10 @@ def get_ua_score(quid, units_by_quid):
         ua_score = ct_unit_d[0]['unit_annotation_score']
         score_dict = split_score(ua_score)
     else:
+        print('quid not found:', quid)
         score_dict = dict()
         score_dict['true'] = 0.0
         score_dict['false'] = 0.0
-
     return score_dict['true']
 
 
@@ -65,8 +65,14 @@ def get_cts(data_by_rel, units_by_quid):
     rel_ct_score_dict= dict()
     for rel, data in data_by_rel.items():
         quid = data[0]['quid']
+        quids = set([d['quid'] for d in data])
+        #if len(quids) >1:
+        #    for d in data:
+        #        print(d['description'])
+        #else:
+        #    print('expected length of 1')
         ct_score = get_ua_score(quid, units_by_quid)
-        rel_ct_score_dict['ct_score'] = ct_score
+        rel_ct_score_dict[rel] = ct_score
     return rel_ct_score_dict
 
 
@@ -99,7 +105,7 @@ def get_top_vote(rel_prop_dict):
 def get_ct_vote(rel_ct_score_dict, thresh):
     rel_vote_dict = dict()
     for rel, ct_score in rel_ct_score_dict.items():
-        if ct_score > thresh:
+        if ct_score >= thresh:
             rel_vote_dict[rel] = True
         else:
             rel_vote_dict[rel] = False
@@ -115,20 +121,19 @@ def aggregate_binary_labels(data_dict_list, ct_units, ct_thresholds):
             # collect scores/propertions:
             rel_prop_dict = get_props(data_by_rel)
             rel_ct_score_dict = get_cts(data_by_rel, units_by_quid)
-            rel_quid_dict = get_quid(data_by_rel)
-            # votes:
+
             rel_majority_vote = get_majority_vote(rel_prop_dict)
             rel_top_vote = get_top_vote(rel_prop_dict)
             ct_thresh_votes = dict()
-            for thres in ct_thresholds:
+            for thresh in ct_thresholds:
                 ct_thresh_votes[thresh] = get_ct_vote(rel_ct_score_dict, thresh)
             for rel, data in data_by_rel.items():
                 triple_dict = get_agg_dict(data, pair, rel)
                 triple_dict['majority_vote'] = rel_majority_vote[rel]
                 triple_dict['top_vote'] = rel_top_vote[rel]
                 if len(ct_thresh_votes) > 0:
-                    for thresh, ct_votes in ct_thresh_votes.items():
-                        triple_dict[f'ct_vote_{ct_thresh}'] = ct_vote
+                    for thresh, ct_vote in ct_thresh_votes.items():
+                        triple_dict[f'uas-{thresh}'] = ct_vote[rel]
                 aggregated_binary_labels.append(triple_dict)
     return aggregated_binary_labels
 

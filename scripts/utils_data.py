@@ -276,13 +276,10 @@ def load_gold_data_batch(exp_path):
         dict_list_out = list(csv.DictReader(infile, delimiter = '\t'))
     return dict_list_out
 
-def load_gold_data(run, group):
-
-    name = name = f'run{run}-{group}.csv'.replace('*', '-all-')
-    gold_path = f'../gold_labels/gold_files/{name}'
+def load_gold_data():
+    gold_path = f'../gold_labels/gold.csv'
     df = pd.read_csv(gold_path)
     dict_list = df.to_dict('records')
-
     return dict_list
 
 
