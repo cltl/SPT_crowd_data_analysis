@@ -1,8 +1,0 @@
-,answer-antske,answer-pia,answer-piek,comment-piek,expected_behavior-antske,expected_behavior-pia,expected_behavior-piek,reason-antske,triple
-0,true,false,true,"""Under extreme circumstances with force as they resist rolling",disagreement_imagination,disagreement_imagination,disagreement_imagination,,rare-shovel-roll
-1,false,false,true,"""Under normal conditions not, they resist rolling.",disagreement_agreement-disagreement_imagination,disagreement_imagination,disagreement_imagination-disagreement_odd_triple,,impossible-shovel-roll
-2,true,true,true,"""Not clear if there is a category of dangerous people",disagreement_ambiguous_concept-disagreement_conceptualization,disagreement_conceptualization,disagreement_conceptualization,,implied_category-freebooter-dangerous
-3,false,true,false,"""They are all dangerous",disagreement_agreement,disagreement_agreement,disagreement_agreement,"""This should be true for both meanings: standard meaning is always dangerous, for the other the scalar thing is odd.",variability_open-freebooter-dangerous
-4,true,false,false,"""They are yellow and only under special conditions have a different colour such as brownish.",disagreement_vague,disagreement_vague,disagreement_vague,"""are they all yellow, or sometimes also brownish and/or green",variability_limited-pineapple-yellow
-5,true,true,true,"""People may not known this",disagreement_specialized_knowledge-disagreement_vague,disagreement_imagination-disagreement_specialized_knowledge,disagreement_specialized_knowledge,,rare-carrot-red
-6,true,false,true,"""people may not know this",disagreement_imagination-disagreement_vague,disagreement_imagination-disagreement_specialized_knowledge,disagreement_specialized_knowledge,"""unusual or highly unusual",unusual-carrot-red

@@ -1,5 +1,0 @@
-annotations_with_contradiction,average_time_pair,contradiction_annotation_ratio,contradiction_poss_contradiction_ratio,n_annotations,n_contradictions,n_possible_contradictions,n_workers,n_workers_contradicting,pair,ratio_workers_contradicting,workers_contradicting,workers_not_contradicting
-,0.0,0.0,0.0,30,0,45,3,0,fly-arrow,0.0,,antske_run1b pia run 1 Piek run-1
-,0.0,0.0,0.0,14,0,0,4,0,roll-pin,0.0,,antske_run1b pia run 1 Piek run-1 antske_run1
-,0.0,0.0,0.0,19,0,0,4,0,yellow-buttercup,0.0,,antske_run1b pia run 1 Piek run-1 antske_run1
-,0.0,0.0,0.0,32,0,46,4,0,roll-tire,0.0,,antske_run1b pia run 1 Piek run-1 antske_run1
