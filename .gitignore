@@ -4,5 +4,6 @@
 # Whitelisted
 !.gitignore
 !/annotation_data/
+!/aggregated_labels/
 
 
