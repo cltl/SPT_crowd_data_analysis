@@ -1,4 +1,6 @@
-/*
-/*/
+# Whitelisted
 !.gitignore
 !/annotation_data/
+
+#Ignore or now:
+**
