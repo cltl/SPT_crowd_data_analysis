@@ -1,7 +1,0 @@
-session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Employment Status,First Language,Sex,Country of Birth,Current Country of Residence,Student Status,Nationality
-5de10bfc4384f8165b2f54f8,59fa2109f4217300016cc688,AWAITING REVIEW,2019-11-29 12:15:58.063000,2019-11-29 12:20:59.241000,301.178,20,14,0,100,,781483F6,Other,Swedish,Male,Sweden,Sweden,No,Sweden
-5de10c18e4b8c5158efbe187,5c5736fad3cc6b0001d9da41,AWAITING REVIEW,2019-11-29 12:16:29.989000,2019-11-29 12:23:56.402000,446.413,28,35,0,100,,781483F6,Part-Time,French,Male,France,Israel,No,Israel
-5de10c18ce20cd1607188904,5b49b7033f5dcc000129002f,AWAITING REVIEW,2019-11-29 12:16:29.421000,2019-11-29 12:26:21.018000,591.597,27,1,0,100,,781483F6,Full-Time,English,Female,United Kingdom,United Kingdom,No,United Kingdom
-5de10c29a2db89159e92ed8e,5cfd0448bd7c73001ad17219,AWAITING REVIEW,2019-11-29 12:16:52.502000,2019-11-29 12:36:09.634000,1157.132,21,38,0,100,,781483F6,Unemployed (and job seeking),English,Female,Australia,Australia,Yes,Australia
-5de10c2fe5202715de27c578,5b605b10438d71000164fb24,RETURNED,2019-11-29 12:16:48.918000,,4139.722165,28,14,0,100,,,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED
-5de10ece81d8211660020994,5daa50967776b10016e1bc9b,AWAITING REVIEW,2019-11-29 12:28:01.506000,2019-11-29 12:33:37.773000,336.267,32,2,0,100,,781483F6,Full-Time,Scots,Male,United Kingdom,United Kingdom,No,United Kingdom

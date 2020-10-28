@@ -1,6 +1,0 @@
-session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Sex,Current Country of Residence,Nationality,Student Status,First Language,Country of Birth,Employment Status
-5de8bbea04ba3e8208a9fd50,5de7e9184fc566745514109b,AWAITING REVIEW,2019-12-05 08:12:38.620000,2019-12-05 08:28:32.884000,954.264,43,0,0,100,,B902B92F,Female,Slovenia,Slovenia,No,Slovenian,Slovenia,Unemployed (and job seeking)
-5de8bc27c638d482040b8c77,5c91321c0375460001034cb8,AWAITING REVIEW,2019-12-05 08:13:30.348000,2019-12-05 08:28:49.239000,918.891,39,66,3,96,,B902B92F,Female,Poland,Poland,No,Polish,Poland,Full-Time
-5de8bc5b3aa277824a21a015,5d9dee4cd313e90016b926da,AWAITING REVIEW,2019-12-05 08:16:54.212000,2019-12-05 08:31:14.815000,860.603,21,1,0,100,,B902B92F,,Slovenia,,Yes,Slovenian,Slovenia,
-5de8bc73c0049d81dd47ac5a,5bf9146118430e0001861d8e,AWAITING REVIEW,2019-12-05 08:14:44.625000,2019-12-05 08:22:36.611000,471.986,19,52,0,100,,B902B92F,Female,United Kingdom,United Kingdom,Yes,English,United Kingdom,Unemployed (and job seeking)
-5de8bc92dbc356834cd75aea,579a2047275be6000135a94c,AWAITING REVIEW,2019-12-05 08:15:18.442000,2019-12-05 08:25:55.967000,637.525,29,67,0,100,,NOCODE,Female,United Kingdom,United Kingdom,No,English,United Kingdom,Full-Time

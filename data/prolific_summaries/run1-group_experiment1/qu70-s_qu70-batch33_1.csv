@@ -1,7 +1,0 @@
-session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Sex,Student Status,Current Country of Residence,Nationality,First Language,Employment Status
-5de7a485b5bed770917a6b66,5cd94cb10196990019dbcb09,AWAITING REVIEW,2019-12-04 12:20:24.010000,2019-12-04 12:27:15.217000,411.207,27,14,0,100,,8035C352,Malaysia,Female,Yes,United Kingdom,Malaysia,English,Other
-5de7a4d910088f71fb473228,5dd7052c7fb58b000eb7c09f,REJECTED,2019-12-04 12:21:56.035000,2019-12-04 12:51:28.115000,1772.08,54,4,1,94,2019-12-05 08:14:38.916000,NOCODE,United States,Male,No,,United States,English,Other
-5de7a4d99c4adb000e3e8109,5de79de25feb6e705b799e45,AWAITING REVIEW,2019-12-04 12:21:50.323000,2019-12-04 12:29:39.763000,469.44,24,0,0,100,,8035C352,,,,,,,
-5de7a4f61d61c970b9603e73,5bb202b18aba5700017f36f6,AWAITING REVIEW,2019-12-04 12:22:16.535000,2019-12-04 12:30:20.157000,483.622,25,54,0,100,,8035C352,Netherlands,Female,Yes,Netherlands,Netherlands,Dutch,"Not in paid work (e.g. homemaker', 'retired or disabled)"
-5de7a4fe2e8016000b96f7be,57a25e691602010001041ab1,AWAITING REVIEW,2019-12-04 12:22:25.825000,2019-12-04 12:31:54.679000,568.854,25,214,1,100,,8035C352,United Kingdom,Female,Yes,United Kingdom,United Kingdom,English,DATA EXPIRED
-5de8bc89e448c68292e040bd,5d1cf9681118d600011be7ff,AWAITING REVIEW,2019-12-05 08:15:47.626000,2019-12-05 08:20:57.817000,310.191,31,90,0,100,,8035C352,United Kingdom,Female,No,United Kingdom,United Kingdom,English,Full-Time

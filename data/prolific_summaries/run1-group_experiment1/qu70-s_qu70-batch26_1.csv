@@ -1,6 +1,0 @@
-session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,First Language,Country of Birth,Employment Status,Student Status,Nationality,Current Country of Residence,Sex
-5de77d1a2f37de000b1b8f15,59efd1e377860e0001513786,AWAITING REVIEW,2019-12-04 09:32:13.513000,2019-12-04 09:37:38.192000,324.679,27,334,7,98,,1DC9C9CB,English,United Kingdom,Part-Time,No,United Kingdom,United Kingdom,Female
-5de77d1c9568086ed3338873,5de64adbbe4cdf000cb6a61e,AWAITING REVIEW,2019-12-04 09:32:21.105000,2019-12-04 09:47:11.459000,890.354,58,0,0,100,,1DC9C9CB,English,Australia,Other,No,United Kingdom,Spain,Female
-5de77d750e58666e356d1b50,5b715e02b5d9590001824e3d,AWAITING REVIEW,2019-12-04 09:33:50.435000,2019-12-04 09:39:38.293000,347.858,25,120,2,99,,1DC9C9CB,Dutch,Netherlands,Other,Yes,Netherlands,Netherlands,Female
-5de77d83b8c95b000ca93aad,5d9e5674421f180015f93c96,AWAITING REVIEW,2019-12-04 09:34:00.452000,2019-12-04 09:43:43.719000,583.267,38,3,0,100,,1DC9C9CB,English,United Kingdom,Full-Time,No,United Kingdom,United Kingdom,Male
-5de77d8f5285296fa06b262c,5de76e8d36d8256e47625c4f,AWAITING REVIEW,2019-12-04 09:34:28.383000,2019-12-04 09:41:50.656000,442.273,18,0,0,100,,1DC9C9CB,French,France,Other,No,France,France,Female

@@ -1,8 +1,0 @@
-session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,First Language,Country of Birth,Employment Status,Student Status,Nationality,Current Country of Residence,Sex
-5de692bfd4b81e61093fbec9,5de67f3e36d8255fc22d6137,AWAITING REVIEW,2019-12-03 16:52:19.042000,2019-12-03 17:03:33.117000,674.075,32,0,0,100,,72C23848,English,Canada,Full-Time,No,Canada,Canada,Female
-5de692c72bab5260cb517fb6,5de68727674832000dbeb1ca,AWAITING REVIEW,2019-12-03 16:52:26.064000,2019-12-03 17:07:03.765000,877.701,20,0,0,100,,72C23848,Polish,Poland,Other,Yes,Poland,Poland,Female
-5de692e1092efa60e1098ffc,5ccffd21b09ec90001f3f92e,TIMED-OUT,2019-12-03 16:52:51.533000,,53492.557806,28,27,0,100,,,Portuguese,Portugal,Full-Time,No,Portugal,Portugal,Female
-5de692fbdb4b3061ebf7c581,5bdc8fcbb42557000137aec6,RETURNED,2019-12-03 16:53:18.231000,,53465.883008,20,125,1,100,,,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED,CONSENT REVOKED
-5de692fcdb424d60a424d93c,5de2a39c8691182c3ed485ff,AWAITING REVIEW,2019-12-03 16:53:24.270000,2019-12-03 17:02:12.565000,528.295,25,0,0,100,,72C23848,Polish,Poland,Full-Time,No,Poland,Poland,Male
-5de6946c988c8d000b0ffd9d,5aea9842ba2926000102f326,AWAITING REVIEW,2019-12-03 17:00:04.683000,2019-12-03 17:17:37.145000,1052.462,24,161,0,100,,72C23848,German,Germany,Full-Time,Yes,Germany,Germany,Male
-5de69f294d8b17023bfe7c74,5d4725646cdbdf001a122fea,AWAITING REVIEW,2019-12-03 17:45:13.415000,2019-12-03 18:07:39.045000,1345.63,24,47,0,100,,72C23848,Czech,Czech Republic,Part-Time,Yes,Czech Republic,Czech Republic,Male

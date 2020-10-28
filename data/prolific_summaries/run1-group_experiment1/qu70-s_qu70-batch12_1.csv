@@ -1,6 +1,0 @@
-session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,First Language,Student Status,Country of Birth,Current Country of Residence,Nationality,Sex,Employment Status
-5de62ecbb97a8859c0a4ce0e,5b377b7006f9f90001fb6145,AWAITING REVIEW,2019-12-03 09:45:49.096000,2019-12-03 09:53:50.952000,481.856,24,0,0,100,,6F7E5AE6,Polish,Yes,Poland,Poland,Poland,Female,Part-Time
-5de62ed7e9f2f6000cc6db4f,5de560e8cca54a4e59b74553,AWAITING REVIEW,2019-12-03 09:46:09.151000,2019-12-03 10:02:38.441000,989.29,23,0,0,100,,6F7E5AE6,Polish,Yes,Poland,Poland,Poland,Male,Unemployed (and job seeking)
-5de62ee304ba3e5a2182cad4,5cec240c12859100194d9e66,AWAITING REVIEW,2019-12-03 09:46:15.789000,2019-12-03 09:55:17.393000,541.604,19,21,0,100,,6F7E5AE6,Hebrew,Yes,Israel,Israel,Israel,Male,Part-Time
-5de62f38b5b7ff58a6101156,5c10b5c16d1ac9000101d956,AWAITING REVIEW,2019-12-03 09:47:39.577000,2019-12-03 10:04:52.022000,1032.445,,24,0,100,,6F7E5AE6,Hebrew,No,Israel,Israel,Israel,Female,Other
-5de62f3e7292b659f816a6f7,5de307315fb5c833878ef941,AWAITING REVIEW,2019-12-03 09:47:44.212000,2019-12-03 09:48:10.012000,25.8,18,0,0,100,,NOCODE,Polish,Yes,Poland,Poland,Poland,Male,Unemployed (and job seeking)

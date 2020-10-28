@@ -1,7 +1,0 @@
-session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,First Language,Nationality,Employment Status,Current Country of Residence,Sex,Country of Birth,Student Status
-5de9478c0eb57f078e9e4b7b,5de2a850553cee2d2ad4029e,TIMED-OUT,2019-12-05 18:08:15.854000,,4529.218206,19,0,0,100,,,Spanish,Mexico,"Not in paid work (e.g. homemaker', 'retired or disabled)",Mexico,Male,Mexico,Yes
-5de947a0403af6000ba067b9,5de8576d4f21b47d008d37c7,AWAITING REVIEW,2019-12-05 18:08:34.813000,2019-12-05 18:21:09.114000,754.301,21,0,0,100,,12760F85,English,United Kingdom,Unemployed (and job seeking),United Kingdom,Male,United Kingdom,No
-5de947b38949290794e341c2,5de6be6912bcf6041b3276ba,AWAITING REVIEW,2019-12-05 18:08:53.489000,2019-12-05 18:17:13.531000,500.042,33,0,0,100,,12760F85,Estonian,Estonia,Full-Time,,Male,Estonia,No
-5de947b7b0ad4a07757882f4,5dc0395f2a1dd64710661ccd,AWAITING REVIEW,2019-12-05 18:08:55.020000,2019-12-05 18:13:20.923000,265.903,,1,0,100,,12760F85,Polish,Poland,Unemployed (and job seeking),Poland,Male,Poland,Yes
-5de947c38da777000bba01b9,5de6d199a23d79000bf9aef9,AWAITING REVIEW,2019-12-05 18:09:13.010000,2019-12-05 18:18:20.773000,547.763,31,0,0,100,,12760F85,,,,,,,
-5de953bb2f942d08382d3f08,5ddc56fbf290e7bbfa96481d,AWAITING REVIEW,2019-12-05 19:00:11.443000,2019-12-05 19:13:49.017000,817.574,18,6,0,100,,12760F85,English,Poland,Part-Time,Poland,Male,Poland,No

@@ -1,6 +1,0 @@
-session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Current Country of Residence,Student Status,Nationality,First Language,Country of Birth,Employment Status,Sex
-5de949621174470778ab973a,5de93ba177443804fea65939,AWAITING REVIEW,2019-12-05 18:16:05.649000,2019-12-05 18:17:27.801000,82.152,20,0,0,100,,8FEFB5E5,United Kingdom,Yes,United Kingdom,English,United Kingdom,Part-Time,Female
-5de949a11a5eba000a7b951a,5c3de869b3369c0001a9264a,AWAITING REVIEW,2019-12-05 18:17:19.602000,2019-12-05 18:20:23.057000,183.455,26,53,0,100,,8FEFB5E5,Israel,Yes,Israel,Russian,Ukraine,Part-Time,Female
-5de949ae31a7e00716fae8c3,5dc9bfa40a493f6ea88d0a14,AWAITING REVIEW,2019-12-05 18:17:25.628000,2019-12-05 18:29:13.649000,708.021,48,0,0,100,,8FEFB5E5,France,No,France,French,France,Part-Time,Female
-5de949b228cb0b07280d128b,5c8250c026a0940016b265da,AWAITING REVIEW,2019-12-05 18:17:25.955000,2019-12-05 18:28:37.812000,671.857,35,30,0,100,,8FEFB5E5,Poland,No,Poland,Polish,Poland,Full-Time,Female
-5de949d550e58e000d5cdaef,5c036f34efea06000188cdba,AWAITING REVIEW,2019-12-05 18:17:59.230000,2019-12-05 18:19:23.582000,84.352,26,92,0,100,,8FEFB5E5,Latvia,Yes,Latvia,Russian,Latvia,Full-Time,Male

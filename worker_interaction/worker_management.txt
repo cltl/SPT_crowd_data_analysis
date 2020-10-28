@@ -1,6 +1,0 @@
-April 3, 2020
-
-* started messaging high quality workers
-* high quality means no contradictions in batch, low contradiction count overall, no failed checks (from batch 34)
-
-

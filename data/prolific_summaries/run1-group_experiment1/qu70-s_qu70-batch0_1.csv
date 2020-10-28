@@ -1,6 +1,0 @@
-session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,First Language,Sex,Current Country of Residence,Student Status,Employment Status,Nationality
-5de29dad5a8f942d1e4d0753,5de2515f676a6d286c48fb2c,AWAITING REVIEW,2019-11-30 16:49:53.403000,2019-11-30 16:58:54.588000,541.185,26,0,0,100,,52B9FF4D,Poland,Polish,Female,Poland,No,Full-Time,Poland
-5de29de23fa6702d3ac66a20,5de28ced693f222c2f347507,AWAITING REVIEW,2019-11-30 16:50:42.582000,2019-11-30 16:57:41.140000,418.558,18,0,0,100,,52B9FF4D,Vietnam,English,Male,Canada,No,Unemployed (and job seeking),Canada
-5de29df7b5bed72d8be886fd,5de294e8c3bd282be968e7ab,AWAITING REVIEW,2019-11-30 16:51:05.737000,2019-11-30 17:00:07.988000,542.251,19,0,0,100,,52B9FF4D,Spain,Polish,Male,Poland,Yes,Part-Time,Poland
-5de29e191017852c0b5f1821,5b99872a357ce300014f2099,AWAITING REVIEW,2019-11-30 16:51:41.631000,2019-11-30 16:55:45.931000,244.3,30,13,0,100,,52B9FF4D,Canada,English,Male,Canada,No,Full-Time,Canada
-5de29e2c1fd5812d8b3d85b2,5c743796a87fd9001287f48b,AWAITING REVIEW,2019-11-30 16:51:57.979000,2019-11-30 16:57:54.007000,356.028,23,22,0,100,,52B9FF4D,United Kingdom,English,Female,United Kingdom,No,Full-Time,Ireland
