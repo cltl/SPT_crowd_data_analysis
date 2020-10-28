@@ -1,6 +1,8 @@
+#Ignore or now:
+/**
+
 # Whitelisted
 !.gitignore
 !/annotation_data/
 
-#Ignore or now:
-*
+

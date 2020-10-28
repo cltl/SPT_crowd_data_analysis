@@ -1,6 +1,0 @@
-{
-  "run": "*",
-  "batch": "*",
-  "number_questions": "*",
-  "group": "experiment*"
-}
