@@ -5,5 +5,10 @@
 !.gitignore
 !/annotation_data/
 !/aggregated_labels/
+!/evaluation/
+!/scripts/evaluation.py
+!/scripts/predict_disagreement.py
+!/scripts/utils_data.py
+!/scripts/utils_analysis.py
 
 
