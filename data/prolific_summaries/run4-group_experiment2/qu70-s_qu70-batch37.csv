@@ -1,0 +1,11 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Current Country of Residence,Employment Status,First Language,Nationality,Sex,Student Status
+5ebd39cec5b543000ba00493,5db8ad1eaa674d000aec4f87,AWAITING REVIEW,2020-05-14 12:30:06.846000,2020-05-14 12:45:00.854000,894.008,21,82,2,99,,48527619,Spain,Spain,Unemployed (and job seeking),Spanish,Spain,Male,Yes
+5ebd39eb12c47d000b6c1fd6,5d593e9e44609300192e33d1,AWAITING REVIEW,2020-05-14 12:30:35.637000,2020-05-14 12:51:20.438000,1244.801,19,29,1,99,,48527619,Poland,Poland,Unemployed (and job seeking),Polish,Poland,Male,Yes
+5ebd3af3fa01890009752a1c,5bb3b490763e440001853e4f,AWAITING REVIEW,2020-05-14 12:35:09.269000,2020-05-14 12:44:46.367000,577.098,,114,0,100,,NOCODE,United Kingdom,United Kingdom,Full-Time,English,United Kingdom,Female,No
+5ebd3b12f9f1aa000cb766ce,5eb098012ba1fe14fd397199,AWAITING REVIEW,2020-05-14 12:36:41.538000,2020-05-14 13:01:06.445000,1464.907,19,5,0,100,,18960480,Greece,,Part-Time,Greek,Greece,Female,Yes
+5ebd3b954545840008bffb9e,5e820827a0271f9119616fb8,AWAITING REVIEW,2020-05-14 12:37:48.015000,2020-05-14 13:15:26.369000,2258.354,28,12,0,100,,48527619,Italy,Italy,Full-Time,French,Italy,Female,No
+5ebd3c5618e278000b4f3f0b,5da347d5f26c300013fd9850,AWAITING REVIEW,2020-05-14 12:43:09.312000,2020-05-14 12:47:54.524000,285.212,21,65,0,100,,48527619,Italy,Italy,Other,Italian,Italy,Male,Yes
+5ebd3cf3ae4d390009344dc4,5e6c075b1689b01da3b62993,AWAITING REVIEW,2020-05-14 12:43:42.057000,2020-05-14 13:03:01.301000,1159.244,21,13,0,100,,48527619,Hungary,Hungary,Part-Time,Hungarian,Hungary,Female,Yes
+5ebd3cf419e5db000b37f6e1,5bd5a2bd9afb5b00015c8f46,AWAITING REVIEW,2020-05-14 12:43:38.097000,2020-05-14 12:55:07.729000,689.632,44,21,0,100,,48527619,United Kingdom,United Kingdom,Part-Time,English,United Kingdom,Female,No
+5ebd3cf6d983d9000a8f23c5,5dde680c40460edc4a5dc1a2,AWAITING REVIEW,2020-05-14 12:44:23.023000,2020-05-14 12:52:47.673000,504.65,38,80,0,100,,48527619,Czech Republic,Czech Republic,Full-Time,Czech,Czech Republic,Female,No
+5ebd3cfde24d0b0009e2eca4,5d3de459ab640c0018694a58,AWAITING REVIEW,2020-05-14 12:43:44.555000,2020-05-14 12:55:49.655000,725.1,29,42,0,100,,48527619,Czech Republic,Czech Republic,Full-Time,Czech,Czech Republic,Male,No

@@ -1,0 +1,7 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Current Country of Residence,Employment Status,First Language,Nationality,Country of Birth,Student Status,Sex
+5de7690c3fa6706dd4477663,5d20dd9dab5a1000011afcd5,TIMED-OUT,2019-12-04 08:06:38.153000,,4275.072617,25,10,0,100,,,Israel,Unemployed (and job seeking),Hebrew,Israel,Israel,Yes,Male
+5de76932e4f42a6e5319ea63,58dcfd5a09694a0001a35e0b,AWAITING REVIEW,2019-12-04 08:07:19.706000,2019-12-04 08:14:59.436000,459.73,29,187,2,100,,4F821075,Italy,Part-Time,Italian,Italy,Italy,No,Female
+5de769375285296e9778f938,5bd50e3f9afb5b00015c6951,AWAITING REVIEW,2019-12-04 08:07:25.288000,2019-12-04 08:26:04.740000,1119.452,25,52,0,100,,4F821075,Italy,,Turkish,Turkey,Turkey,Yes,Male
+5de769405a8f946db39814f0,5d90a8a31c90470017f38f42,AWAITING REVIEW,2019-12-04 08:07:36.050000,2019-12-04 08:16:41.378000,545.328,18,9,0,100,,4F821075,,"Not in paid work (e.g. homemaker', 'retired or disabled)",English,United Kingdom,United Kingdom,Yes,Male
+5de769a1d609c96dd2e0af29,5c8cf9c175696a001616f84f,AWAITING REVIEW,2019-12-04 08:09:07.439000,2019-12-04 08:23:50.762000,883.323,38,50,1,99,,4F821075,Hungary,Full-Time,Hungarian,Hungary,Hungary,No,Female
+5de7759b80e0fc6e32b09911,5dcc61ad900e3e8fe2aa68aa,AWAITING REVIEW,2019-12-04 09:00:11.927000,2019-12-04 09:10:00.045000,588.118,39,4,0,100,,4F821075,,,,,,,

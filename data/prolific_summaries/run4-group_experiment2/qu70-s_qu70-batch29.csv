@@ -1,0 +1,11 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Current Country of Residence,Employment Status,First Language,Nationality,Sex,Student Status
+5eb573bc1cf74d40a3f8db1a,5ba9a99738803d00012729de,AWAITING REVIEW,2020-05-08 14:59:20.672000,2020-05-08 15:07:17.910000,477.238,24,294,0,100,,2F09CDF6,United States,United States,Unemployed (and job seeking),English,United States,Female,No
+5eb57417175506075e942044,5bace93b5cd4520001dc04a5,AWAITING REVIEW,2020-05-08 15:00:42.515000,2020-05-08 15:17:36.028000,1013.513,,95,0,100,,2F09CDF6,Canada,Canada,Full-Time,English,Canada,Female,No
+5eb57472c792cd4163112e2e,5be385ba24f70e00018b0024,AWAITING REVIEW,2020-05-08 15:02:10.689000,2020-05-08 15:11:05.973000,535.284,23,195,0,100,,2F09CDF6,Portugal,Portugal,Unemployed (and job seeking),Portuguese,Portugal,Female,Yes
+5eb574e66854c642d12e6198,5e7b2c2e7be77b1167037c47,AWAITING REVIEW,2020-05-08 15:04:08.825000,2020-05-08 15:10:16.213000,367.388,30,15,0,100,,2F09CDF6,United States,Israel,Part-Time,English,Israel,Male,No
+5eb57549ceadb0086c80af4a,5e3b3b935da22c09084bbc02,AWAITING REVIEW,2020-05-08 15:05:45.854000,2020-05-08 15:13:14.620000,448.766,30,36,0,100,,2F09CDF6,Portugal,Portugal,Full-Time,Portuguese,Portugal,Male,No
+5eb5754fdef42c412e7833a3,5c43e536d780340001c6a3e1,AWAITING REVIEW,2020-05-08 15:05:55.428000,2020-05-08 15:19:18.011000,802.583,19,28,0,100,,2F09CDF6,France,Portugal,Other,Portuguese,Portugal,Male,No
+5eb5767ddef42c4195dbe885,5c547ab2fd88bb0001868aec,AWAITING REVIEW,2020-05-08 15:10:53.050000,2020-05-08 15:27:40.077000,1007.027,,160,1,100,,2F09CDF6,Portugal,Portugal,Part-Time,Portuguese,Portugal,Male,Yes
+5eb576c407a01009a9456570,5e6a65e0f2e93f016351c9fb,AWAITING REVIEW,2020-05-08 15:18:14.082000,2020-05-08 15:44:45.451000,1591.369,31,27,0,100,,2F09CDF6,Sweden,Sweden,Unemployed (and job seeking),Swedish,Sweden,Male,Yes
+5eb576d4699cf6083b9746c1,5c7515e980f4f000124d2e36,AWAITING REVIEW,2020-05-08 15:12:55.982000,2020-05-08 15:23:15.275000,619.293,24,100,0,100,,2F09CDF6,Israel,Israel,Part-Time,Arabic,Palestinian Territory,Female,Yes
+5eb57749dd432d41552db11e,5e722532d302e9150b775daf,AWAITING REVIEW,2020-05-08 15:14:17.229000,2020-05-08 15:27:30.944000,793.715,23,22,0,100,,2F09CDF6,,,,,,Female,

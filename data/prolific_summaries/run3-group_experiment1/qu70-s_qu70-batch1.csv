@@ -1,0 +1,12 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Current Country of Residence,Student Status,Country of Birth,First Language,Nationality,Employment Status,Sex
+5e6f9313029fa454dd97d6c9,5e6f89993f2dc053a390dad6,AWAITING REVIEW,2020-03-16 14:54:14.330000,2020-03-16 15:05:59.242000,704.912,32,0,0,100,,84AEAB81,United Kingdom,No,United Kingdom,English,United Kingdom,Full-Time,Male
+5e6f9336418adf04bed51f4c,5e6f6b7b7a27a35206e5c30c,AWAITING REVIEW,2020-03-16 14:54:49.228000,2020-03-16 15:14:40.611000,1191.383,19,0,0,100,,5e6f6b7b7a27a35206e5c30c,Poland,Yes,Poland,Polish,Poland,Unemployed (and job seeking),Female
+5e6f934a0cf10404c0f6e6f3,5e6f82bf18f6a753267edf1a,AWAITING REVIEW,2020-03-16 14:55:18.561000,2020-03-16 15:09:40.304000,861.743,26,0,0,100,,84AEAB81,,No,Lithuania,Lithuanian,Lithuania,,Male
+5e6f934f8808e65432a447ae,5e6f8c15fe7a000009575a52,AWAITING REVIEW,2020-03-16 14:55:14.799000,2020-03-16 15:10:05.813000,891.014,20,0,0,100,,84AEAB81,Greece,No,Greece,Greek,Greece,Part-Time,Female
+5e6f9370905a90000bfadb64,5bdc4a3b0f86a60001be614a,AWAITING REVIEW,2020-03-16 14:55:46.764000,2020-03-16 15:05:45.982000,599.218,29,29,0,100,,84AEAB81,United Kingdom,No,Italy,Italian,Italy,"Not in paid work (e.g. homemaker', 'retired or disabled)",Female
+5e6f937f833f2d54945ec40c,5e1842435b1c591274aef230,AWAITING REVIEW,2020-03-16 14:56:01.891000,2020-03-16 15:00:13.446000,251.555,25,8,1,96,,84AEAB81,,Yes,,Portuguese,,,
+5e6f938822eae455002fa9d2,5d3337693d0a510019bffca0,AWAITING REVIEW,2020-03-16 14:56:23.734000,2020-03-16 15:10:03.713000,819.979,22,52,1,99,,84AEAB81,,,,,,,
+5e6f9389d7125a016c27d880,5e6f6a1b5c401952221d47d4,TIMED-OUT,2020-03-16 14:56:12.067000,,4903.326429,18,0,0,100,,,United Kingdom,Yes,United Kingdom,English,United Kingdom,Unemployed (and job seeking),Male
+5e6f938b1587d5040faab960,5e695bb0254c4a2103ed09da,AWAITING REVIEW,2020-03-16 14:56:19.841000,2020-03-16 15:04:11.337000,471.496,25,0,0,100,,84AEAB81,United States,No,United States,English,United States,Full-Time,Male
+5e6f9390c5c6d50363b1ec3e,5e6cfcacff04d62ab35783da,AWAITING REVIEW,2020-03-16 14:57:33.808000,2020-03-16 15:32:38.139000,2104.331,25,0,0,100,,84AEAB81,Italy,Yes,Italy,Italian,Italy,Other,Male
+5e6f9f0cb7e73f000865a97c,5d7a42caf0a2960016536deb,AWAITING REVIEW,2020-03-16 15:45:21.258000,2020-03-16 16:07:47.988000,1346.73,36,44,0,100,,84AEAB81,Sweden,No,Sweden,Swedish,Sweden,"Not in paid work (e.g. homemaker', 'retired or disabled)",Female

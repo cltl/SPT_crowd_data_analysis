@@ -1,14 +1,22 @@
 #Ignore or now:
-/**
+**/**
 
 # Whitelisted
 !.gitignore
 !annotation_data/
+!data/prolific_summaries/
+!data/prolific_output_uuid/
+!data/prolific_output/
+!data/gold_labels/**
 !aggregated_labels/
 !evaluation/
 !scripts/evaluation.py
 !scripts/predict_disagreement.py
 !scripts/utils_data.py
 !scripts/utils_analysis.py
+!scripts/aggreation.py
+!scripts/calculate_iaa.py
+!scripts/clean_annotations.py
+
 
 

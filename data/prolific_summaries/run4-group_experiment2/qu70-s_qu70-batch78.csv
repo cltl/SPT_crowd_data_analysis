@@ -1,0 +1,11 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Current Country of Residence,Employment Status,First Language,Nationality,Sex,Student Status
+5ec7e65fb11a1727a1756e20,5b222aff59f9620001c109cb,AWAITING REVIEW,2020-05-22 14:49:03.429000,2020-05-22 15:08:02.548000,1139.119,27,519,2,100,,8F8B292D,Finland,Finland,Unemployed (and job seeking),Finnish,Finland,Male,No
+5ec7e8ad4907d927c0dbd14d,5ba9a99738803d00012729de,AWAITING REVIEW,2020-05-22 14:58:56.188000,2020-05-22 15:06:41.287000,465.099,24,298,0,100,,8F8B292D,United States,United States,Unemployed (and job seeking),English,United States,Female,No
+5ec7e8e4079cdc2745a8b0fe,599863d36c165e000113fadf,AWAITING REVIEW,2020-05-22 14:59:48.599000,2020-05-22 15:16:27.720000,999.121,54,220,7,97,,NOCODE,United Kingdom,United Kingdom,Full-Time,English,United Kingdom,Male,No
+5ec7ebba9b418925f25a839d,5e754a41f94f1f0c300b83d9,AWAITING REVIEW,2020-05-22 15:11:57.208000,2020-05-22 15:30:52.424000,1135.216,24,26,0,100,,3FE4CBF4,Portugal,Portugal,Unemployed (and job seeking),Portuguese,Portugal,Female,Yes
+5ec7ebd84d19c82825117625,5e9cfd9cee0aed225ed1c501,AWAITING REVIEW,2020-05-22 15:12:26.436000,2020-05-22 15:19:05.395000,398.959,19,18,0,100,,8F8B292D,Poland,Poland,Part-Time,Polish,Poland,Female,Yes
+5ec7ecda38d8e2282349c7a1,5bd056f9263e0a00016d20d3,AWAITING REVIEW,2020-05-22 15:16:44.526000,2020-05-22 15:24:55.590000,491.064,,170,0,100,,8F8B292D,Greece,Greece,,Greek,Greece,Female,Yes
+5ec7edc7eb588209c4a1f114,5c542a124e2ebe0001458bf9,AWAITING REVIEW,2020-05-22 15:20:41.573000,2020-05-22 15:25:31.876000,290.303,19,167,0,100,,8F8B292D,Poland,Poland,Other,Polish,Poland,Male,Yes
+5ec7ede5fde49527fc76d3b8,5dfc9db54cac6899b466a76b,AWAITING REVIEW,2020-05-22 15:21:11.964000,2020-05-22 15:27:00.130000,348.166,32,46,1,99,,8F8B292D,Brazil,Spain,Other,Portuguese,Brazil,Female,Yes
+5ec7edf9c099b427106f4a83,5e7156645b050e07277c6682,AWAITING REVIEW,2020-05-22 15:21:29.619000,2020-05-22 15:33:01.906000,692.287,22,18,0,100,,8F8B292D,,,,,,,
+5ec7eee47a32d227bec50ccd,59d388bf23b3e500018f5413,AWAITING REVIEW,2020-05-22 15:25:38.256000,2020-05-22 15:41:06.682000,928.426,55,334,5,99,,8F8B292D,United Kingdom,United Kingdom,Full-Time,English,United Kingdom,Male,No

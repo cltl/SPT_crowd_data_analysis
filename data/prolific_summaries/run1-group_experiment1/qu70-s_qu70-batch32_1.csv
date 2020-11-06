@@ -1,0 +1,7 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Current Country of Residence,Student Status,Employment Status,First Language,Country of Birth,Sex,Nationality
+5de7a42be404c4000e895538,5ceac282ca3e100016373e3c,AWAITING REVIEW,2019-12-04 12:19:05.534000,2019-12-04 12:31:31.779000,746.245,21,22,0,100,,4E5FBED8,Greece,Yes,Part-Time,Greek,Greece,Female,Greece
+5de7a4417da01d707a8b0b2b,5de790f32cf204704832671d,TIMED-OUT,2019-12-04 12:19:13.584000,,4998.557759,43,0,0,100,,,,,,,,,
+5de7a4847facd8000e131cb3,5c8119441c40f30001b464b1,AWAITING REVIEW,2019-12-04 12:20:22.922000,2019-12-04 12:24:20.227000,237.305,22,45,1,99,,4E5FBED8,United Kingdom,Yes,Part-Time,English,United Kingdom,Male,United Kingdom
+5de7a49be3e0cc70fe4138c3,5c41f300b96aae0001e75848,AWAITING REVIEW,2019-12-04 12:20:44.740000,2019-12-04 12:39:49.697000,1144.957,20,43,1,99,,4E5FBED8,Portugal,Yes,,Portuguese,Portugal,Male,Portugal
+5de7a4c31e8bdd71657a7f45,5de79f78900c1370809c0596,AWAITING REVIEW,2019-12-04 12:21:33.045000,2019-12-04 12:31:07.627000,574.582,24,0,0,100,,4E5FBED8,,,,,Italy,Male,Italy
+5de7b15c2cf2047210f3f610,5a22e6aabf56cc00017701ef,AWAITING REVIEW,2019-12-04 13:15:15.146000,2019-12-04 13:21:50.681000,395.535,45,89,0,100,,4E5FBED8,United Kingdom,No,Unemployed (and job seeking),English,United Kingdom,Male,United Kingdom

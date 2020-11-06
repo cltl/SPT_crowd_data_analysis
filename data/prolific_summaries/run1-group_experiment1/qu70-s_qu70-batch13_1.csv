@@ -1,0 +1,6 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,First Language,Current Country of Residence,Student Status,Employment Status,Sex,Nationality,Country of Birth
+5de62f835fb5c8594162ac9c,5dd7bd5fe9a0ba7539b35a99,AWAITING REVIEW,2019-12-03 09:48:54.120000,2019-12-03 10:03:26.358000,872.238,26,0,0,100,,5A151D9B,Italian,Italy,Yes,,Female,Italy,Italy
+5de62ff5676a6d5a2b3bd738,5dddbebeb966ded354c7ab3b,AWAITING REVIEW,2019-12-03 09:50:48.515000,2019-12-03 10:02:45.089000,716.574,23,0,0,100,,5A151D9B,English,United States,No,Due to start a new job within the next month,Male,United States,United States
+5de62ff94e319e5a811fef1d,5b730c180da966000147f66c,AWAITING REVIEW,2019-12-03 09:50:55.361000,2019-12-03 09:58:56.589000,481.228,29,3,0,100,,5A151D9B,,,,,Female,United Kingdom,
+5de6302298e7955a7405f1cc,5a0f2d5110f4540001779ea2,AWAITING REVIEW,2019-12-03 09:51:32.636000,2019-12-03 09:58:21.312000,408.676,40,181,1,100,,5A151D9B,English,United Kingdom,No,Part-Time,Female,United Kingdom,United Kingdom
+5de63034cdff8e5a9e1124ba,5c0fc9645096c60001f15b12,AWAITING REVIEW,2019-12-03 09:51:51.098000,2019-12-03 10:01:04.625000,553.527,32,206,1,100,,5A151D9B,English,United States,No,Full-Time,Male,United States,United States

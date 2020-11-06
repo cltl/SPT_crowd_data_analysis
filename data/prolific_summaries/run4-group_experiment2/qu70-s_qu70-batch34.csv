@@ -1,0 +1,15 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Current Country of Residence,Employment Status,First Language,Nationality,Sex,Student Status
+5ebc0b178445610479b7ed04,5d7547a2b74545001a5a5bbb,TIMED-OUT,2020-05-13 14:58:31.059000,,73414.64751,28,43,0,100,,,Italy,Italy,Unemployed (and job seeking),Italian,Italy,Female,No
+5ebc0c32eee8df0609e97219,5d593e9e44609300192e33d1,TIMED-OUT,2020-05-13 15:03:16.333000,,73129.395333,19,28,1,99,,,Poland,Poland,Unemployed (and job seeking),Polish,Poland,Male,Yes
+5ebc0ecc25eb1f000893d61c,578f4a16dcff7d0001c7ba38,AWAITING REVIEW,2020-05-13 15:14:23.774000,2020-05-13 15:31:40.218000,1036.444,39,128,0,100,,44E7C615,Netherlands,Netherlands,Part-Time,Dutch,Netherlands,Male,No
+5ebc0ef62f4ae400090566fb,5dc1f283fc1cda15c5015611,AWAITING REVIEW,2020-05-13 15:15:02.920000,2020-05-13 15:23:07.993000,485.073,20,56,3,96,,44E7C615,Spain,Spain,Unemployed (and job seeking),Spanish,Spain,Male,Yes
+5ebc0f49790e95000a19eaa9,5e7156645b050e07277c6682,TIMED-OUT,2020-05-13 15:16:25.244000,,72340.549323,22,14,0,100,,,,,,,,,
+5ebc0fcb3d49e000099fd081,5cb653e0e9187600014da063,AWAITING REVIEW,2020-05-13 15:18:35.410000,2020-05-13 15:28:47.306000,611.896,19,95,1,100,,44E7C615,Brazil,Portugal,Unemployed (and job seeking),Portuguese,Brazil,Male,Yes
+5ebc0fcbe8317e000846e959,5e9cfd9cee0aed225ed1c501,AWAITING REVIEW,2020-05-13 15:18:42.024000,2020-05-13 15:32:59.861000,857.837,19,9,0,100,,44E7C615,Poland,Poland,Part-Time,Polish,Poland,Female,Yes
+5ebc0fd3c30d26000c0b177b,5c542a124e2ebe0001458bf9,AWAITING REVIEW,2020-05-13 15:18:52.429000,2020-05-13 15:23:52.355000,299.926,19,161,0,100,,44E7C615,Poland,Poland,Other,Polish,Poland,Male,Yes
+5ebc10d198c466000888e63f,5e3b3b935da22c09084bbc02,AWAITING REVIEW,2020-05-13 15:23:08.361000,2020-05-13 15:33:03.888000,595.527,30,39,0,100,,44E7C615,Portugal,Portugal,Full-Time,Portuguese,Portugal,Male,No
+5ebc10f94960e5000c11c5b6,5cb72d295a63a200170af08f,TIMED-OUT,2020-05-13 15:23:39.148000,,71906.741344,27,35,0,100,,,Netherlands,Netherlands,Full-Time,Dutch,Netherlands,Male,No
+5ebc199fc17a68019cf0251b,5dfc9db54cac6899b466a76b,AWAITING REVIEW,2020-05-13 16:00:35.813000,2020-05-13 16:07:34.626000,418.813,32,40,0,100,,44E7C615,Brazil,Spain,Other,Portuguese,Brazil,Female,Yes
+5ebc19a8dce72d0008e498f4,5e6a65e0f2e93f016351c9fb,AWAITING REVIEW,2020-05-13 16:00:52.290000,2020-05-13 16:13:40.388000,768.098,31,30,0,100,,44E7C615,Sweden,Sweden,Unemployed (and job seeking),Swedish,Sweden,Male,Yes
+5ebc1d49f058e0000a4922ff,5c5da3b159ec1d0001fe5606,AWAITING REVIEW,2020-05-13 16:22:28.735000,2020-05-13 16:34:47.394000,738.659,28,312,1,100,,44E7C615,United Kingdom,United Kingdom,Full-Time,English,United Kingdom,Male,No
+5ebc1d4cfcb8b10244c8f7a0,5e87051c3b574033f8cf9a40,AWAITING REVIEW,2020-05-13 16:16:15.269000,2020-05-13 16:26:32.484000,617.215,32,19,0,100,,44E7C615,Netherlands,Netherlands,Full-Time,Dutch,Netherlands,Male,No

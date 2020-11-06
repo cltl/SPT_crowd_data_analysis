@@ -1,0 +1,11 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Current Country of Residence,Employment Status,First Language,Nationality,Sex,Student Status
+5ece506d48f9932058124ded,5b1e7a55c813a60001480313,AWAITING REVIEW,2020-05-27 11:35:09.093000,2020-05-27 11:39:56.030000,286.937,21,128,0,100,,AA95C5E0,Portugal,Switzerland,Other,Portuguese,Portugal,Male,Yes
+5ece5290dd61b01fc8aa3c89,5e7cd4f79bebe5330d0234d6,AWAITING REVIEW,2020-05-27 11:44:16.757000,2020-05-27 11:59:40.811000,924.054,20,20,1,99,,AA95C5E0,Poland,Poland,Unemployed (and job seeking),Polish,Poland,Male,Yes
+5ece54e4987132205ffd4af3,5d5047590ea65a001adcec9f,AWAITING REVIEW,2020-05-27 11:54:11.987000,2020-05-27 12:14:01.286000,1189.299,39,48,0,100,,AA95C5E0,Poland,Poland,Full-Time,Polish,Poland,Male,No
+5ece584cba3050049c6b38e8,5cf5475052e49400153b3c5d,AWAITING REVIEW,2020-05-27 12:08:52.952000,2020-05-27 12:23:06.465000,853.513,27,92,0,100,,AA95C5E0,Greece,Greece,Part-Time,Greek,Greece,Female,No
+5ece59530611bf05110744cc,5ea7175ee1fab30c110e59f8,AWAITING REVIEW,2020-05-27 12:13:11.038000,2020-05-27 12:20:22.097000,431.059,18,2,0,100,,AA95C5E0,Finland,Finland,Other,Finnish,Finland,Male,Yes
+5ece59632aede005575c67ba,5e6500c3819b9d279c050de2,AWAITING REVIEW,2020-05-27 12:13:24.636000,2020-05-27 12:19:30.838000,366.202,19,32,1,99,,AA95C5E0,Poland,Poland,Other,Polish,Poland,Male,Yes
+5ece5967d602df068cf1b565,5d0f8633c8ca0c00155a49c2,AWAITING REVIEW,2020-05-27 12:13:30.329000,2020-05-27 12:19:06.869000,336.54,33,167,0,100,,AA95C5E0,Canada,Canada,"Not in paid work (e.g. homemaker', 'retired or disabled)",English,Canada,Female,No
+5ece59f6166b8b05b469e81e,5c6400cbcb937d00012d8866,AWAITING REVIEW,2020-05-27 12:16:00.733000,2020-05-27 12:31:05.486000,904.753,34,196,0,100,,AA95C5E0,Poland,Poland,Unemployed (and job seeking),Polish,Poland,Male,No
+5ece59fbc927e42162f89c78,5d50fbe64e3713001a005a19,AWAITING REVIEW,2020-05-27 12:16:04.462000,2020-05-27 12:28:07.669000,723.207,27,47,0,100,,AA95C5E0,Australia,,Unemployed (and job seeking),English,Australia,Male,No
+5ece59ffb936dd207d401596,5e9cfd9cee0aed225ed1c501,AWAITING REVIEW,2020-05-27 12:16:02.109000,2020-05-27 12:25:43.367000,581.258,19,23,0,100,,AA95C5E0,Poland,Poland,Part-Time,Polish,Poland,Female,Yes

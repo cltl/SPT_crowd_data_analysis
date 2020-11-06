@@ -1,0 +1,7 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Employment Status,Current Country of Residence,Sex,Student Status,First Language,Nationality,Country of Birth
+5de7902c69d06a000e19ed5a,5a7622caf49c9a0001f2f7a8,AWAITING REVIEW,2019-12-04 10:53:36.728000,2019-12-04 11:03:00.573000,563.845,35,56,1,100,,89EB6F6F,Full-Time,United Kingdom,Male,No,English,United Kingdom,United Kingdom
+5de790359a9da570c383b427,5ddae8d6c23e0da4764f9fae,AWAITING REVIEW,2019-12-04 10:53:52.814000,2019-12-04 11:05:46.457000,713.643,33,0,0,100,,89EB6F6F,Full-Time,Australia,Male,No,English,Australia,Australia
+5de79052e52027701f0ca81c,5da46a3201beee00176bc836,TIMED-OUT,2019-12-04 10:54:14.106000,,4262.99725,27,14,1,96,,,Full-Time,United States,Male,No,English,United States,United States
+5de79071553cee70a63b2939,5d36d1001d6ff70001f0f374,AWAITING REVIEW,2019-12-04 10:54:41.350000,2019-12-04 11:01:21.218000,399.868,25,15,0,100,,89EB6F6F,Part-Time,Denmark,Male,Yes,Danish,Denmark,Denmark
+5de790a08691186f8be48e79,5de78426bbdd79000ec0259d,AWAITING REVIEW,2019-12-04 10:55:36.622000,2019-12-04 11:26:05.574000,1828.952,18,0,0,100,,89EB6F6F,Other,Norway,Male,Yes,Norwegian,Norway,Norway
+5de79c45eddfc96fe7ecce62,5db954a2af32f6000a8fe36c,AWAITING REVIEW,2019-12-04 11:45:09.240000,2019-12-04 11:54:35.043000,565.803,21,14,0,100,,89EB6F6F,Part-Time,Spain,Female,Yes,Spanish,Spain,Spain

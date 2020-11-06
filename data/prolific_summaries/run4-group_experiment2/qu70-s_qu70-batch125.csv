@@ -1,0 +1,12 @@
+session_id,participant_id,status,started_datetime,completed_date_time,time_taken,age,num_approvals,num_rejections,prolific_score,reviewed_at_datetime,entered_code,Country of Birth,Current Country of Residence,Employment Status,First Language,Nationality,Sex,Student Status
+5ece2ea0d701ae1c504dad09,5e6c075b1689b01da3b62993,AWAITING REVIEW,2020-05-27 09:11:03.084000,2020-05-27 09:18:23.390000,440.306,21,17,0,100,,8ABCB2C7,Hungary,Hungary,Part-Time,Hungarian,Hungary,Female,Yes
+5ece3021025e2b1c4e0dae36,5c63f97a25163900017991d2,AWAITING REVIEW,2020-05-27 09:17:27.694000,2020-05-27 09:36:11.005000,1123.311,26,124,2,99,,8ABCB2C7,United Kingdom,United Kingdom,"Not in paid work (e.g. homemaker', 'retired or disabled)",English,United Kingdom,Female,No
+5ece32305587280122d6ead2,5bae3351a91ee200011a4220,TIMED-OUT,2020-05-27 09:26:12.300000,,6188.983789,37,190,1,100,,,United Kingdom,United Kingdom,Full-Time,English,United Kingdom,Female,No
+5ece366e54276902487a6e36,5c9e5360bb028c00166755fa,AWAITING REVIEW,2020-05-27 09:44:16.616000,2020-05-27 09:49:38.323000,321.707,47,65,1,100,,8ABCB2C7,Spain,Spain,Full-Time,Spanish,Spain,Male,No
+5ece374b98ee901daadf9d6a,5dfc9db54cac6899b466a76b,AWAITING REVIEW,2020-05-27 09:47:57.796000,2020-05-27 09:53:52.428000,354.632,32,52,2,97,,8ABCB2C7,Brazil,Spain,Other,Portuguese,Brazil,Female,Yes
+5ece38891117f01e28121bd7,5e8d690133b50414025ce479,AWAITING REVIEW,2020-05-27 09:53:16.790000,2020-05-27 09:58:53.457000,336.667,26,27,0,100,,8ABCB2C7,Netherlands,Netherlands,Unemployed (and job seeking),Dutch,Netherlands,Male,No
+5ece39c6886a6c1cfb1f3bcf,5de94617c977a603040fb476,AWAITING REVIEW,2020-05-27 09:58:32.866000,2020-05-27 10:06:17.904000,465.038,19,12,0,100,,8ABCB2C7,Finland,Finland,Other,Finnish,Finland,Male,Yes
+5ece3a020e92801d26ffdac2,5bd8822d1d0fed00018dcbfc,AWAITING REVIEW,2020-05-27 09:59:33.412000,2020-05-27 10:06:55.669000,442.257,26,112,0,100,,8ABCB2C7,Chile,Italy,Full-Time,Spanish,Chile,Female,Yes
+5ece3a0ce627211cf1d6a97c,5cb653e0e9187600014da063,AWAITING REVIEW,2020-05-27 09:59:40.903000,2020-05-27 10:18:56.100000,1155.197,19,104,1,100,,8ABCB2C7,Brazil,Portugal,Unemployed (and job seeking),Portuguese,Brazil,Male,Yes
+5ece3a8c1713311d14090c53,5e722532d302e9150b775daf,AWAITING REVIEW,2020-05-27 10:01:53.959000,2020-05-27 10:10:00.645000,486.686,23,33,0,100,,8ABCB2C7,,,,,,Female,
+5ece3e768843751e79b01cf2,5e7a1477701cba04f04d5b14,AWAITING REVIEW,2020-05-27 10:18:30.736000,2020-05-27 10:34:55.785000,985.049,23,26,0,100,,8ABCB2C7,Greece,Greece,Part-Time,Greek,Greece,Male,Yes
