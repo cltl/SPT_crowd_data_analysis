@@ -3,11 +3,10 @@
 
 # Whitelisted
 !.gitignore
-!annotation_data/
 !data/prolific_summaries/
 !data/prolific_output_uuid/
 !data/prolific_output/
-!data/gold_labels/**
+!gold_labels/gold.csv
 !aggregated_labels/
 !evaluation/
 !scripts/evaluation.py
@@ -17,6 +16,8 @@
 !scripts/aggreation.py
 !scripts/calculate_iaa.py
 !scripts/clean_annotations.py
-
+!scripts/analyze_workers.py
+!scripts/analyze_pairs.py
+!scheme/contradictions.csv
 
 

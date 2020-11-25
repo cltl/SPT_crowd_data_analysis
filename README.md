@@ -1,23 +1,48 @@
-# ProperCR
+# ProperCR: Dealing with crowd annotations of semantic properties
 
-This directory contains a dataset of properties and concepts annotated with fine-grained semantic relations. Among other things, the dataset can be used for diagnostic experiments on latent language model representations (e.g. word embeddings).
+This repository contains the code and dataset presented in the following paper (to appear at Coling 2020):
 
-This directory is structured as follows:
+@inproceedings{sommerauer-etal-2020,
+	Author = {Pia Sommerauer and Antske Fokkens and Piek Vossen},
+	Booktitle = {Proceedings of the 28th International Conference on Computational Linguistics},
+	Title = {Would you describe a leopard as yellow? Evaluating crowd-annotations with justified and informative disagreement},
+	Year = {in press}}
 
-* crowd_annotations:
+Please cite this paper if you use our code or dataset. 
 
-  Contains the raw crowd annotations sorted in subdirectories representing 3 versions of the dataset. Version 1 and 2 were pilots.
-  Each version directory contains batch files. A single batch contains all relation-concept-property triples given to 10 crowd annotators at a time.
+## Data
 
-* gold_annotations:
+Aggregated labels (according to evaluation results):
 
-  Contains triples annotated by three experts (the authors of the paper). The triples can be matched with the crowd annotations. The file shows the aggregated expert judgments after discussion.
+- aggregated_labels/ 
 
-* contradictions.csv: CSV file listing all relation-pairs counted as contradictions. Pair annotations of a worker who selected contradictory relations may be of lower quality (discussed in the paper).
+The directory contains aggregated crowd labels with the best aggregation method on the level of fine-grained relations ('relations') and coarse-grained relations ('levels'). 
 
+**Raw annotation output**
+
+- `data/`
+
+The raw output consists of the output downloaded from the annotation tool (set up with Lingoturk and placed in `prolific_output`) and summary data from prolific (worker information, duration of completing a task)
+
+Versions:
+
+* run1_group_experiment1: pilot run
+* run3_group_experiment1: pilot run 
+* run4_group_experiment2: first full run
+
+All experiments were carried out with on the entire set. DEtailed statistics per run are listed in the paper. 
+
+The remaining directories contain the raw output of the expert annotations. 
+
+**Gold labels provided by experts**
+
+- `gold_labels/`
+
+The entire set of gold labels can be found in gold.csv. The gold labels have been aggregated following the procedure outlined in the paper. 
+
+**File structure**
 
 The annotation files (gold and crowd) are in csv format and are structured as follows:
-
 
 Columns relevant for the task:
 
@@ -47,3 +72,43 @@ Columns with information about the task in Prolific and Lingoturk:
 Each row contains the response of a worker.
 
 The data will be made freely available under a Creative Commons license.
+
+## Contradiction metric:
+
+For our own metric based on worker-contradictions, we defined which relations count as contradictions. All contradictions are listed in:
+
+-`scheme/contradictions.csv`
+
+
+## Code
+
+We evaluate various methods of aggregating annotations (based on various quality metrics) against gold annotations.
+
+We ran the experiments on the full version of our dataset. It is also possibly to run it on portions of the dataset. By default, all scripts are processing the full dataset. The settings can be changed in the config.json. 
+
+**1. Run annotation analyses**
+
+Contradiction analysis (on the level of workers and pairs): 
+
+`python analyze_pairs.py`
+
+CrowdTruth analysis
+
+`python run_crowdtruth.py`
+
+**2. Evaluation against gold labels**
+
+`python evaluation.py`
+
+The results are written to `evaluation/`.
+
+**3. Prediction of justified disagreement**
+
+`python predict_disagreement.py`
+
+
+
+## Contact:
+
+Pia Sommerauer (pia.sommerauer@vu.nl)
+Vrije Universiteit Amsterdam
