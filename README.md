@@ -10,6 +10,8 @@ This repository contains the code and dataset presented in the following paper (
 
 Please cite this paper if you use our code or dataset. 
 
+The data collection and analysis is still on-going. Therefore, additional analyses may be added. Please use the release labeled as Coling2020 to use the code published with the paper. 
+
 ## Data
 
 Aggregated labels (according to evaluation results):
