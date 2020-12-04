@@ -178,7 +178,7 @@ def process_triple_and_answer(dict_list_out):
         #print(answer_dict)
         d.pop('answer')
         d.update(answer_dict)
-        rel, prop, concept = d.pop('triple').split('-')
+        rel, prop, concept = d.pop('triple').split('-', 2)
         d['relation'] = rel
         d['property'] = prop
         d['concept'] = concept
@@ -236,7 +236,13 @@ def remove_singletons(data_dict_list, v=False):
         data_by_relation = sort_by_key(dl, ['relation'])
         if len(data_by_relation) == 1:
             relation = list(data_by_relation.keys())[0]
-            if relation != '_check' and not relation.startswith('test_'):
+            # print(list(data_by_relation.values()))
+            quid = list(data_by_relation.values())[0][0]['quid']
+            filter_checks = [(relation =='_check'),
+                             relation.startswith('test_'),
+                             quid.startswith('test')]
+            if not any(filter_checks):
+                print('Filter true')
                 continue
             else:
                 clean_data.extend(dl)
@@ -255,6 +261,7 @@ def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
     all_files = f'{dir_output}run{run}-group_{group}/qu{n_q}-s_qu{n_q}-batch{batch}.csv'
     annotations_discarded = 0.0
     for f in glob.glob(all_files):
+        print(f)
         # check if files already have unique ids
         exp_path = f[len(dir_output):]
         add_unique_ids(exp_path)

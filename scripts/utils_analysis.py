@@ -43,6 +43,9 @@ def get_tests_and_checks(worker_dict_list):
                 correct_answer = 'true'
             elif quid.startswith('test'):
                 correct_answer = d['relation'].split('_')[1]
+                if correct_answer not in ['true', 'false']:
+                    correct_answer = quid.split('_')[1]
+                # print(correct_answer, actual_answer)
             elif quid == 'check4':
                 # if quid == check4 (I am answering questions at random)
                 correct_answer = 'false'
@@ -51,6 +54,8 @@ def get_tests_and_checks(worker_dict_list):
                 worker = d['workerid']
                 fails.append(d['description'])
     return fails
+
+
 
 
 def get_relation_cnt(pair_dicts):
