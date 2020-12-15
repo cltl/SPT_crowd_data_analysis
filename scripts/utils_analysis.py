@@ -42,7 +42,11 @@ def get_tests_and_checks(worker_dict_list):
             if quid in ['check1', 'check2', 'check3']:
                 correct_answer = 'true'
             elif quid.startswith('test'):
-                correct_answer = d['relation'].split('_')[1]
+                rel_split =d['relation'].split('_')
+                if len(rel_split) > 1:
+                    correct_answer = d['relation'].split('_')[1]
+                else:
+                    correct_answer = None
                 if correct_answer not in ['true', 'false']:
                     correct_answer = quid.split('_')[1]
                 # print(correct_answer, actual_answer)

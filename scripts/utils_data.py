@@ -65,7 +65,7 @@ def load_answer(answer):
 
 
 
-def match_ids(dict_list_out_batch, dict_list_sum_batch, remove_not_val = True, v=False):
+def match_ids(dict_list_out_batch, dict_list_sum_batch, remove_not_val = True, v=True):
 
     if len(dict_list_sum_batch) != 0:
         worker_ids_sum = set([d['participant_id'] for d in dict_list_sum_batch])
@@ -199,10 +199,10 @@ def write_batch_data_uuid(dict_list, f_uuid):
             writer.writerow(d)
 
 
-def add_unique_ids(exp_path):
+def add_unique_ids(exp_path, overwrite_file = False):
     path_output = f'../data/prolific_output/{exp_path}'
     path_output_uuid = f'../data/prolific_output_uuid/{exp_path}'
-    if not os.path.isfile(path_output_uuid):
+    if not os.path.isfile(path_output_uuid) or overwrite_file==True:
         print('creating file with uuid', exp_path)
         dir_exp = exp_path.split('/')[0]
         dict_list = load_batch_data_raw(path_output)
@@ -242,7 +242,8 @@ def remove_singletons(data_dict_list, v=False):
                              relation.startswith('test_'),
                              quid.startswith('test')]
             if not any(filter_checks):
-                print('Filter true')
+                if v == True:
+                    print('Filter true')
                 continue
             else:
                 clean_data.extend(dl)
@@ -253,18 +254,20 @@ def remove_singletons(data_dict_list, v=False):
         print(f'number of questions without singletons: {len(clean_data)}')
     return clean_data
 
-def load_experiment_data(run, group, n_q, batch, remove_not_val = True):
+def load_experiment_data(run, group, n_q, n_lists,
+                         batch, remove_not_val = True, overwrite_file=False, verbose=False):
 
     all_dict_list_out = []
 
     dir_output = '../data/prolific_output/'
-    all_files = f'{dir_output}run{run}-group_{group}/qu{n_q}-s_qu{n_q}-batch{batch}.csv'
+    all_files = f'{dir_output}run{run}-group_{group}/qu{n_q}-s_qu{n_lists}-batch{batch}.csv'
     annotations_discarded = 0.0
     for f in glob.glob(all_files):
-        print(f)
+        if verbose == True:
+            print(f)
         # check if files already have unique ids
         exp_path = f[len(dir_output):]
-        add_unique_ids(exp_path)
+        add_unique_ids(exp_path, overwrite_file=overwrite_file)
         dict_list_sum_batch = load_experiment_summaries_batch(exp_path, remove_not_val = remove_not_val)
         if dict_list_sum_batch != []:
             dict_list_out_batch = load_experiment_data_batch(exp_path, remove_not_val = remove_not_val)
@@ -296,10 +299,10 @@ def load_expert_data_batch(exp_path):
         dict_list_out = list(csv.DictReader(infile, delimiter = ','))
     return dict_list_out
 
-def load_expert_data(run, group, n_q, batch):
+def load_expert_data(run, group, n_q, n_lists, batch):
     all_dict_list_out = []
     dir_output = '../data/prolific_output/'
-    name = f'run{run}-group_{group}/qu{n_q}-s_qu{n_q}-batch{batch}'
+    name = f'run{run}-group_{group}/qu{n_q}-s_qu{n_lists}-batch{batch}'
     all_files = f'{dir_output}{name}.csv'
     for f in glob.glob(all_files):
         exp_path = f[len(dir_output):]
@@ -319,9 +322,10 @@ def main():
     run = config_dict['run']
     batch = config_dict['batch']
     n_q = config_dict['number_questions']
+    n_lists = '*'
     group = config_dict['group']
 
-    data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+    data_dict_list = load_experiment_data(run, group, n_q, n_lists, batch, remove_not_val = True)
 
 
 if __name__ == '__main__':
