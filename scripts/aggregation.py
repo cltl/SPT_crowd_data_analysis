@@ -151,7 +151,7 @@ def main():
     batch = config_dict['batch']
     n_q = config_dict['number_questions']
     group = config_dict['group']
-
+    n_lists = '*'
     parser = argparse.ArgumentParser()
     parser.add_argument("--votes", default=['majority_vote'], type=list, nargs="+")
 
@@ -175,7 +175,7 @@ def main():
     n_stdv = args.n_stdv_clean
 
     # Total without filter
-    data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+    data_dict_list = load_experiment_data(run, group, n_q, n_lists, batch, remove_not_val = True)
     print(len(data_dict_list))
 
 

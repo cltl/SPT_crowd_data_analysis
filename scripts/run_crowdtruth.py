@@ -3,7 +3,7 @@ import crowdtruth
 from crowdtruth.configuration import DefaultConfig
 import os
 
-from load_data import load_experiment_data
+from utils_data import load_experiment_data
 
 import pandas as pd
 import os
@@ -77,10 +77,14 @@ def create_input_df(all_question_dicts):
     final_df.rename(columns={'quid': '_unit_id'}, inplace = True)
     final_df.rename(columns={'id': '_id'}, inplace = True)
     final_df.rename(columns={'workerid': '_worker_id'}, inplace = True)
-    final_df.drop(columns = ['assignmentid',
-    'completionurl', 'exampletrue', 'examplefalse', 'filename', 'hitid',
-    'listnumber', 'origin', 'partid', 'questionid', 'run', 'sublist', 'timestamp'],
-    inplace = True)
+    headers_to_drop =['assignmentid',
+                        'completionurl', 'exampletrue', 'examplefalse', 'filename', 'hitid',
+                        'listnumber', 'origin', 'partid', 'questionid', 'run', 'sublist', 'timestamp']
+    headers_to_drop_in_df = []
+    for h in headers_to_drop:
+        if h in final_df.columns:
+            headers_to_drop_in_df.append(h)
+    final_df.drop(columns = headers_to_drop_in_df, inplace = True)
     #checks = ['check1', 'check2', 'check3', 'check4']
     #for ch in checks:
     #    final_df.drop(final_df[final_df['_unit_id'] == ch].index, inplace = True)
@@ -129,11 +133,11 @@ def main():
     run = '*'
     batch = '*'
     n_q = '*'
-    group = 'experiment*'
+    group = '*'
 
     name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
-
-    data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+    n_lists = '*'
+    data_dict_list = load_experiment_data(run, group, n_q, n_lists, batch, remove_not_val = True)
     print('checking if concepts are there:')
     check_data(data_dict_list)
     add_time_info(data_dict_list)
