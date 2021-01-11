@@ -6,9 +6,8 @@ from calculate_iaa import get_collapsed_relations
 from clean_annotations import remove_contradicting_workers, clean_workers
 
 
-from collections import defaultdict, Counter
+from collections import defaultdict
 import pandas as pd
-import os
 import argparse
 
 
@@ -28,7 +27,7 @@ def get_ua_score(quid, units_by_quid):
         ua_score = ct_unit_d[0]['unit_annotation_score']
         score_dict = split_score(ua_score)
     else:
-        print('quid not found:', quid)
+        print('CT UA: quid not found:', quid)
         score_dict = dict()
         score_dict['true'] = 0.0
         score_dict['false'] = 0.0
@@ -144,10 +143,22 @@ def labels_to_csv(path, aggregated_labels, vote):
     df.to_csv(path)
 
 
+
+def remove_test_questions(data_dict_list):
+    data_clean = []
+    for d in data_dict_list:
+        quid = d['quid']
+        if 'test' in quid or 'check' in quid:
+            continue
+        else:
+            data_clean.append(d)
+    return data_clean
+
+
 def main():
 
     config_dict = load_config()
-    run = config_dict['run']
+    runs = config_dict['runs']
     batch = config_dict['batch']
     n_q = config_dict['number_questions']
     group = config_dict['group']
@@ -175,9 +186,13 @@ def main():
     n_stdv = args.n_stdv_clean
 
     # Total without filter
-    data_dict_list = load_experiment_data(run, group, n_q, n_lists, batch, remove_not_val = True)
-    print(len(data_dict_list))
-
+    data_dict_list = []
+    for run in runs:
+        data_dict_list.extend(load_experiment_data(run, group, n_q, n_lists, batch, remove_not_val = True))
+    print('original data:', len(data_dict_list))
+    # clean:
+    data_dict_list = remove_test_questions(data_dict_list)
+    print('data without test instances:', len(data_dict_list))
 
     if metric != 'raw':
         data_dict_list_clean = clean_workers(data_dict_list, run, group, batch, metric, unit, n_stdv)
@@ -186,12 +201,13 @@ def main():
     print(len(data_dict_list_clean))
 
     # aggregate:
-    ct_units = load_ct(run, group, batch, 'units', as_dict=True)
+    ct_units = load_ct(runs, group, batch, 'units', as_dict=True)
+
     aggregated_labels = aggregate_binary_labels(data_dict_list_clean, ct_units, ct_thresholds)
 
     # to csv
     for vote in votes:
-        name = f'run{run}-group_{group}-batch{batch}-cleaned_{metric}_{unit}_{n_stdv}-vote_{vote}-relations'
+        name = f'run{"_".join(runs)}-group_{group}-batch{batch}-cleaned_{metric}_{unit}_{n_stdv}-vote_{vote}-relations'
         name = name.replace('*', '-all-')
         path = f'../aggregated_labels/{name}.csv'
         labels_to_csv(path, aggregated_labels, vote)
@@ -200,7 +216,7 @@ def main():
         aggregated_labels_collapsed = get_collapsed_relations(aggregated_labels,
                                                               mapping='levels',
                                                              answer_name = vote)
-        name = f'run{run}-group_{group}-batch{batch}-cleaned_{metric}_{unit}_{n_stdv}-vote_{vote}-levels'
+        name = f'run{"_".join(runs)}-group_{group}-batch{batch}-cleaned_{metric}_{unit}_{n_stdv}-vote_{vote}-levels'
         name = name.replace('*', '-all-')
         path = f'../aggregated_labels/{name}.csv'
         print('Result written to:', path)

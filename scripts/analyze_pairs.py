@@ -88,8 +88,9 @@ def main():
     batch = config_dict['batch']
     n_q = config_dict['number_questions']
     group = config_dict['group']
+    n_lists = '*'
 
-    data_dict_list = load_experiment_data(run, group, n_q, batch, remove_not_val = True)
+    data_dict_list = load_experiment_data(run, group, n_q, n_lists, batch, remove_not_val = True)
     name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
     df, filepath = get_pair_analysis(data_dict_list, name)
     print(f'analysis can be found at: {filepath}')

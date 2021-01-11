@@ -130,14 +130,17 @@ def check_data(data_dict_list):
             print(d)
 
 def main():
-    run = '*'
+    runs = ['3', '4', '5_pilot']
     batch = '*'
     n_q = '*'
-    group = '*'
+    group = 'experiment*'
 
-    name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
+    name = f'run{"_".join(runs)}-group_{group}-batch{batch}'.replace('*', '-all-')
+    print(name)
     n_lists = '*'
-    data_dict_list = load_experiment_data(run, group, n_q, n_lists, batch, remove_not_val = True)
+    data_dict_list = []
+    for run in runs:
+        data_dict_list.extend(load_experiment_data(run, group, n_q, n_lists, batch, remove_not_val = True))
     print('checking if concepts are there:')
     check_data(data_dict_list)
     add_time_info(data_dict_list)
