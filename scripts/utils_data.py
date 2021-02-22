@@ -6,9 +6,9 @@ import uuid
 import os
 from utils_analysis import sort_by_key
 import pandas as pd
-
 import json
-from io import StringIO
+from datetime import datetime
+from datetime import timedelta
 
 
 def load_config():
@@ -154,18 +154,7 @@ def load_experiment_summaries_batch(exp_path, remove_not_val = True):
         dict_list_sum = []
     return dict_list_sum
 
-def add_time_info(dict_list_out_batch, dict_list_sum_batch):
-    if dict_list_sum_batch != []:
-        worker_time_dict = {d['participant_id']: d['time_taken'] for d in dict_list_sum_batch}
-    else:
-        worker_time_dict = dict()
-    for d in dict_list_out_batch:
-        worker = d['workerid']
-        if worker in worker_time_dict:
-            time = worker_time_dict[worker]
-        else:
-            time = 0.0
-        d['time_taken_batch'] = time
+
 
 
 def process_triple_and_answer(dict_list_out):
@@ -212,6 +201,132 @@ def add_unique_ids(exp_path, overwrite_file = False):
         write_batch_data_uuid(dict_list, path_output_uuid)
         print(f'added unique ids - file can be found at: {path_output_uuid}')
 
+def load_timestamp_lingoturk(stamp_str):
+    # conversion map: https://www.journaldev.com/23365/python-string-to-datetime-strptime
+    # translate: 28-Jan-2021 09:38:47
+    # day %d
+    # month %b
+    # year %Y
+    # hour %H
+    # minutes %M
+    # seconds %S
+    mapping = '%d-%b-%Y %H:%M:%S'
+    stamp = datetime.strptime(stamp_str, mapping)
+    return stamp
+
+def add_time_info(dict_list_out_batch, dict_list_sum_batch):
+    if dict_list_sum_batch != []:
+        worker_time_dict = {d['participant_id']:
+                                {'time_taken': d['time_taken'],
+                                 'started_datetime': d['started_datetime'],
+                                 'completed_datetime': d['completed_date_time']}
+
+                            for d in dict_list_sum_batch}
+    else:
+        worker_time_dict = dict()
+    for d in dict_list_out_batch:
+        worker = d['workerid']
+        timestamp = d['timestamp']
+        timestamp_datetime = load_timestamp_lingoturk(timestamp)
+        d['timestamp_datetime'] = timestamp_datetime
+        if worker in worker_time_dict:
+            time_dict = worker_time_dict[worker]
+        else:
+            time_dict = {'time_taken': None, 'started_datetime': None, 'completed_datetime': None}
+        d.update(time_dict)
+
+
+def get_duration(worker_data):
+    # sort data by time stamp to create sequence
+    data_by_timestamp = sort_by_key(worker_data, ['timestamp_datetime'])
+    time_series = sorted(data_by_timestamp.keys())
+    first_timestamp = time_series[0]
+
+    # get task start and end time from any of the dicts
+    start_time_str = worker_data[0]['started_datetime']
+    end_time_str = worker_data[0]['completed_datetime']
+
+    # get start and end as datetime objects
+    if not start_time_str is None:
+        start_uk = datetime.fromisoformat(start_time_str)
+        diff_start_1 = first_timestamp - start_uk
+        diff_start_1_seconds = diff_start_1.total_seconds()
+    else:
+        start_uk = None
+        diff_start_1_seconds = None
+    if not end_time_str is None:
+        end_uk = datetime.fromisoformat(end_time_str)
+        # adapt time zone from uk to our server
+    else:
+        end_uk = None
+
+    #print('-----time zone update ----')
+    hours_seconds = 60 * 60
+    hours1 = hours_seconds
+    hours2 = 2 * hours_seconds
+    if not diff_start_1_seconds is None:
+        if diff_start_1_seconds > hours2:
+            #print('2 hour difference')
+            to_add = timedelta(hours=2)
+        else:
+            #print('1 hour difference')
+            to_add = timedelta(hours=1)
+
+    if not start_uk is None:
+        start = start_uk + to_add
+    else:
+        start = None
+
+    if not end_uk is None:
+        end = end_uk + to_add
+    else:
+        end = None
+    #print(start, end)
+
+    #print('---------------------------')
+
+    for n, timestamp in enumerate(time_series):
+        ds = data_by_timestamp[timestamp]
+        for nd, d in enumerate(ds):
+            if nd + 1 < len(ds):
+                # print('submitted at same time?')
+                submit_time = ds[nd + 1]['timestamp_datetime']
+            elif n == len(time_series) - 1:
+                # print('final time step: time stamp to submit time')
+                if not end is None:
+                    submit_time = end
+                else:
+                    submit_time = None
+            else:
+
+                submit_time = timestamp
+
+            if n == 0:
+                if not start is None:
+                    # print('assign start to start')
+                    start_time = start
+                else:
+                    start_time = None
+            else:
+                start_time = time_series[n - 1]
+            if None in [start_time, submit_time]:
+                duration = None
+            else:
+
+                duration = (submit_time - start_time).total_seconds()
+                #print(start_time, submit_time, duration)
+            d['duration_in_seconds'] = duration
+
+def add_duration_info(dict_list_out_batch):
+    """
+    Add duration info per item after time
+    info has been added from
+    prolific summary data.
+    """
+    # divide data by worker
+    data_by_worker = sort_by_key(dict_list_out_batch, ['workerid'])
+    for worker, worker_data in data_by_worker.items():
+        get_duration(worker_data)
 
 def load_experiment_data_batch(exp_path, remove_not_val = True):
 
@@ -273,11 +388,29 @@ def load_experiment_data(run, group, n_q, n_lists,
             dict_list_out_batch = load_experiment_data_batch(exp_path, remove_not_val = remove_not_val)
             match_ids(dict_list_out_batch, dict_list_sum_batch, remove_not_val = True, v=False)
             add_time_info(dict_list_out_batch, dict_list_sum_batch)
+            add_duration_info(dict_list_out_batch)
             process_triple_and_answer(dict_list_out_batch)
             dict_list_out_clean = remove_singletons(dict_list_out_batch)
+            [d.update({'f_name_full': f}) for d in dict_list_out_batch]
             annotations_discarded += len(dict_list_out_batch) - len(dict_list_out_clean)
             all_dict_list_out.extend(dict_list_out_clean)
     print(f'Discarded {annotations_discarded} annotations.')
+    return all_dict_list_out
+
+
+
+def load_processed_data(run, group, n_q, n_lists,
+                         batch, name, verbose = False):
+
+    all_dict_list_out = []
+
+    dir_output = f'../data/annotations_{name}/'
+    all_files = f'{dir_output}run{run}-group_{group}/qu{n_q}-s_qu{n_lists}-batch{batch}.csv'
+    for f in glob.glob(all_files):
+        if verbose == True:
+            print(f)
+        with open(f) as infile:
+            all_dict_list_out.extend(list(csv.DictReader(infile, delimiter = ',')))
     return all_dict_list_out
 
 def load_gold_data_batch(exp_path):
@@ -315,6 +448,20 @@ def load_expert_data(run, group, n_q, n_lists, batch):
         process_triple_and_answer(dict_list_out_batch)
         all_dict_list_out.extend(dict_list_out_batch)
     return all_dict_list_out
+
+
+def annotations_to_file(data_dict_list, run, group, batch, type='raw'):
+    data_dir = f'../data/annotations-{type}'
+    if not os.path.isdir(data_dir):
+        os.mkdir(data_dir)
+    keys_to_remove = ['assignmentid', 'hitid', 'time_taken', 'partid']
+    df = pd.DataFrame(data_dict_list)
+    df.drop(keys_to_remove, axis=1, inplace=True)
+    name = f'run{run}-group_{group}-batch{batch}'
+    name = name.replace('*', '-all-')
+    path = f'{data_dir}/{name}.csv'
+    df.to_csv(path)
+    print(f'Annotations summarized in one csv: {path}')
 
 def main():
 

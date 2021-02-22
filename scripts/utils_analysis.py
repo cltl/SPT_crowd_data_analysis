@@ -3,7 +3,7 @@ from collections import Counter
 import pandas as pd
 
 
-def sort_by_key(data_dict_list, keys):
+def sort_by_key(data_dict_list, keys, key_type = 'str'):
 
     sorted_dict = defaultdict(list)
     for d in data_dict_list:
@@ -15,7 +15,10 @@ def sort_by_key(data_dict_list, keys):
             for key in keys:
                 sortkey = d[key]
                 sortkeys.append(sortkey)
-            sortkey = '-'.join(sortkeys)
+            if key_type == 'str':
+                sortkey = '-'.join(sortkeys)
+            else:
+                sortkey = tuple(sortkeys)
         sorted_dict[sortkey].append(d)
     return sorted_dict
 
@@ -26,10 +29,15 @@ def get_average_time_worker(worker_dict_list):
     av_time_questions = []
     for batch, dl in data_by_batch.items():
         # time info is the same for the entire batch
-        time = float(dl[0]['time_taken_batch'])
-        av_time_question = time / len(dl)
-        av_time_questions.append(av_time_question)
-    av_time = sum(av_time_questions) / len(av_time_questions)
+        time = dl[0]['duration_in_seconds']
+        if not time is None:
+            time = float(time)
+            av_time_question = time / len(dl)
+            av_time_questions.append(av_time_question)
+    if len(av_time_questions) > 0:
+        av_time = sum(av_time_questions) / len(av_time_questions)
+    else:
+        av_time = None
     return av_time
 
 
@@ -111,10 +119,11 @@ def get_annotation_ids(dict_list):
     return ids
 
 
-def load_analysis(analysis_type, run, exp_name, batch, as_dict = False):
+def load_analysis(analysis_type, runs, groups, batch, as_dict = False):
     #../analyses/pairs/run-all--group_experiment1-batch-all-.csv
     # run3-group_experiment1-batch53.csv
-    path = f'../analyses/{analysis_type}/run{run}-group_{exp_name}-batch{batch}.csv'
+    path = f'../analyses/{analysis_type}/run{"_".join(runs)}-group_{"_".join(groups)}-batch{batch}.csv'
+    # name = f'run{"_".join(runs)}-group_{"_".join(groups)}-batch{batch}'.replace('*', '-all-')
     path = path.replace('*', '-all-')
     analysis = pd.read_csv(path)
     if as_dict == True:

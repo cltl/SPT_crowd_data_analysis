@@ -79,6 +79,7 @@ def get_worker_data(data_by_worker, contradictions):
 def analysis_to_file(analysis_data_dicts, out_dir, name):
     df = pd.DataFrame(analysis_data_dicts)
     # sort by contradiction to annotation ratio
+    #print(df.columns)
     df.sort_values('contradiction_poss_contradiction_ratio', axis=0, ascending=False, inplace=True)
     os.makedirs(out_dir, exist_ok=True)
     filepath = f'{out_dir}{name}.csv'
@@ -139,7 +140,7 @@ def get_worker_analysis(data_dict_list, name, unit):
 def main():
 
     config_dict = load_config()
-    run = config_dict['run']
+    runs = config_dict['runs']
     batch = config_dict['batch']
     n_q = config_dict['number_questions']
     group = config_dict['group']
@@ -150,12 +151,35 @@ def main():
     args = parser.parse_args()
     units  = args.units
 
-    data_dict_list = load_experiment_data(run, group, n_q, n_lists, batch, remove_not_val = True)
-    name = f'run{run}-group_{group}-batch{batch}'.replace('*', '-all-')
+   # unit = 'batch'
+    #metric = 'contradictions'
+    #n_stds = 0.5
 
+    configs = [
+        #('1', 'experiment1'),
+        ('3', 'experiment1'),
+        ('4', 'experiment2'),
+        #('5_pilot', 'experiment3'),
+        #('5_scalar_heat', 'scalar_heat')
+    ]
+    batch = '*'
+    n_q = '*'
+    n_lists = '*'
+    all_data = []
+    runs = [conf[0] for conf in configs]
+    groups = [conf[1] for conf in configs]
+    for run, group in configs:
+        #data = load_experiment_data(run, group, n_q, n_lists,
+         #                           batch)
+
+
+        data_dict_list = load_experiment_data(run, group, n_q, n_lists, batch, remove_not_val = True)
+        all_data.extend(data_dict_list)
+    name = f'run{"_".join(runs)}-group_{"_".join(groups)}-batch{batch}'.replace('*', '-all-')
+    print(name)
     for unit in units:
         print(f'analyzing workers on the level of: {unit}')
-        df, filepath = get_worker_analysis(data_dict_list, name, unit)
+        df, filepath = get_worker_analysis(all_data, name, unit)
         print(f'analysis can be found at: {filepath}')
 
 
