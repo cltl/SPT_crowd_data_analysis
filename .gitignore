@@ -32,3 +32,5 @@ gold_labels/gold_files/
 scheme/relation_overview_run3.csv
 scheme/relation_overview_run4.csv
 scheme/relations.txt
+data/annotations*
+data/aggregated*
