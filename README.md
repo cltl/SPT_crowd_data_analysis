@@ -12,13 +12,16 @@ Please cite this paper if you use our code or dataset.
 
 The data collection and analysis is still on-going. Therefore, additional analyses may be added. Please use the release labeled as Coling2020 to use the code published with the paper. 
 
+Please contact Pia Sommerauer (pia [dot] sommerauer [at] vu [dot] nl) to obtain the most recent version of the dataset.
+
 ## Data
 
 Aggregated labels (according to evaluation results):
 
 - aggregated_labels/ 
 
-The directory contains aggregated crowd labels with the best aggregation method on the level of fine-grained relations ('relations') and coarse-grained relations ('levels'). 
+The directory contains aggregated crowd labels with the best aggregation method on the level of fine-grained relations ('relations') and coarse-grained relations ('levels').
+ 
 
 **Raw annotation output**
 
